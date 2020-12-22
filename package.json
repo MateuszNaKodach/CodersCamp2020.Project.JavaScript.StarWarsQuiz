@@ -41,7 +41,8 @@
     "msw": "^0.21.3",
     "parcel-plugin-static-files-copy": "^2.5.0",
     "prettier": "2.2.1",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "sass": "^1.30.0"
   },
   "jest": {
     "moduleFileExtensions": [
