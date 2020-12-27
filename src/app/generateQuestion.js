@@ -1,17 +1,6 @@
 import {peopleIdArray, starshipsIdArray, vehiclesIdArray} from './settings.js';
+import {getRandomIdFromArray} from './util.js';
 
-const getRandomIdFromArray = (array, length = 4) => {
-	const resultsArr = [];
-	  for (let i = 0; i < length; i++) {
-		const newNumber = Math.floor(Math.random() * array.length);
-		resultsArr.includes(array[newNumber])
-		  ? (length += 1)
-		  : resultsArr.push(array[newNumber]);
-	  }
-	  return resultsArr;
-}
-
-  
 export const generateQuestion = (mode) => {
 	let questionsIdArray = [];
 	let rightAnswerId;
@@ -47,6 +36,7 @@ export const generateQuestion = (mode) => {
 		  }
 		})
 		.then((json) => {
+	
 		  result.answers.push(json.name);
   
 		  if (rightAnswerId == id) {
