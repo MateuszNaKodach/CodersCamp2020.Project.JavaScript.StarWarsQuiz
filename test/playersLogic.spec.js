@@ -11,28 +11,27 @@ describe("Player's logic", () => {
     expect(player.name).toBe('Player');
   });
 
-  it('Get player info', () => {
-    expect(player.playerInfo).toBe('Player ');
-  });
-
   it('Name player', () => {
     let newPlayer = new Player('Bob');
     expect(newPlayer.name).toBe('Bob');
   });
 
-  it('Add question with answer', () => {
-    let newPlayer = new Player();
-    newPlayer.addAnswer(1, 'Yoda');
+  //correct tests below ...
+  it('Ask player a question', () => {
+    let question = 'Question one...';
+    let askQuestion = jest.fn(question);
 
-    expect(newPlayer.answers[0]).toStrictEqual({ question: 1, answer: 'Yoda' });
+    expect(player.getQuestion(question, askQuestion)).toEqual(
+      askQuestion(question),
+    );
   });
 
-  it("Get player's answers", () => {
-    let newPlayer = new Player();
-    newPlayer.addAnswer(1, 'Yoda');
-    newPlayer.addAnswer(2, 'Han Solo');
-    newPlayer.addAnswer(3, 'R2-D2');
+  it('Get player answer', () => {
+    let chosenAnswer = 'This is the aswer';
+    let saveAnswer = jest.fn(chosenAnswer);
 
-    expect(newPlayer.getAnswers().length).toBe(3);
+    expect(player.answer(chosenAnswer, saveAnswer)).toEqual(
+      askQuestion(question),
+    );
   });
 });

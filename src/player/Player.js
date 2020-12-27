@@ -1,7 +1,6 @@
 export class Player {
     constructor(name = "Player") {
         this._name = name;
-        this.answers = [];
     }
 
     get name() {
@@ -12,16 +11,11 @@ export class Player {
         this._name = newName;
     }
 
-    get playerInfo() {
-        return `${this._name} ${this.answers}`;
+    getQuestion(question, askQuestion) {
+        askQuestion(question);
     }
 
-    addAnswer(questionId, chosedAnswer)  {
-        let question = {question: questionId, answer: chosedAnswer};
-        this.answers.push(question);
-    }
-
-    getAnswers() {
-        return this.answers;
+    asnwer(chosenAnswer, saveAnswer) {
+        saveAnswer(chosenAnswer);
     }
 };
