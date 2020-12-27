@@ -15,6 +15,11 @@ describe("Player's logic", () => {
     expect(player.playerInfo).toBe('Player ');
   });
 
+  it('Name player', () => {
+    let newPlayer = new Player('Bob');
+    expect(newPlayer.name).toBe('Bob');
+  });
+
   it('Add question with answer', () => {
     let newPlayer = new Player();
     newPlayer.addAnswer(1, 'Yoda');
