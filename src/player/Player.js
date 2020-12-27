@@ -11,6 +11,10 @@ export class Player {
         this._name = newName;
     }
 
+    get player(){
+        return this;
+    }
+
     getQuestion(question, askQuestion) {
         askQuestion(question);
     }

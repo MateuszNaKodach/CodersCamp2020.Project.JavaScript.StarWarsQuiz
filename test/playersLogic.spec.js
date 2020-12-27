@@ -16,6 +16,10 @@ describe("Player's logic", () => {
     expect(newPlayer.name).toBe('Bob');
   });
 
+  it('Get players object', () => {
+    expect(player.player instanceof Object).toBeTruthy();
+  })
+
   //correct tests below ...
   it('Ask player a question', () => {
     let question = 'Question one...';
