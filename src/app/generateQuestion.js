@@ -1,5 +1,6 @@
 import {peopleIdArray, starshipsIdArray, vehiclesIdArray} from './settings.js';
-import {getRandomIdFromArray} from './util.js';
+import {getRandomIdFromArray} from '../utils/getRandomIdFromArray.js';
+import {fetchData} from '../utils/fetchData.js';
 
 export const generateQuestion = (mode) => {
 	let questionsIdArray = [];
@@ -24,28 +25,17 @@ export const generateQuestion = (mode) => {
 	}
 
 	rightAnswerId =  questionsIdArray[Math.floor(Math.random() * questionsIdArray.length)];
-  
-	questionsIdArray.forEach((id) => {
-	  const url = `https://swapi.dev/api/${mode}/${id}/`;
-	  fetch(url)
-		.then((response) => {
-		  if (response.status !== 200) {
-			throw Error("Bład 200");
-		  } else {
-			return response.json();
-		  }
-		})
-		.then((json) => {
 	
-		  result.answers.push(json.name);
-  
-		  if (rightAnswerId == id) {
-			result.image = btoa(`static/assets/img/modes/${mode}/${id}.jpg`);
-			result.rightAnswer = json.name;
-		  }
+	questionsIdArray.forEach((id) => {
+		fetchData(mode,id)
+		.then (data => {
+			result.answers.push(data.name);
+		  		if (rightAnswerId == id) {
+				result.image = btoa(`static/assets/img/modes/${mode}/${id}.jpg`);
+				result.rightAnswer = data.name;
+			}
 		})
-		.catch((err) => console.log(err));
-	});
+	})
   
 	return result;
   };
