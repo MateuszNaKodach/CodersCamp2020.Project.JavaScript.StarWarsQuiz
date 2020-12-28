@@ -36,7 +36,4 @@ it('should generate correct data for people mode', async () => {
 
 	const result = await fetchData('people', 1, mockHttpClient);
 	expect(result).toBe(response)
-	//expect(fetch).toHaveBeenCalledWith('https://swapi.dev/api/people/1/')
-	//expect(result instanceof Promise).toBeTruthy()
-	//expect(reult).toBe({})
 })
