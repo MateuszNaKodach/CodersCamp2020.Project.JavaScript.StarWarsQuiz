@@ -1,11 +1,8 @@
-const fechMock = require('jest-fetch-mock');
-fechMock.enableMocks();
-
 const {fetchData} = require('../src/utils/fetchData');
 
-it('should generate correct data for people mode', () => {
+it('should generate correct data for people mode', async () => {
 
-	fetch.mockResponseOnce({
+	const response = {
 		"name": "Luke Skywalker",
 		"height": "172",
 		"mass": "77",
@@ -33,10 +30,13 @@ it('should generate correct data for people mode', () => {
 		"created": "2014-12-09T13:50:51.644000Z",
 		"edited": "2014-12-20T21:17:56.891000Z",
 		"url": "http://swapi.dev/api/people/1/"
-	})
+	}
 
-	const result = fetchData('people', 1);
-	console.log('result', result);
-	expect(fetch).toHaveBeenCalledWith('https://swapi.dev/api/people/1/')
-	expect(result instanceof Promise).toBeTruthy()
+	const mockHttpClient = () => Promise.resolve(response)
+
+	const result = await fetchData('people', 1, mockHttpClient);
+	expect(result).toBe(response)
+	//expect(fetch).toHaveBeenCalledWith('https://swapi.dev/api/people/1/')
+	//expect(result instanceof Promise).toBeTruthy()
+	//expect(reult).toBe({})
 })
