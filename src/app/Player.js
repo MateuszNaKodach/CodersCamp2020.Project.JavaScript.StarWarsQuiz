@@ -1,6 +1,4 @@
 export class Player {
-  constructor() {}
-
   askQuestion(question, onQuestionAsked) {
     onQuestionAsked(question);
   }
