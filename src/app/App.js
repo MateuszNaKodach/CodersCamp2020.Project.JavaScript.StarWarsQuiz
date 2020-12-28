@@ -1,14 +1,11 @@
-import {generateQuestion} from './generateQuestion.js';
+import { QuestionGenerator } from './QuestionGenrator.js'
 
 export const App = ({options}) => {
+	const newQuestion = new QuestionGenerator('people')
 
-	const questionPeople = generateQuestion('people')
-	const questionVehicles = generateQuestion('vehicles');
-	const qestionStarships = generateQuestion('starships');
+	const result = newQuestion.generateQuestion();
 
-	console.log(questionPeople);
-	console.log(questionVehicles);
-	console.log(qestionStarships);
+	console.log(result)
 }
 
 
