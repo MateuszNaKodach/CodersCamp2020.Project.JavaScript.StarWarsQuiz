@@ -1,11 +1,11 @@
 import { Player } from '../src/app/Player';
 
 describe("Player's logic", () => {
-  let player = new Player();
+  const player = new Player();
 
-  it('Ask player a question, by calling onQuestionAsked function', () => {
+  it('When player asked, call onQuestionAsked function with question as parameter', () => {
     let question;
-    let onQuestionAsked = jest.fn();
+    const onQuestionAsked = jest.fn();
 
     player.askQuestion(question, onQuestionAsked);
     
@@ -14,7 +14,7 @@ describe("Player's logic", () => {
 
   it('When player answered, call onQuestionAsnwered function with answer as parameter', () => {
     let chosenAnswer;
-    let onQuestionAnswered = jest.fn();
+    const onQuestionAnswered = jest.fn();
 
     player.answer(chosenAnswer, onQuestionAnswered)
 
