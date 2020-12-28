@@ -1,41 +1,23 @@
-import { Player } from '../src/player/Player';
+import { Player } from '../src/app/Player';
 
 describe("Player's logic", () => {
   let player = new Player();
 
-  it("Create player's object", () => {
-    expect(player instanceof Player).toBeTruthy();
-  });
-
-  it('Check default name', () => {
-    expect(player.name).toBe('Player');
-  });
-
-  it('Name player', () => {
-    let newPlayer = new Player('Bob');
-    expect(newPlayer.name).toBe('Bob');
-  });
-
-  it('Get players object', () => {
-    expect(player.player instanceof Object).toBeTruthy();
-  })
-
-  //correct tests below ...
   it('Ask player a question', () => {
-    let question = 'Question one...';
-    let askQuestion = jest.fn(question);
+    let question;
+    let onQuestionAsked = jest.fn();
 
-    expect(player.getQuestion(question, askQuestion)).toEqual(
-      askQuestion(question),
-    );
+    player.askQuestion(question, onQuestionAsked);
+    
+    expect(onQuestionAsked).toBeCalledWith(question);
   });
 
-  it('Get player answer', () => {
-    let chosenAnswer = 'This is the aswer';
-    let saveAnswer = jest.fn(chosenAnswer);
+  it('Player answered', () => {
+    let chosenAnswer;
+    let onQuestionAnswered = jest.fn();
 
-    expect(player.answer(chosenAnswer, saveAnswer)).toEqual(
-      askQuestion(question),
-    );
+    player.answer(chosenAnswer, onQuestionAnswered)
+
+    expect(onQuestionAnswered).toBeCalledWith(chosenAnswer);
   });
 });
