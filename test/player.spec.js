@@ -13,6 +13,7 @@ describe("Player's logic", () => {
   });
 
   it('When player is asked and onQuesionAsked function is undefined, check if there is no error', () => {
+    // zapytać o drzewo plików po lewej stronie <--------------------
     let onQuesionAsked;
 
     expect(() => player.askQuestion(question, onQuesionAsked)).not.toThrow();
