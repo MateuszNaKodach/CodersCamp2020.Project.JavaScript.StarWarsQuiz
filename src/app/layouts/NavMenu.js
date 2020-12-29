@@ -14,23 +14,22 @@ export const NavMenu = (
 
   // * set menu list
   const navMenuDomObj__list = document.createElement('ul');
-  navMenuDomObj__list.classList.add('navMenu');
+  navMenuDomObj__list.classList.add('navMenu__list');
   navMenuDomObj.appendChild(navMenuDomObj__list);
 
   // * set list items
   menuItems.map((item) => {
     const navMenuDomObj__item = document.createElement('li');
+    navMenuDomObj__item.classList.add('navMenu__li');
     navMenuDomObj__item.innerHTML = `
     <button 
-    class='${'navMenuDomObj__item'}'
+    class='${'navMenu__btn'}'
     id='${item.id}'>
-    ${item.name}
+      ${item.name}
     </button>
     `;
     navMenuDomObj__list.appendChild(navMenuDomObj__item);
   });
-
-  // imageWrapper.style.backgroundImage = `url(${image})`;
 
   return navMenuDomObj;
 };
