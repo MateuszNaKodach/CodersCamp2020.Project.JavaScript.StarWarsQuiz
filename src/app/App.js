@@ -4,16 +4,16 @@ export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
   console.log('Działa App!');
 
-  updateNavMenu(app);
+  renderNavMenu(app);
 };
 
-function updateNavMenu(app, activeItemNr = 0) {
+function renderNavMenu(parent, activeItemNr = 0) {
   // * usuwa navMenu jeśli istnieje
   if (document.getElementById('navMenu'))
-    app.removeChild(document.getElementById('navMenu'));
+    parent.removeChild(document.getElementById('navMenu'));
 
   // * dodaje navMenu
-  app.appendChild(
+  parent.appendChild(
     NavMenu([
       {
         name: 'people',
@@ -21,6 +21,7 @@ function updateNavMenu(app, activeItemNr = 0) {
         isActivated: activeItemNr == 0,
         onClickFn() {
           console.log('navMenu__people');
+          renderNavMenu(parent, 0);
         },
       },
       {
@@ -29,6 +30,7 @@ function updateNavMenu(app, activeItemNr = 0) {
         isActivated: activeItemNr == 1,
         onClickFn() {
           console.log('navMenu__vehicles');
+          renderNavMenu(parent, 1);
         },
       },
       {
@@ -37,6 +39,7 @@ function updateNavMenu(app, activeItemNr = 0) {
         isActivated: activeItemNr == 2,
         onClickFn() {
           console.log('navMenu__starships');
+          renderNavMenu(parent, 2);
         },
       },
     ]),
