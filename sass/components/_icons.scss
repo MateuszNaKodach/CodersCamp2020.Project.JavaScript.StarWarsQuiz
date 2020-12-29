@@ -1,0 +1,12 @@
+//Ikony potraktowałem póki co jako osobny komponent, w przyszłości trzeba będzie się zastanowić :) - Tomek
+
+.icon {
+    float: left;
+    position: relative;
+    left: 100px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("../static/assets/ui/IconHallOfFame.png");
+    min-width: 50px;
+    min-height: 50px;
+}
