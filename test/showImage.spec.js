@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/dom'
 import '@testing-library/jest-dom/extend-expect';
-import {showImage} from './showImage';
+import {showImage} from '../src/app/showImage';
 
 test('should add imageWrapper element to DOM and have swquiz-app-image calss', () => {
 
