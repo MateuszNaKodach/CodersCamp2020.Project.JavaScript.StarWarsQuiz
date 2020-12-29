@@ -1,6 +1,6 @@
 import { isAnswerCorrect } from '../src/utils/utils.js'
 
-describe('Check function which checks the correctness of player answers', () => {
+describe('Check function which verify the player answers', () => {
 
     const correctAsnwer = 'Yoda';
     const playerCorrectAnswer = 'Yoda';
