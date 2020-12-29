@@ -4,10 +4,15 @@ export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
   console.log('Działa App!');
 
-  createNavMenu(app, 0);
+  updateNavMenu(app, 0);
 };
 
-function createNavMenu(app, activeItemNr) {
+function updateNavMenu(app, activeItemNr) {
+  // * usuwa navMenu jeśli istnieje
+  if (document.getElementById('navMenu'))
+    app.removeChild(document.getElementById('navMenu'));
+
+  // * dodaje navMenu
   app.appendChild(
     NavMenu([
       {
