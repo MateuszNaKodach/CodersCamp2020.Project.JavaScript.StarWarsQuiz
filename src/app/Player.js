@@ -1,6 +1,8 @@
 export class Player {
   askQuestion(question, onQuestionAsked) {
-    onQuestionAsked(question);
+    if (onQuestionAsked) {
+      onQuestionAsked(question);
+    }
   }
 
   answer(chosenAnswer, onQuestionAnswered) {
