@@ -13,6 +13,7 @@ function addNavMenu(app) {
       {
         name: 'people',
         id: 'navMenu__people',
+        isActivated: true,
         fn() {
           console.log('navMenu__people');
         },
@@ -20,6 +21,7 @@ function addNavMenu(app) {
       {
         name: 'vehicles',
         id: 'navMenu__starships',
+        isActivated: false,
         fn() {
           console.log('navMenu__starships');
         },
@@ -27,6 +29,7 @@ function addNavMenu(app) {
       {
         name: 'starships',
         id: 'navMenu__starships',
+        isActivated: false,
         fn() {
           console.log('navMenu__starships');
         },
