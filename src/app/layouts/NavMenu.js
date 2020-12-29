@@ -1,8 +1,23 @@
 export const NavMenu = (
   menuItems = [
-    { name: 'example', fn: undefined, id: undefined, isActivated: false },
-    { name: 'example', fn: undefined, id: undefined, isActivated: false },
-    { name: 'example', fn: undefined, id: undefined, isActivated: false },
+    {
+      name: 'example',
+      onClickFn: undefined,
+      id: undefined,
+      isActivated: false,
+    },
+    {
+      name: 'example',
+      onClickFn: undefined,
+      id: undefined,
+      isActivated: false,
+    },
+    {
+      name: 'example',
+      onClickFn: undefined,
+      id: undefined,
+      isActivated: false,
+    },
   ],
 ) => {
   console.log('Działa Menu!');
@@ -29,7 +44,14 @@ export const NavMenu = (
       ${item.name}
     </button>
     `;
+
     navMenuDomObj__list.appendChild(navMenuDomObj__item);
+
+    navMenuDomObj__item
+      .getElementsByClassName('navMenu__btn')[0]
+      .addEventListener('click', (event) => {
+        item.onClickFn();
+      });
   });
 
   // * set first item active
