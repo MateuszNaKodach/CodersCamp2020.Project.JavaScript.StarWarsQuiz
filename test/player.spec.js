@@ -12,10 +12,11 @@ describe("Player's logic", () => {
     expect(onQuestionAsked).toBeCalledWith(question);
   });
 
-  it('When player is asked and onQuesionAsked function is not used, check if there is no error', () => {
+  it('When player is asked and onQuesionAsked function is undefined, check if there is no error', () => {
     let onQuesionAsked;
 
     expect(() => player.askQuestion(question, onQuesionAsked)).not.toThrow();
+    // expect(player.askQuestion(question, onQuesionAsked)).not.toThrow();
   });
 
   it('When player answered, call onQuestionAsnwered function with answer as parameter', () => {
