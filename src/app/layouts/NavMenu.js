@@ -20,7 +20,6 @@ export const NavMenu = (
     },
   ],
 ) => {
-  console.log('Działa Menu!');
 
   // * set nav
   const navMenuDomObj = document.createElement('nav');
