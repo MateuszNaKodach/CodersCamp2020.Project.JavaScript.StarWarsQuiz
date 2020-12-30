@@ -3,6 +3,7 @@ import { QuestionImage } from './layouts/QuestionImage';
 import { Logo } from './layouts/Logo';
 import { MainContainer } from './layouts/MainContainer';
 import { Wrapper } from './layouts/Wrapper';
+import { Btn } from './components/Btn';
 
 export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
@@ -14,6 +15,7 @@ export const App = ({ options }) => {
   renderLogo(wrapper);
   renderMainContainer(wrapper);
   renderQuestionImage(wrapper);
+  renderBtn(document.getElementById('mainContainer'));
 };
 
 function renderWrapper(parent) {
@@ -39,6 +41,11 @@ function renderMainContainer(parent) {
   comp.classList.add('wrapper__mainContainer');
   parent.appendChild(comp);
 }
+
+function renderBtn(parent, btnObj = {id: undefined, btnText: 'Hall of fame', class: ['btn btn--white'], onClickFn: undefined, icon: 'fame'}) {
+  const comp = Btn(btnObj);
+  parent.appendChild(comp);
+  }
 
 function renderNavMenu(parent, activeItemNr = 0) {
 
