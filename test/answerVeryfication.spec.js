@@ -1,4 +1,4 @@
-import { isAnswerCorrect } from '../src/utils/utils.js'
+import { isAnswerCorrect } from '../src/app/AnswerVeryfication'
 
 describe('Check function which verify the player answers', () => {
 
