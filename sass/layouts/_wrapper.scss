@@ -1,0 +1,41 @@
+.wrapper {
+  // ! przemyśleć czy zostawić
+  overflow: hidden;
+  display: grid;
+
+  height: 768px;
+  width: 1280px;
+  margin: 10px auto;
+  border: 2px chartreuse solid;
+
+  $padding_horizontal__wrapper: 40px;
+  grid-template-columns: $padding_horizontal__wrapper 1fr $padding_horizontal__wrapper 2fr $padding_horizontal__wrapper;
+  grid-template-rows: 0px 200px 25px auto 20px;
+
+  // background-color: chartreuse;
+
+  &__logo {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+  }
+
+  &__nav {
+    margin: 50px auto;
+
+    grid-column: 4 / span 1;
+    grid-row: 2 / span 1;
+  }
+
+  &__mainImg {
+    grid-column: 2 / span 1;
+    grid-row: 4 / span 1;
+
+    background-color: rgba(0, 0, 255, 0.3);
+  }
+
+  &__mainContainer {
+    grid-column: 4 / span 1;
+    grid-row: 4 / span 1;
+    background-color: rgba(0, 0, 255, 0.3);
+  }
+}
