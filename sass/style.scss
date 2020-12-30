@@ -7,9 +7,12 @@
 
 // * COMPONENTY
 @import 'components/btn';
-@import 'layouts/navMenu';
 
 // * LAYOUTS
+@import 'layouts/wrapper';
 @import 'layouts/example';
-
+@import 'layouts/navMenu';
+@import 'layouts/questionImage';
+@import 'layouts/logo';
+// @import 'layouts/logo';
 // @import 'components/funnyAnimation/fBird';
