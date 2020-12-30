@@ -3,7 +3,7 @@ export const Logo = () => {
   logo.classList.add('logo');
   logo.id = 'logo';
   logo.innerHTML = `
-    <img src="../../../static/assets/ui/StarWarsLogo.png" />
+    <img src="../../../static/assets/ui/StarWarsLogo.png" class='logo__img' />
     `;
 
   return logo;
