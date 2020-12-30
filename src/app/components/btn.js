@@ -9,13 +9,18 @@ export const Btn = (
   btnDomObj.classList.add(...btnObj.class);
   btnDomObj.onclick = btnObj.onClickFn;
 
+  // * set buttons icon
   const spanElem = document.createElement('span');
   if (btnObj.icon === 'fame') {
-      spanElem.classList.add('icon','icon--fame');
+      spanElem.classList.add('icon');
+      spanElem.classList.add('icon--fame');
       btnDomObj.appendChild(spanElem);
   } else if (btnObj.icon === 'rules') {
-      spanElem.classList.add('icon', 'icon--rules');
+      spanElem.classList.add('icon');
+      spanElem.classList.add('icon--rules');
       btnDomObj.appendChild(spanElem);
   }
+
   return btnDomObj;
 }
+
