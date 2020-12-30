@@ -25,6 +25,9 @@ export class QuestionGenerator {
       });
     });
 
-    return result; //FIXME: Nie wiem co jest nie tak, ale ten obiekt dalej jest pusty
+
+    return result;
+    //FIXME: Ten obiekt nadal jest pusty. Wpadłeś w pułapkę z asynchronicznością.
+    //Zwróc uwagę, że fetchData zwrac Promise i Twoja funkcja kończy się - zwraca result zanim jeszcze fetchData się wykona. Trzeba poczekać na rezultat.
   }
 }
