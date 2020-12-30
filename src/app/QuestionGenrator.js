@@ -1,32 +1,22 @@
-import {
-  peopleIdArray,
-  starshipsIdArray,
-  vehiclesIdArray,
-} from './settings.js';
-import { getRandomIdFromArray } from '../utils/getRandomIdFromArray.js';
-import { fetchData } from '../utils/fetchData.js';
-
 export class QuestionGenerator {
-  constructor(mode, generateRandomIdArray, fetchModeData) {
+  constructor(mode, generateRandomIdArray, fetchData, randomRightAnswer) {
     this.mode = mode;
     this.generateRandomIdArray = generateRandomIdArray;
-    this.fetchModeData = fetchModeData;
+    this.fetchData = fetchData;
+    this.randomRightAnswer = randomRightAnswer ?? (answersIdsArray => answersIdsArray[Math.floor(Math.random() * answersIdsArray.length)])
   }
 
   generateQuestion() {
-    let questionsIdArray = this.generateRandomIdArray();
-    let rightAnswerId;
-    const result = {
+    const questionsIdArray = this.generateRandomIdArray();
+    const rightAnswerId = this.randomRightAnswer(questionsIdArray);
+    let result = {
       image: '',
       answers: [],
       rightAnswer: '',
     };
 
-    rightAnswerId =
-      questionsIdArray[Math.floor(Math.random() * questionsIdArray.length)];
-
     questionsIdArray.forEach((id) => {
-      this.fetchModeData(this.mode, id).then((data) => {
+      this.fetchData(this.mode, id).then((data) => {
         result.answers.push(data.name);
         if (rightAnswerId == id) {
           result.image = btoa(`static/assets/img/modes/${this.mode}/${id}.jpg`);
@@ -35,31 +25,6 @@ export class QuestionGenerator {
       });
     });
 
-    return result;
+    return result; //FIXME: Nie wiem co jest nie tak, ale ten obiekt dalej jest pusty
   }
 }
-
-// const fetchModeData = (mode, id) =>
-//   fetchData(mode, id, () =>
-//     fetch(`https://swapi.dev/api/${mode}/${id}/`).then((response) =>
-//       response.json(),
-//     ),
-//   );
-// const peopleQuestionGenerator = new QuestionGenerator(
-//   'people',
-//   () => getRandomIdFromArray(peopleIdArray),
-//   fetchModeData,
-// );
-// const startshipsQuestionGenerator = new QuestionGenerator(
-//   'starships',
-//   () => getRandomIdFromArray(starshipsIdArray),
-//   fetchModeData,
-// );
-// const vehiclesQuestionGenerator = new QuestionGenerator(
-//   'vehicles',
-//   () => getRandomIdFromArray(vehiclesIdArray),
-//   fetchModeData,
-// );
-// console.log(peopleQuestionGenerator.generateQuestion());
-// console.log(startshipsQuestionGenerator.generateQuestion());
-// console.log(vehiclesQuestionGenerator.generateQuestion());
