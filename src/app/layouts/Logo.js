@@ -1,10 +1,12 @@
 export const Logo = () => {
-  const logo = document.createElement('div');
-  logo.classList.add('logo');
+  const logo = document.createElement('img');
+  logo.src = '../../../static/assets/ui/StarWarsLogo.png';
+  logo.href = '.';
   logo.id = 'logo';
-  logo.innerHTML = `
-    <img src="../../../static/assets/ui/StarWarsLogo.png" class='logo__img' />
-    `;
-
+  logo.classList.add('logo');
+  logo.addEventListener('click', function (event) {
+    event.preventDefault();
+    window.location = this.href;
+  });
   return logo;
 };
