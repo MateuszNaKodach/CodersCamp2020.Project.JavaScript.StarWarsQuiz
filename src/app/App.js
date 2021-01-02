@@ -41,7 +41,6 @@ function renderMainContainer(parent) {
 }
 
 function renderNavMenu(parent, activeItemNr = 0) {
-
   if (document.getElementById('navMenu'))
     parent.removeChild(document.getElementById('navMenu'));
 
