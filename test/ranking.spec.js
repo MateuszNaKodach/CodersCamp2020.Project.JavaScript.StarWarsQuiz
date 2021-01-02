@@ -23,78 +23,38 @@ describe("Ranking's logic", () => {
         localStorage.clear();
     });
 
-    it('When set wrong category name, exception will be thrown', () => {
+    it('When set wrong category name then exception will be thrown', () => {
         expect(() => {
             new Ranking('vehicle');
         }).toThrow('"vehicle" mode is not valid!');
     });
 
-    it('When new score is higher than or equal to at least one of top results, return true', () => {
-        localStorage.setItem('people', JSON.stringify(results));
-        const score = 9;
-        const maxScore = 18; // 45%
-
-        expect(peopleRanking._isHigherThanCurrentTop(score, maxScore)).toBeTruthy;
-    });
-
-    it('When new score is less than all of top results, return false', () => {
-        localStorage.setItem('people', JSON.stringify(results));
-        const score = 11;
-        const maxScore = 25; // 44%
-
-        expect(peopleRanking._isHigherThanCurrentTop(score, maxScore)).toBeFalsy;
-    });
-
-    it('When there are three results, return two best of them.', () => {
-        localStorage.setItem('people', JSON.stringify(results));
-        const bestResults = [{
-            'user': 'user1',
-            'score': 15,
-            'maxScore': 30 // 50%
-        }, {
-            'user': 'user3',
-            'score': 15,
-            'maxScore': 25 // 60%
-        }];
-
-        expect(peopleRanking._getTwoHighestResults()).toEqual(bestResults);
-    });
-
-    it('When less than three results, add a new result to the top scores', () => {
-        const savedResults = [{
-            'user': 'user',
-            'score': 0,
-            'maxScore': 100
-        }];
-        expect(JSON.parse(localStorage.getItem('people'))).toBeNull;
+    it('When less than three results then add a new result to the top scores', () => {
+        expect(JSON.parse(localStorage.getItem('people'))).toBeNull();
         peopleRanking.saveScore('user', 0, 100);
 
-        expect(JSON.parse(localStorage.getItem('people'))).toEqual(savedResults);
+        expect(JSON.parse(localStorage.getItem('people'))).toEqual(expectedResultsWhenOnlyOne);
     });
 
-    it('When there are three scores and a new one is higher than or equal to any of them, add the new result to the top scores instead of the lowest one', () => {
-        const savedResults = [{
-            'user': 'user1',
-            'score': 15,
-            'maxScore': 30 // 50%
-        }, {
-            'user': 'user3',
-            'score': 15,
-            'maxScore': 25 // 60%
-        }, {
-            'user': 'newUser',
-            'score': 9,
-            'maxScore': 18 // 45%
-        }];
+    it('When there are three scores and a new one is equal to any of them then add the new result to the top scores instead of the lowest one', () => {
         const vehiclesRanking = new Ranking('vehicles');
         localStorage.setItem('vehicles', JSON.stringify(results));
 
         vehiclesRanking.saveScore('newUser', 9, 18); // 45%
 
-        expect(JSON.parse(localStorage.getItem('vehicles'))).toEqual(savedResults);
+        expect(JSON.parse(localStorage.getItem('vehicles'))).toEqual(expectedResultsWhenEqual);
     });
 
-    it('When there are three scores and a new one is less than all of them, do not add it to the top scores', () => {
+    it('When there are three scores and a new one is higher than any of them then add the new result to the top scores instead of the lowest one', () => {
+        const vehiclesRanking = new Ranking('vehicles');
+        localStorage.setItem('vehicles', JSON.stringify(results));
+
+        vehiclesRanking.saveScore('newUser', 1, 1); // 100%
+
+        expect(JSON.parse(localStorage.getItem('vehicles'))).toEqual(expectedResultsWhenHigher);
+    });
+
+    it('When there are three scores and a new one is less than all of them then do not add it to the top scores', () => {
         const starshipsRanking = new Ranking('starships');
         localStorage.setItem('starships', JSON.stringify(results));
 
@@ -103,10 +63,49 @@ describe("Ranking's logic", () => {
         expect(JSON.parse(localStorage.getItem('starships'))).toEqual(results);
     });
 
-    it('Ranking saved in local storage should be shown', () => {
+    it('Ranking saved in local storage should be returned', () => {
         const starshipsRanking = new Ranking('starships');
         localStorage.setItem('starships', JSON.stringify(results));
 
-        expect(starshipsRanking.showRanking()).toEqual(results);
+        expect(starshipsRanking.getScores()).toEqual(results);
     });
+
+    it('When no score is saved in local storage then return an empty array', () => {
+        const starshipsRanking = new Ranking('starships');
+        expect(starshipsRanking.getScores()).toEqual([]);
+    });
+    
+    const expectedResultsWhenOnlyOne = [{
+        'user': 'user',
+        'score': 0,
+        'maxScore': 100
+    }];
+
+    const expectedResultsWhenEqual = [{
+        'user': 'user1',
+        'score': 15,
+        'maxScore': 30 // 50%
+    }, {
+        'user': 'user3',
+        'score': 15,
+        'maxScore': 25 // 60%
+    }, {
+        'user': 'newUser',
+        'score': 9,
+        'maxScore': 18 // 45%
+    }];
+    
+    const expectedResultsWhenHigher = [{
+        'user': 'user1',
+        'score': 15,
+        'maxScore': 30 // 50%
+    }, {
+        'user': 'user3',
+        'score': 15,
+        'maxScore': 25 // 60%
+    }, {
+        'user': 'newUser',
+        'score': 1,
+        'maxScore': 1 // 100%
+    }];
 });
