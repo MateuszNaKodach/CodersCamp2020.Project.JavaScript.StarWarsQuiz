@@ -48,7 +48,6 @@ function renderBtn(parent, btnObj = {id: undefined, btnText: 'Hall of fame', cla
 }
 
 function renderNavMenu(parent, activeItemNr = 0) {
-
   if (document.getElementById('navMenu'))
     parent.removeChild(document.getElementById('navMenu'));
 
