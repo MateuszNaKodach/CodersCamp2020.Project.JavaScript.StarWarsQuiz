@@ -1,5 +1,5 @@
 export const Btn = (
-  btnObj =    {id: undefined, btnText: '', class: [], onClickFn: undefined, icon: ''},
+  btnObj = {id: undefined, btnText: '', class: [], onClickFn: undefined, icon: ''},
 ) => {
 
   // * set button
