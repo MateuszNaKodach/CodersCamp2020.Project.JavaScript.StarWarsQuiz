@@ -3,6 +3,7 @@ import { QuestionImage } from './layouts/QuestionImage';
 import { Logo } from './layouts/Logo';
 import { MainContainer } from './layouts/MainContainer';
 import { Wrapper } from './layouts/Wrapper';
+import { Timer } from './components/Timer';
 
 export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
@@ -14,7 +15,14 @@ export const App = ({ options }) => {
   renderLogo(wrapper);
   renderMainContainer(wrapper);
   renderQuestionImage(wrapper);
+  renderTimer(wrapper);
 };
+
+function renderTimer(parent) {
+  const comp = Timer(30);
+  comp.classList.add('wrapper__timer');
+  parent.appendChild(comp);
+}
 
 function renderWrapper(parent) {
   parent.appendChild(Wrapper());
