@@ -42,7 +42,7 @@ function renderMainContainer(parent) {
   parent.appendChild(comp);
 }
 
-function renderBtn(parent, btnObj = {id: undefined, btnText: 'Hall of fame', class: ['btn', 'btn--white'], onClickFn: undefined, icon: 'fame'}) {
+function renderBtn(parent, btnObj = {id: undefined, btnText: 'Hall of fame', class: [], onClickFn: undefined, icon: 'fame'}) {
   const comp = Btn(btnObj);
   parent.appendChild(comp);
 }
