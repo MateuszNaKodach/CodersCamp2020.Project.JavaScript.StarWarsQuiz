@@ -1,4 +1,6 @@
 import { RedButton } from '../../src/app/components/RedButton';
+import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
 
 describe('RedButton', () => {
   it('Button should be created without any text', () => {
@@ -17,8 +19,11 @@ describe('RedButton', () => {
     expect(component.tagName).toBe('BUTTON');
   });
 
-  it('Created button should have redButton class', () => {
-    const component = RedButton('HELLO');
-    expect(component.classList.contains('redButton')).toBe(true);
+  it('When button is clicked then console.log message should be displayed', () => {
+    const testFunction = () => console.log('works');
+    console.log = jest.fn();
+    const component = RedButton('someText', testFunction);
+    userEvent.click(component);
+    expect(console.log).toBeCalledWith('works');
   });
 });

@@ -1,11 +1,11 @@
-export const RedButton = (text = '') => {
+export const RedButton = (text = '', actionOnClick) => {
   const redButton = document.createElement('button');
   redButton.classList.add('redButton');
   redButton.textContent = text;
 
-  redButton.addEventListener('click', () => {
-    console.log('button works!');
-  });
+  if (actionOnClick) {
+    redButton.addEventListener('click', actionOnClick);
+  }
 
   return redButton;
 };

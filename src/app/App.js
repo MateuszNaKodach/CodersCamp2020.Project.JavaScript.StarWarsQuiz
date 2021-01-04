@@ -80,7 +80,9 @@ function renderNavMenu(parent, activeItemNr = 0) {
 }
 
 function renderRedButton(parent) {
-  const comp = RedButton('play the game');
-  comp.classList.add('wrapper__mainContainer__redButton');
+  const comp = RedButton('play the game', startGame);
+  comp.classList.add('mainContainer__redButton');
   parent.appendChild(comp);
 }
+
+const startGame = () => console.log('witaj w grze');
