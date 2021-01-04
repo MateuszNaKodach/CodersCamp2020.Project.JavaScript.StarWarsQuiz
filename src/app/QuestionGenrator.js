@@ -3,10 +3,13 @@ export class QuestionGenerator {
     this.mode = mode;
     this.generateRandomIdArray = generateRandomIdArray;
     this.fetchData = fetchData;
-    this.randomRightAnswer = randomRightAnswer ?? (answersIdsArray => answersIdsArray[Math.floor(Math.random() * answersIdsArray.length)])
+    this.randomRightAnswer =
+      randomRightAnswer ??
+      ((answersIdsArray) =>
+        answersIdsArray[Math.floor(Math.random() * answersIdsArray.length)]);
   }
 
-  generateQuestion() {
+  async generateQuestion() {
     const questionsIdArray = this.generateRandomIdArray();
     const rightAnswerId = this.randomRightAnswer(questionsIdArray);
     let result = {
@@ -15,16 +18,19 @@ export class QuestionGenerator {
       rightAnswer: '',
     };
 
-    questionsIdArray.forEach((id) => {
-      this.fetchData(this.mode, id).then((data) => {
-        result.answers.push(data.name);
-        if (rightAnswerId == id) {
-          result.image = btoa(`static/assets/img/modes/${this.mode}/${id}.jpg`);
-          result.rightAnswer = data.name;
-        }
-      });
-    });
-
+    await Promise.all(
+      questionsIdArray.map((id) =>
+        this.fetchData(this.mode, id).then((data) => {
+          result.answers.push(data.name);
+          if (rightAnswerId == id) {
+            result.image = btoa(
+              `static/assets/img/modes/${this.mode}/${id}.jpg`,
+            );
+            result.rightAnswer = data.name;
+          }
+        }),
+      ),
+    );
 
     return result;
     //FIXME: Ten obiekt nadal jest pusty. Wpadłeś w pułapkę z asynchronicznością.

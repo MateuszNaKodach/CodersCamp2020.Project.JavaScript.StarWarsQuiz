@@ -27,7 +27,7 @@ it('should generate correct data', async () => {
   );
 
   const generatedQuestion = peopleQuestionGenerator.generateQuestion();
-  expect(generatedQuestion).toEqual({
+  await expect(generatedQuestion).resolves.toEqual({
     answers: ['Luke Skywalker', 'R2-D2', 'Chewbacca', 'Boba Fett'],
     image: 'c3RhdGljL2Fzc2V0cy9pbWcvbW9kZXMvcGVvcGxlLzEuanBn',
     rightAnswer: 'Luke Skywalker',
