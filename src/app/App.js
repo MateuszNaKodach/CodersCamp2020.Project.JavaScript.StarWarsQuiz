@@ -4,6 +4,10 @@ import { Logo } from './layouts/Logo';
 import { MainContainer } from './layouts/MainContainer';
 import { Wrapper } from './layouts/Wrapper';
 import { RedButton } from './components/RedButton';
+import { QuestionGenerator } from './QuestionGenrator';
+import { fetchData } from '../utils/fetchData';
+import { getRandomIdFromArray } from '../utils/getRandomIdFromArray';
+import { peopleIdArray, starshipsIdArray, vehiclesIdArray } from './settings';
 
 export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
@@ -86,3 +90,29 @@ function renderRedButton(parent) {
 }
 
 const startGame = () => console.log('witaj w grze');
+
+const fetchModeData = (mode, id) =>
+  fetchData(mode, id, () =>
+    fetch(`https://swapi.dev/api/${mode}/${id}/`).then((response) =>
+      response.json(),
+    ),
+  );
+const peopleQuestionGenerator = new QuestionGenerator(
+  'people',
+  () => getRandomIdFromArray(peopleIdArray),
+  fetchModeData,
+);
+const startshipsQuestionGenerator = new QuestionGenerator(
+  'starships',
+  () => getRandomIdFromArray(starshipsIdArray),
+  fetchModeData,
+);
+const vehiclesQuestionGenerator = new QuestionGenerator(
+  'vehicles',
+  () => getRandomIdFromArray(vehiclesIdArray),
+  fetchModeData,
+);
+
+// how to get data from QuestionGenerator
+// console.log(peopleQuestionGenerator.generateQuestion().then(res => console.log(res)));
+// console.log(startshipsQuestionGenerator.generateQuestion());
