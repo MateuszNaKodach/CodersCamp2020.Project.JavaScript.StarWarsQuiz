@@ -1,10 +1,10 @@
-import { Btn } from '../src/app/components/Btn';
+import { Button } from '../src/app/components/Button';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 
 describe('Function that creates and renders button', () => {
   it('Should create and return button object with passed parameters.', () => {
-    const testButton = Btn({
+    const testButton = Button({
       id: 'test-id',
       btnText: 'Test',
       class: [],
@@ -22,7 +22,7 @@ describe('Function that creates and renders button', () => {
   });
 
   it('Should create and return button with span element in it.', () => {
-    const testButton = Btn({
+    const testButton = Button({
       id: 'test-id',
       btnText: 'Test',
       class: [],
@@ -39,7 +39,7 @@ describe('Function that creates and renders button', () => {
   });
 
   it('Should test if the button was clicked and onclick function was fired', () => {
-    const testButton = Btn({
+    const testButton = Button({
       id: 'test-id',
       btnText: 'Test',
       class: [],

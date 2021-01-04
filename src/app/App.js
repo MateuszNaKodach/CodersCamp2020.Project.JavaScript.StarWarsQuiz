@@ -3,7 +3,7 @@ import { QuestionImage } from './layouts/QuestionImage';
 import { Logo } from './layouts/Logo';
 import { MainContainer } from './layouts/MainContainer';
 import { Wrapper } from './layouts/Wrapper';
-import { Btn } from './components/Btn';
+import { Button } from './components/Button';
 
 export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
@@ -42,8 +42,17 @@ function renderMainContainer(parent) {
   parent.appendChild(comp);
 }
 
-function renderBtn(parent, btnObj = {id: undefined, btnText: 'Hall of fame', class: [], onClickFn: undefined, icon: 'fame'}) {
-  const comp = Btn(btnObj);
+function renderBtn(
+  parent,
+  btnObj = {
+    id: undefined,
+    btnText: 'Hall of fame',
+    class: [],
+    onClickFn: undefined,
+    icon: 'fame',
+  },
+) {
+  const comp = Button(btnObj);
   parent.appendChild(comp);
 }
 

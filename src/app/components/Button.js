@@ -1,7 +1,12 @@
-export const Btn = (
-  btnObj = {id: undefined, btnText: '', class: [], onClickFn: undefined, icon: ''},
+export const Button = (
+  btnObj = {
+    id: undefined,
+    btnText: '',
+    class: [],
+    onClickFn: undefined,
+    icon: '',
+  },
 ) => {
-
   // * set button
   const btnDomObj = document.createElement('button');
   btnDomObj.id = btnObj.id;
@@ -13,11 +18,10 @@ export const Btn = (
   // * set buttons icon
   const spanElem = document.createElement('span');
   if (btnObj.icon != '' && btnObj.icon != undefined) {
-    spanElem.classList.add('icon');
+    spanElem.classList.add('buttonIcon');
     spanElem.classList.add(`icon--${btnObj.icon}`);
     btnDomObj.appendChild(spanElem);
   }
 
   return btnDomObj;
-}
-
+};

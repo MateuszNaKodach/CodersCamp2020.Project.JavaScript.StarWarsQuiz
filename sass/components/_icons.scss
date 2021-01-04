@@ -1,17 +1,17 @@
 //Ikony potraktowałem póki co jako osobny komponent, w przyszłości trzeba będzie się zastanowić :) - Tomek
 
-.icon {
-    float: left;
-    position: relative;
-    left: 100px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-width: 50px;
-    min-height: 50px;
-    &--fame {
-        background-image: url("../static/assets/ui/IconHallOfFame.png");
-    }
-    &--rules {
-        background-image: url("../static/assets/ui/IconRules.png");
-    }
+.buttonIcon {
+  float: left;
+  position: relative;
+  left: 40px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-width: 35px;
+  min-height: 35px;
+  &--fame {
+    // background-image: url("../static/assets/ui/IconHallOfFame.png");
+  }
+  &--rules {
+    // background-image: url("../static/assets/ui/IconRules.png");
+  }
 }
