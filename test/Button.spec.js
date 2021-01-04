@@ -7,7 +7,7 @@ describe('Function that creates and renders button', () => {
     const testButton = Button({
       id: 'test-id',
       btnText: 'Test',
-      class: [],
+      classList: [],
       onClickFn: undefined,
       icon: '',
     });
@@ -25,24 +25,29 @@ describe('Function that creates and renders button', () => {
     const testButton = Button({
       id: 'test-id',
       btnText: 'Test',
-      class: [],
+      classList: [],
       onClickFn: undefined,
-      icon: 'fame',
+      icon: 'Fame',
     });
+
+    const testSpan = document.createElement('span');
 
     expect(testButton).not.toBeNull();
     expect(testButton.id).toBe('test-id');
     expect(testButton.innerText).toBe('Test');
     expect(testButton).toHaveClass('btn');
     expect(testButton.onClickFn).toBe(undefined);
-    expect(testButton).toContainHTML('<span class="icon icon--fame"></span>');
+
+    expect(testButton).toContainHTML(
+      '<span class="buttonIcon" style="background-image: url(../static/assets/ui/IconFame.png);"></span>',
+    );
   });
 
   it('Should test if the button was clicked and onclick function was fired', () => {
     const testButton = Button({
       id: 'test-id',
       btnText: 'Test',
-      class: [],
+      classList: [],
       onClickFn: myMock,
       icon: 'fame',
     });
@@ -53,5 +58,29 @@ describe('Function that creates and renders button', () => {
     userEvent.click(testButton);
 
     expect(testButton.innerText).toBe('Funkcja onclick zmieniła innerText');
+  });
+
+  it('Should create button without id attribute when passed id is empty string', () => {
+    const testButton = Button({
+      id: '',
+      btnText: 'Test',
+      classList: [],
+      onClickFn: undefined,
+      icon: 'fame',
+    });
+
+    expect(testButton).not.toHaveAttribute('id');
+  });
+
+  it('Should create button without id attribute when passed id is undefined', () => {
+    const testButton = Button({
+      id: undefined,
+      btnText: 'Test',
+      classList: [],
+      onClickFn: undefined,
+      icon: 'fame',
+    });
+
+    expect(testButton).not.toHaveAttribute('id');
   });
 });

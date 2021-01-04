@@ -45,11 +45,11 @@ function renderMainContainer(parent) {
 function renderBtn(
   parent,
   btnObj = {
-    id: undefined,
-    btnText: 'Hall of fame',
-    class: [],
+    id: '',
+    btnText: '',
+    classList: [],
     onClickFn: undefined,
-    icon: 'fame',
+    icon: '',
   },
 ) {
   const comp = Button(btnObj);

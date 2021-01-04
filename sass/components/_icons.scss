@@ -3,15 +3,9 @@
 .buttonIcon {
   float: left;
   position: relative;
-  left: 40px;
+  left: 30px;
   background-repeat: no-repeat;
   background-size: cover;
   min-width: 35px;
   min-height: 35px;
-  &--fame {
-    // background-image: url("../static/assets/ui/IconHallOfFame.png");
-  }
-  &--rules {
-    // background-image: url("../static/assets/ui/IconRules.png");
-  }
 }
