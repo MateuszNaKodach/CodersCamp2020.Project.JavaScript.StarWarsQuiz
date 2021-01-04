@@ -7,6 +7,7 @@ import { QuestionGenerator } from './QuestionGenrator';
 import { fetchData } from '../utils/fetchData';
 import { getRandomIdFromArray } from '../utils/getRandomIdFromArray';
 import { peopleIdArray, starshipsIdArray, vehiclesIdArray } from './settings';
+import { GameMode } from './components/GameMode';
 
 export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
@@ -18,6 +19,9 @@ export const App = ({ options }) => {
   renderLogo(wrapper);
   renderMainContainer(wrapper);
   renderQuestionImage(wrapper);
+
+  const mainCointainer = document.getElementById('mainContainer');
+  renderGameMode(mainCointainer);
 };
 
 function renderWrapper(parent) {
@@ -76,6 +80,12 @@ function renderNavMenu(parent, activeItemNr = 0) {
   ]);
 
   comp.classList.add('wrapper__nav');
+  parent.appendChild(comp);
+}
+
+function renderGameMode(parent) {
+  const comp = GameMode();
+  comp.classList.add('mainContainer__gameMode');
   parent.appendChild(comp);
 }
 
