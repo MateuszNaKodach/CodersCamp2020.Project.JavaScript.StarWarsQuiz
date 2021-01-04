@@ -12,7 +12,7 @@ export class QuestionGenerator {
   async generateQuestion() {
     const questionsIdArray = this.generateRandomIdArray();
     const rightAnswerId = this.randomRightAnswer(questionsIdArray);
-    let result = {
+    const result = {
       image: '',
       answers: [],
       rightAnswer: '',
@@ -33,7 +33,5 @@ export class QuestionGenerator {
     );
 
     return result;
-    //FIXME: Ten obiekt nadal jest pusty. Wpadłeś w pułapkę z asynchronicznością.
-    //Zwróc uwagę, że fetchData zwrac Promise i Twoja funkcja kończy się - zwraca result zanim jeszcze fetchData się wykona. Trzeba poczekać na rezultat.
   }
 }
