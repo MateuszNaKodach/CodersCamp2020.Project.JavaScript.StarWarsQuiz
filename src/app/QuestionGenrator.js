@@ -9,7 +9,7 @@ export class QuestionGenerator {
         answersIdsArray[Math.floor(Math.random() * answersIdsArray.length)]);
   }
 
-  async generateQuestion() {
+  generateQuestion() {
     const questionsIdArray = this.generateRandomIdArray();
     const rightAnswerId = this.randomRightAnswer(questionsIdArray);
     let result = {
@@ -18,19 +18,15 @@ export class QuestionGenerator {
       rightAnswer: '',
     };
 
-    await Promise.all(
-      questionsIdArray.map((id) =>
-        this.fetchData(this.mode, id).then((data) => {
-          result.answers.push(data.name);
-          if (rightAnswerId == id) {
-            result.image = btoa(
-              `static/assets/img/modes/${this.mode}/${id}.jpg`,
-            );
-            result.rightAnswer = data.name;
-          }
-        }),
-      ),
-    );
+    questionsIdArray.forEach((id) => {
+      this.fetchData(this.mode, id).then((data) => {
+        result.answers.push(data.name);
+        if (rightAnswerId == id) {
+          result.image = btoa(`static/assets/img/modes/${this.mode}/${id}.jpg`);
+          result.rightAnswer = data.name;
+        }
+      });
+    });
 
     return result;
     //FIXME: Ten obiekt nadal jest pusty. Wpadłeś w pułapkę z asynchronicznością.

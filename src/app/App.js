@@ -100,6 +100,6 @@ const vehiclesQuestionGenerator = new QuestionGenerator(
   () => getRandomIdFromArray(vehiclesIdArray),
   fetchModeData,
 );
-console.log(peopleQuestionGenerator.generateQuestion().then(res => console.log(res)));
+console.log(peopleQuestionGenerator.generateQuestion());
 console.log(startshipsQuestionGenerator.generateQuestion());
 console.log(vehiclesQuestionGenerator.generateQuestion());
