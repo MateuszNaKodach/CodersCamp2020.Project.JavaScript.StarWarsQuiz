@@ -3,6 +3,7 @@ import { QuestionImage } from './layouts/QuestionImage';
 import { Logo } from './layouts/Logo';
 import { MainContainer } from './layouts/MainContainer';
 import { Wrapper } from './layouts/Wrapper';
+import { RedButton } from './components/RedButton';
 import { QuestionGenerator } from './QuestionGenrator';
 import { fetchData } from '../utils/fetchData';
 import { getRandomIdFromArray } from '../utils/getRandomIdFromArray';
@@ -18,6 +19,9 @@ export const App = ({ options }) => {
   renderLogo(wrapper);
   renderMainContainer(wrapper);
   renderQuestionImage(wrapper);
+
+  const mainCointainer = document.getElementById('mainContainer');
+  renderRedButton(mainCointainer);
 };
 
 function renderWrapper(parent) {
@@ -78,6 +82,14 @@ function renderNavMenu(parent, activeItemNr = 0) {
   comp.classList.add('wrapper__nav');
   parent.appendChild(comp);
 }
+
+function renderRedButton(parent) {
+  const comp = RedButton('play the game', startGame);
+  comp.classList.add('mainContainer__redButton');
+  parent.appendChild(comp);
+}
+
+const startGame = () => console.log('witaj w grze');
 
 const fetchModeData = (mode, id) =>
   fetchData(mode, id, () =>
