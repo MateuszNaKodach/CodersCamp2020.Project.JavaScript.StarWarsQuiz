@@ -12,26 +12,29 @@ export class QuestionGenerator {
   async generateQuestion() {
     const questionsIdArray = this.generateRandomIdArray();
     const rightAnswerId = this.randomRightAnswer(questionsIdArray);
-    const result = {
-      image: '',
-      answers: [],
-      rightAnswer: '',
-    };
 
-    await Promise.all(
-      questionsIdArray.map((id) =>
-        this.fetchData(this.mode, id).then((data) => {
-          result.answers.push(data.name);
-          if (rightAnswerId == id) {
-            result.image = btoa(
-              `static/assets/img/modes/${this.mode}/${id}.jpg`,
-            );
-            result.rightAnswer = data.name;
-          }
-        }),
-      ),
+    const questions = await Promise.all(
+      questionsIdArray.map(this.getQuestion()),
     );
+    const answers = questions.map((question) => question.name);
+    const rightAnswer = questions.find(
+      (question) => rightAnswerId === question.id,
+    ).name;
+    const questionImage = btoa(
+      `static/assets/img/modes/${this.mode}/${rightAnswerId}.jpg`,
+    );
+    return {
+      image: questionImage,
+      answers,
+      rightAnswer,
+    };
+  }
 
-    return result;
+  getQuestion() {
+    return (questionId) =>
+      this.fetchData(this.mode, questionId).then((questionResponse) => ({
+        id: questionId,
+        ...questionResponse,
+      }));
   }
 }
