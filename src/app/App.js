@@ -15,7 +15,12 @@ export const App = ({ options }) => {
   renderLogo(wrapper);
   renderMainContainer(wrapper);
   renderQuestionImage(wrapper);
-  renderBtn(document.getElementById('mainContainer'));
+  renderBtn(document.getElementById('mainContainer'), {
+    id: 'HallOfFameButton',
+    btnText: 'HallOfFame',
+    classList: ['HallOfFameButton'],
+    icon: 'fame',
+  });
 };
 
 function renderWrapper(parent) {
