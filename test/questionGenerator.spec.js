@@ -23,7 +23,7 @@ it('should generate correct data', async () => {
     'people',
     () => questionsIdArray,
     fetchData,
-    () => rightAnswerId
+    () => rightAnswerId,
   );
 
   const generatedQuestion = peopleQuestionGenerator.generateQuestion();
