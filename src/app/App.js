@@ -8,6 +8,7 @@ import { QuestionGenerator } from './QuestionGenrator';
 import { fetchData } from '../utils/fetchData';
 import { getRandomIdFromArray } from '../utils/getRandomIdFromArray';
 import { peopleIdArray, starshipsIdArray, vehiclesIdArray } from './settings';
+import { ModalWindow } from './layouts/ModalWindow';
 
 export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
@@ -22,7 +23,20 @@ export const App = ({ options }) => {
 
   const mainCointainer = document.getElementById('mainContainer');
   renderRedButton(mainCointainer);
+
+  const modalWindow = renderModalWindow(app);
+  const buttonForWindow = document.getElementById('btnForModalWindow');
+  buttonForWindow.onclick = function () {
+    modalWindow.style.display = 'block';
+  };
 };
+
+function renderModalWindow(parent) {
+  const modalWindow = ModalWindow();
+  parent.appendChild(modalWindow);
+
+  return modalWindow;
+}
 
 function renderWrapper(parent) {
   parent.appendChild(Wrapper());
