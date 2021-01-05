@@ -15,7 +15,7 @@ describe('Function that creates and renders button', () => {
     expect(testButton).not.toBeNull();
     expect(testButton.id).toBe('test-id');
     expect(testButton.innerText).toBe('Test');
-    expect(testButton).toHaveClass('btn');
+    expect(testButton).toHaveClass('button');
     expect(testButton.onClickFn).toBe(undefined);
     expect(testButton.icon).toBe(undefined);
     expect(testButton.innerHTML).toBeNull;
@@ -35,11 +35,11 @@ describe('Function that creates and renders button', () => {
     expect(testButton).not.toBeNull();
     expect(testButton.id).toBe('test-id');
     expect(testButton.innerText).toBe('Test');
-    expect(testButton).toHaveClass('btn');
+    expect(testButton).toHaveClass('button');
     expect(testButton.onClickFn).toBe(undefined);
 
     expect(testButton).toContainHTML(
-      '<span class="buttonIcon" style="background-image: url(../static/assets/ui/IconFame.png);"></span>',
+      '<span class="button__icon" style="background-image: url(../static/assets/ui/IconFame.png);"></span>',
     );
   });
 

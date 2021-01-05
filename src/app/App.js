@@ -4,13 +4,16 @@ import { Logo } from './layouts/Logo';
 import { MainContainer } from './layouts/MainContainer';
 import { Wrapper } from './layouts/Wrapper';
 import { Button } from './components/Button';
+import { RedButton } from './components/RedButton';
+import { QuestionGenerator } from './QuestionGenrator';
+import { fetchData } from '../utils/fetchData';
+import { getRandomIdFromArray } from '../utils/getRandomIdFromArray';
+import { peopleIdArray, starshipsIdArray, vehiclesIdArray } from './settings';
 
 export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
-
   renderWrapper(app);
   const wrapper = document.getElementById('wrapper');
-
   renderNavMenu(wrapper);
   renderLogo(wrapper);
   renderMainContainer(wrapper);
@@ -21,6 +24,8 @@ export const App = ({ options }) => {
     classList: ['HallOfFameButton'],
     icon: 'fame',
   });
+  const mainCointainer = document.getElementById('mainContainer');
+  renderRedButton(mainCointainer);
 };
 
 function renderWrapper(parent) {
@@ -95,3 +100,37 @@ function renderNavMenu(parent, activeItemNr = 0) {
   comp.classList.add('wrapper__nav');
   parent.appendChild(comp);
 }
+
+function renderRedButton(parent) {
+  const comp = RedButton('play the game', startGame);
+  comp.classList.add('mainContainer__redButton');
+  parent.appendChild(comp);
+}
+
+const startGame = () => console.log('witaj w grze');
+
+const fetchModeData = (mode, id) =>
+  fetchData(mode, id, () =>
+    fetch(`https://swapi.dev/api/${mode}/${id}/`).then((response) =>
+      response.json(),
+    ),
+  );
+const peopleQuestionGenerator = new QuestionGenerator(
+  'people',
+  () => getRandomIdFromArray(peopleIdArray),
+  fetchModeData,
+);
+const startshipsQuestionGenerator = new QuestionGenerator(
+  'starships',
+  () => getRandomIdFromArray(starshipsIdArray),
+  fetchModeData,
+);
+const vehiclesQuestionGenerator = new QuestionGenerator(
+  'vehicles',
+  () => getRandomIdFromArray(vehiclesIdArray),
+  fetchModeData,
+);
+
+// how to get data from QuestionGenerator
+// console.log(peopleQuestionGenerator.generateQuestion().then(res => console.log(res)));
+// console.log(startshipsQuestionGenerator.generateQuestion());
