@@ -3,6 +3,7 @@ import { QuestionImage } from './layouts/QuestionImage';
 import { Logo } from './layouts/Logo';
 import { MainContainer } from './layouts/MainContainer';
 import { Wrapper } from './layouts/Wrapper';
+import { Button } from './components/Button';
 import { RedButton } from './components/RedButton';
 import { QuestionGenerator } from './QuestionGenrator';
 import { fetchData } from '../utils/fetchData';
@@ -11,15 +12,18 @@ import { peopleIdArray, starshipsIdArray, vehiclesIdArray } from './settings';
 
 export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
-
   renderWrapper(app);
   const wrapper = document.getElementById('wrapper');
-
   renderNavMenu(wrapper);
   renderLogo(wrapper);
   renderMainContainer(wrapper);
   renderQuestionImage(wrapper);
-
+  renderBtn(document.getElementById('mainContainer'), {
+    id: 'HallOfFameButton',
+    btnText: 'HallOfFame',
+    classList: ['HallOfFameButton'],
+    icon: 'fame',
+  });
   const mainCointainer = document.getElementById('mainContainer');
   renderRedButton(mainCointainer);
 };
@@ -45,6 +49,20 @@ function renderLogo(parent) {
 function renderMainContainer(parent) {
   const comp = MainContainer();
   comp.classList.add('wrapper__mainContainer');
+  parent.appendChild(comp);
+}
+
+function renderBtn(
+  parent,
+  btnObj = {
+    id: '',
+    btnText: '',
+    classList: [],
+    onClickFn: undefined,
+    icon: '',
+  },
+) {
+  const comp = Button(btnObj);
   parent.appendChild(comp);
 }
 
