@@ -29,9 +29,7 @@ function renderWrapper(parent) {
 }
 
 function renderQuestionImage(parent) {
-  const comp = QuestionImage(
-    'c3RhdGljL2Fzc2V0cy9pbWcvbW9kZXMvcGVvcGxlLzQuanBn',
-  );
+  const comp = QuestionImage('c3RhdGljL2Fzc2V0cy9pbWcvbW9kZXMvcGVvcGxlLzQuanBn');
   comp.classList.add('wrapper__mainImg');
   parent.appendChild(comp);
 }
@@ -49,8 +47,7 @@ function renderMainContainer(parent) {
 }
 
 function renderNavMenu(parent, activeItemNr = 0) {
-  if (document.getElementById('navMenu'))
-    parent.removeChild(document.getElementById('navMenu'));
+  if (document.getElementById('navMenu')) parent.removeChild(document.getElementById('navMenu'));
 
   const comp = NavMenu([
     {
@@ -92,11 +89,7 @@ function renderRedButton(parent) {
 const startGame = () => console.log('witaj w grze');
 
 const fetchModeData = (mode, id) =>
-  fetchData(mode, id, () =>
-    fetch(`https://swapi.dev/api/${mode}/${id}/`).then((response) =>
-      response.json(),
-    ),
-  );
+  fetchData(mode, id, () => fetch(`https://swapi.dev/api/${mode}/${id}/`).then(response => response.json()));
 const peopleQuestionGenerator = new QuestionGenerator(
   'people',
   () => getRandomIdFromArray(peopleIdArray),

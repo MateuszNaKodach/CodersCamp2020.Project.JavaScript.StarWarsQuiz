@@ -1,4 +1,4 @@
-export const QuestionImage = (image) => {
+export const QuestionImage = image => {
   const imageWrapper = document.createElement('div');
   image = atob(image);
   imageWrapper.setAttribute('data-testid', 'imageWrapper');

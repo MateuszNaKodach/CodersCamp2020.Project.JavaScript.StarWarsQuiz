@@ -20,7 +20,6 @@ export const NavMenu = (
     },
   ],
 ) => {
-
   // * set nav
   const navMenuDomObj = document.createElement('nav');
   navMenuDomObj.classList.add('navMenu');
@@ -46,11 +45,9 @@ export const NavMenu = (
 
     navMenuDomObj__list.appendChild(navMenuDomObj__item);
 
-    navMenuDomObj__item
-      .getElementsByClassName('navMenu__btn')[0]
-      .addEventListener('click', (event) => {
-        item.onClickFn();
-      });
+    navMenuDomObj__item.getElementsByClassName('navMenu__btn')[0].addEventListener('click', event => {
+      item.onClickFn();
+    });
   });
 
   // * set first item active

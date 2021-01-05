@@ -2,7 +2,7 @@ import { Player } from '../src/app/Player';
 
 describe("Player's logic", () => {
   const player = new Player();
-  let question;    
+  let question;
   let chosenAnswer;
 
   it('When player is asked, call onQuestionAsked function with question as parameter', () => {

@@ -1,10 +1,7 @@
 export function fetchData(
   mode,
   id,
-  httpClient = () =>
-    fetch(`https://swapi.dev/api/${mode}/${id}/`).then((response) =>
-      response.json(),
-    ),
+  httpClient = () => fetch(`https://swapi.dev/api/${mode}/${id}/`).then(response => response.json()),
 ) {
-  return httpClient().catch((err) => console.log(err));
+  return httpClient().catch(err => console.log(err));
 }

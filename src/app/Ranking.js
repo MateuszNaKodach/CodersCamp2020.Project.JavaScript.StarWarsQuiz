@@ -28,20 +28,14 @@ export class Ranking {
 
   _isHigherThanCurrentTop(score, maxScore) {
     const topResults = JSON.parse(localStorage.getItem(this.mode));
-    const totalScores = topResults.map(
-      (result) => result['score'] / result['maxScore'],
-    );
+    const totalScores = topResults.map(result => result['score'] / result['maxScore']);
     return score / maxScore >= Math.min(...totalScores);
   }
 
   _getTwoHighestResults() {
     const topResults = JSON.parse(localStorage.getItem(this.mode));
-    const totalScores = topResults.map(
-      (result) => result['score'] / result['maxScore'],
-    );
-    return topResults.filter(
-      (result, i) => i !== totalScores.indexOf(Math.min(...totalScores)),
-    );
+    const totalScores = topResults.map(result => result['score'] / result['maxScore']);
+    return topResults.filter((result, i) => i !== totalScores.indexOf(Math.min(...totalScores)));
   }
 
   getScores() {

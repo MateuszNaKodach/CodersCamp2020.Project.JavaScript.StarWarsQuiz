@@ -4,25 +4,17 @@ export class QuestionGenerator {
     this.generateRandomIdArray = generateRandomIdArray;
     this.fetchData = fetchData;
     this.randomRightAnswer =
-      randomRightAnswer ??
-      ((answersIdsArray) =>
-        answersIdsArray[Math.floor(Math.random() * answersIdsArray.length)]);
+      randomRightAnswer ?? (answersIdsArray => answersIdsArray[Math.floor(Math.random() * answersIdsArray.length)]);
   }
 
   async generateQuestion() {
     const questionsIdArray = this.generateRandomIdArray();
     const rightAnswerId = this.randomRightAnswer(questionsIdArray);
 
-    const questions = await Promise.all(
-      questionsIdArray.map(this.getQuestion()),
-    );
-    const answers = questions.map((question) => question.name);
-    const rightAnswer = questions.find(
-      (question) => rightAnswerId === question.id,
-    ).name;
-    const questionImage = btoa(
-      `static/assets/img/modes/${this.mode}/${rightAnswerId}.jpg`,
-    );
+    const questions = await Promise.all(questionsIdArray.map(this.getQuestion()));
+    const answers = questions.map(question => question.name);
+    const rightAnswer = questions.find(question => rightAnswerId === question.id).name;
+    const questionImage = btoa(`static/assets/img/modes/${this.mode}/${rightAnswerId}.jpg`);
     return {
       image: questionImage,
       answers,
@@ -31,8 +23,8 @@ export class QuestionGenerator {
   }
 
   getQuestion() {
-    return (questionId) =>
-      this.fetchData(this.mode, questionId).then((questionResponse) => ({
+    return questionId =>
+      this.fetchData(this.mode, questionId).then(questionResponse => ({
         id: questionId,
         ...questionResponse,
       }));

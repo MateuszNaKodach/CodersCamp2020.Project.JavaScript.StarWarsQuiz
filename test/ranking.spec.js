@@ -79,9 +79,7 @@ describe("Ranking's logic", () => {
     expect(JSON.parse(localStorage.getItem('people'))).toBeNull();
     peopleRanking.saveScore('user', 0, 100);
 
-    expect(JSON.parse(localStorage.getItem('people'))).toEqual(
-      expectedResultsWhenOnlyOne,
-    );
+    expect(JSON.parse(localStorage.getItem('people'))).toEqual(expectedResultsWhenOnlyOne);
   });
 
   it('When there are three scores and a new one is equal to any of them then add the new result to the top scores instead of the lowest one', () => {
@@ -90,9 +88,7 @@ describe("Ranking's logic", () => {
 
     vehiclesRanking.saveScore('newUser', 9, 18); // 45%
 
-    expect(JSON.parse(localStorage.getItem('vehicles'))).toEqual(
-      expectedResultsWhenEqual,
-    );
+    expect(JSON.parse(localStorage.getItem('vehicles'))).toEqual(expectedResultsWhenEqual);
   });
 
   it('When there are three scores and a new one is higher than any of them then add the new result to the top scores instead of the lowest one', () => {
@@ -101,9 +97,7 @@ describe("Ranking's logic", () => {
 
     vehiclesRanking.saveScore('newUser', 1, 1); // 100%
 
-    expect(JSON.parse(localStorage.getItem('vehicles'))).toEqual(
-      expectedResultsWhenHigher,
-    );
+    expect(JSON.parse(localStorage.getItem('vehicles'))).toEqual(expectedResultsWhenHigher);
   });
 
   it('When there are three scores and a new one is less than all of them then do not add it to the top scores', () => {
