@@ -17,9 +17,9 @@
     display: flex;
     width: 60%;
     height: 80%;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: #e60001 0px 0px 35px;
+    background-color: $color-bgc;
+    border-radius: $component-radius;
+    box-shadow: $component-shadow;
     animation-name: appearing;
     animation-duration: 0.4s;
   }
