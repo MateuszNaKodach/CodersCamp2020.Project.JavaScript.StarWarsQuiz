@@ -29,23 +29,17 @@ export const App = ({ options }) => {
   renderRedButton(mainCointainer);
 
   // Modal window
-  const buttonForWindow = document.getElementById('btnForModalWindow');
+  const modalWindow = new ModalWindow();
 
-  function closeFunction() {
-    console.log('cos');
-  }
+  const testButtonForWindow = document.getElementById('btnForModalWindow');
 
-  buttonForWindow.onclick = function () {
-    const test = document.createElement('div');
-    const test2 = document.createElement('div');
-    test.appendChild(test2);
-    test2.innerText = 'dsadasdsadas';
+  testButtonForWindow.onclick = function () {
+    const testContent = document.createElement('div');
+    testContent.innerText = 'dsadasdsadas';
+    modalWindow.show(testContent);
 
-    const modalWindow = ModalWindow(test, closeFunction);
-    modalWindow.style.display = 'block';
+    setTimeout(modalWindow.close, 3000);
   };
-
-  setTimeout(closeFunction, 2000);
 };
 
 function renderWrapper(parent) {
