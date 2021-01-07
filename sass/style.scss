@@ -6,8 +6,9 @@
 @import 'mixins'; // miksins - główne
 
 // * COMPONENTY
-@import 'components/btn';
 @import 'components/gameMode';
+@import 'components/button';
+@import 'components/redButton';
 
 // * LAYOUTS
 @import 'layouts/example';
