@@ -20,8 +20,8 @@ export const App = ({ options }) => {
   renderMainContainer(wrapper);
   renderQuestionImage(wrapper);
 
-  const mainCointainer = document.getElementById('mainContainer');
-  renderGameMode(mainCointainer);
+  const mainContainer = document.getElementById('mainContainer');
+  renderGameMode(mainContainer);
 };
 
 function renderWrapper(parent) {
