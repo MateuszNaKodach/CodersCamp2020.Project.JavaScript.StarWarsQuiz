@@ -1,0 +1,7 @@
+.answersWrapper {
+  overflow: hidden;
+  display: grid;
+
+  grid-gap: 40px;
+  grid-template-columns: 1fr 1fr;
+}

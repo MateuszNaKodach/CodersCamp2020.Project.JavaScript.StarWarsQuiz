@@ -10,6 +10,7 @@ import { getRandomIdFromArray } from '../utils/getRandomIdFromArray';
 import { peopleIdArray, starshipsIdArray, vehiclesIdArray } from './settings';
 import { GameMode } from './components/GameMode';
 import { render } from './rendering';
+import { AnswersWrapper } from './components/AnswersWrapper';
 
 export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
@@ -58,27 +59,15 @@ export const App = ({ options }) => {
     }),
     inside: mainContainer,
   });
-
-  const odpTrue = render({
-    component: Button({
-      id: 'odpTrue',
-      btnText: 'odpTrue',
-      classList: ['mainContainer__odpTrue'],
-      onClickFn: startGame,
-      isCorrectAnswer: true,
-    }),
+  const answers = render({
+    component: AnswersWrapper(
+      ['Luke Skywalker', 'Jar Jar Binks', 'Padme Amidala', 'Darth Vader'],
+      'Darth Vader',
+      chosenAnswer,
+    ),
+    //component: AnswerButtons(answers, correctAnswer, chosenAnswer),
     inside: mainContainer,
-  });
-
-  const odpFalse = render({
-    component: Button({
-      id: 'odpFalse',
-      btnText: 'odpFalse',
-      classList: ['mainContainer__odpFalse'],
-      onClickFn: '',
-      isIncorrectAnswer: true,
-    }),
-    inside: mainContainer,
+    withClasses: 'mainContainer__answersWrapper',
   });
 };
 
@@ -118,6 +107,7 @@ function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
 }
 
 const startGame = () => console.log('witaj w grze');
+const chosenAnswer = (...params) => console.log(params);
 
 const fetchModeData = (mode, id) =>
   fetchData(mode, id, () =>

@@ -6,8 +6,6 @@ export const Button = (
     onClickFn: undefined,
     icon: '',
     isSpecial: false,
-    isCorrectAnswer: false,
-    isIncorrectAnswer: false,
   },
 ) => {
   // * set button
@@ -22,11 +20,6 @@ export const Button = (
 
   if (btnObj.isSpecial) {
     btnDomObj.classList.add('button--special');
-  }
-  if (btnObj.isCorrectAnswer) {
-    btnDomObj.classList.add('button--correctAnswer');
-  } else if (btnObj.isIncorrectAnswer) {
-    btnDomObj.classList.add('button--incorrectAnswer');
   }
 
   // * set buttons icon

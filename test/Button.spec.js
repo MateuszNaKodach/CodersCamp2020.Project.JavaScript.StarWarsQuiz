@@ -97,32 +97,4 @@ describe('Function that creates and renders button', () => {
     });
     expect(testButton.classList.contains('button--special')).toBe(true);
   });
-
-  it('Should create button without class "button--correctAnswer" when "isCorrectAnswer" is "true"', () => {
-    const testButton = Button({
-      id: 'testId',
-      btnText: 'Test',
-      classList: [],
-      onClickFn: undefined,
-      icon: 'fame',
-      isSpecial: false,
-      isCorrectAnswer: true,
-      isIncorrectAnswer: false,
-    });
-    expect(testButton.classList.contains('button--correctAnswer')).toBe(true);
-  });
-
-  it('Should create button without class "button--incorrectAnswer" when "isIncorrectAnswer" is "true"', () => {
-    const testButton = Button({
-      id: 'testId',
-      btnText: 'Test',
-      classList: [],
-      onClickFn: undefined,
-      icon: 'fame',
-      isSpecial: false,
-      isCorrectAnswer: false,
-      isIncorrectAnswer: true,
-    });
-    expect(testButton.classList.contains('button--incorrectAnswer')).toBe(true);
-  });
 });
