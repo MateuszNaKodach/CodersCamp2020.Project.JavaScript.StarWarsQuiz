@@ -6,6 +6,8 @@ export const Button = (
     onClickFn: undefined,
     icon: '',
     isSpecial: false,
+    isCorrectAnswer: false,
+    isIncorrectAnswer: false,
   },
 ) => {
   // * set button
@@ -17,7 +19,16 @@ export const Button = (
   btnDomObj.classList.add('button');
   if (btnObj.classList[0]) btnDomObj.classList.add(...btnObj.classList);
   btnDomObj.onclick = btnObj.onClickFn;
-  if (btnObj.isSpecial) btnDomObj.classList.add('button--special');
+
+  if (btnObj.isSpecial) {
+    btnDomObj.classList.add('button--special');
+  }
+  if (btnObj.isCorrectAnswer) {
+    btnDomObj.classList.add('button--correctAnswer');
+  } else if (btnObj.isIncorrectAnswer) {
+    btnDomObj.classList.add('button--incorrectAnswer');
+  }
+
   // * set buttons icon
   const spanElem = document.createElement('span');
   if (btnObj.icon != '' && btnObj.icon != undefined) {

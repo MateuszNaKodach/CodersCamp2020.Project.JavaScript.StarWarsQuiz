@@ -47,6 +47,7 @@ export const App = ({ options }) => {
     }),
     inside: mainContainer,
   });
+
   const playTheGameButton = render({
     component: Button({
       id: 'playTheGameButton',
@@ -54,6 +55,28 @@ export const App = ({ options }) => {
       classList: ['mainContainer__playTheGameButton'],
       onClickFn: startGame,
       isSpecial: true,
+    }),
+    inside: mainContainer,
+  });
+
+  const odpTrue = render({
+    component: Button({
+      id: 'odpTrue',
+      btnText: 'odpTrue',
+      classList: ['mainContainer__odpTrue'],
+      onClickFn: startGame,
+      isCorrectAnswer: true,
+    }),
+    inside: mainContainer,
+  });
+
+  const odpFalse = render({
+    component: Button({
+      id: 'odpFalse',
+      btnText: 'odpFalse',
+      classList: ['mainContainer__odpFalse'],
+      onClickFn: '',
+      isIncorrectAnswer: true,
     }),
     inside: mainContainer,
   });
