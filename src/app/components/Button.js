@@ -5,6 +5,7 @@ export const Button = (
     classList: [],
     onClickFn: undefined,
     icon: '',
+    isSpecial: '',
   },
 ) => {
   // * set button
