@@ -80,6 +80,8 @@ export const App = ({ options }) => {
     }),
     inside: mainContainer,
   });
+
+  odpTrue.changeText('100% prawda');
 };
 
 function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {

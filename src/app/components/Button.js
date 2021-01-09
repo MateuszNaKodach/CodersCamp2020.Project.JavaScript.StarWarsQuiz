@@ -37,5 +37,11 @@ export const Button = (
     btnDomObj.appendChild(spanElem);
   }
 
+  // * changing text btn function
+
+  btnDomObj.changeText = (newText) => {
+    btnDomObj.innerText = newText;
+  };
+
   return btnDomObj;
 };
