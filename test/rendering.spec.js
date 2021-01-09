@@ -54,6 +54,18 @@ describe('Render component (DOM element) inside another', () => {
     expect(renderedComponent).toHaveClass('with-class');
     expect(renderedComponent).toBe(aComponent);
   });
+
+  it('when destroy component , then parent component should be not have rendered component', () => {
+    const renderedComponent = render({
+      component: aComponent,
+      inside: aParent,
+      withClasses: 'with-class',
+    });
+
+    expect(aParent).toContainElement(renderedComponent);
+    renderedComponent.destroy();
+    expect(aParent).not.toContainElement(renderedComponent);
+  });
 });
 
 const aComponent = SampleDivWithText({

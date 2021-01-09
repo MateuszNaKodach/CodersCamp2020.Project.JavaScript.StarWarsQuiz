@@ -80,6 +80,8 @@ export const App = ({ options }) => {
     }),
     inside: mainContainer,
   });
+
+  odpFalse.destroy();
 };
 
 function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
