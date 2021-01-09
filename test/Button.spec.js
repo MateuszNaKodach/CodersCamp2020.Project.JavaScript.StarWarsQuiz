@@ -1,6 +1,8 @@
 import { Button } from '../src/app/components/Button';
 import '@testing-library/jest-dom';
+// import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
+// import variables from '../sass/_vars.scss';
 
 describe('Function that creates and renders button', () => {
   it('Should create and return button object with passed parameters.', () => {
@@ -82,5 +84,45 @@ describe('Function that creates and renders button', () => {
     });
 
     expect(testButton).not.toHaveAttribute('id');
+  });
+
+  it('Should create button with class "button--special" when "isSpecial" is "true"', () => {
+    const testButton = Button({
+      id: 'testId',
+      btnText: 'Test',
+      classList: [],
+      onClickFn: undefined,
+      icon: 'fame',
+      isSpecial: true,
+    });
+    expect(testButton.classList.contains('button--special')).toBe(true);
+  });
+
+  it('Should create button without class "button--correctAnswer" when "isCorrectAnswer" is "true"', () => {
+    const testButton = Button({
+      id: 'testId',
+      btnText: 'Test',
+      classList: [],
+      onClickFn: undefined,
+      icon: 'fame',
+      isSpecial: false,
+      isCorrectAnswer: true,
+      isIncorrectAnswer: false,
+    });
+    expect(testButton.classList.contains('button--correctAnswer')).toBe(true);
+  });
+
+  it('Should create button without class "button--incorrectAnswer" when "isIncorrectAnswer" is "true"', () => {
+    const testButton = Button({
+      id: 'testId',
+      btnText: 'Test',
+      classList: [],
+      onClickFn: undefined,
+      icon: 'fame',
+      isSpecial: false,
+      isCorrectAnswer: false,
+      isIncorrectAnswer: true,
+    });
+    expect(testButton.classList.contains('button--incorrectAnswer')).toBe(true);
   });
 });

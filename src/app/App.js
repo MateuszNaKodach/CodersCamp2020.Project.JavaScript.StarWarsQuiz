@@ -4,7 +4,6 @@ import { Logo } from './layouts/Logo';
 import { MainContainer } from './layouts/MainContainer';
 import { Wrapper } from './layouts/Wrapper';
 import { Button } from './components/Button';
-import { RedButton } from './components/RedButton';
 import { QuestionGenerator } from './QuestionGenrator';
 import { fetchData } from '../utils/fetchData';
 import { getRandomIdFromArray } from '../utils/getRandomIdFromArray';
@@ -40,18 +39,46 @@ export const App = ({ options }) => {
   });
   const hallOfFameButton = render({
     component: Button({
-      id: 'HallOfFameButton',
+      id: 'hallOfFameButton',
       btnText: 'HallOfFame',
-      classList: ['HallOfFameButton'],
+      classList: ['mainContainer__hallOfFameButton'],
       onClickFn: undefined,
       icon: 'fame',
     }),
     inside: mainContainer,
   });
+
   const playTheGameButton = render({
-    component: RedButton('play the game', startGame),
+    component: Button({
+      id: 'playTheGameButton',
+      btnText: 'play the game',
+      classList: ['mainContainer__playTheGameButton'],
+      onClickFn: startGame,
+      isSpecial: true,
+    }),
     inside: mainContainer,
-    withClasses: 'mainContainer__redButton',
+  });
+
+  const odpTrue = render({
+    component: Button({
+      id: 'odpTrue',
+      btnText: 'odpTrue',
+      classList: ['mainContainer__odpTrue'],
+      onClickFn: startGame,
+      isCorrectAnswer: true,
+    }),
+    inside: mainContainer,
+  });
+
+  const odpFalse = render({
+    component: Button({
+      id: 'odpFalse',
+      btnText: 'odpFalse',
+      classList: ['mainContainer__odpFalse'],
+      onClickFn: '',
+      isIncorrectAnswer: true,
+    }),
+    inside: mainContainer,
   });
 };
 
