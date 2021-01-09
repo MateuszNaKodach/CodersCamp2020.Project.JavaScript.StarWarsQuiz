@@ -14,9 +14,9 @@ export const Button = (
   }
   btnDomObj.innerText = btnObj.btnText;
   btnDomObj.classList.add('button');
-  btnDomObj.classList.add(...btnObj.classList);
+  if (btnObj.classList[0]) btnDomObj.classList.add(...btnObj.classList);
   btnDomObj.onclick = btnObj.onClickFn;
-
+  if (btnObj.isSpecial) btnDomObj.classList.add('button--special');
   // * set buttons icon
   const spanElem = document.createElement('span');
   if (btnObj.icon != '' && btnObj.icon != undefined) {
