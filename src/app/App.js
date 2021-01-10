@@ -80,10 +80,13 @@ export const App = ({ options }) => {
   });
 
 
+
+
   odpTrue.changeText('100% prawda');
 
   odpTrue.setSuccess();
   odpFalse.setDanger();
+
 
 };
 
