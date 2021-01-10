@@ -29,17 +29,10 @@ export const App = ({ options }) => {
   renderRedButton(mainCointainer);
 
   // Modal window
-  const modalWindow = new ModalWindow();
-
-  const testButtonForWindow = document.getElementById('btnForModalWindow');
-
-  testButtonForWindow.onclick = function () {
-    const testContent = document.createElement('div');
-    testContent.innerText = 'dsadasdsadas';
-    modalWindow.show(testContent);
-
-    setTimeout(modalWindow.close, 3000);
-  };
+  ModalWindow(app);
+  // Modal window methods
+  // modalWindow.show(Here_some_content_as_HTMLElement);
+  // modalWindow.close  to close the window and remove the content
 };
 
 function renderWrapper(parent) {

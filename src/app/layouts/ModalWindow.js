@@ -1,9 +1,8 @@
-export const ModalWindow = () => {
+export const ModalWindow = (parent) => {
   const modalWindow = document.createElement('div');
   modalWindow.classList.add('modalWindow');
   modalWindow.id = 'modalWindow';
 
-  const parent = document.getElementById('swquiz-app');
   parent.appendChild(modalWindow);
 
   const modalOverlay = ModalOverlay();
@@ -20,21 +19,21 @@ export const ModalWindow = () => {
     return modalOverlay;
   }
 
-  return {
-    ...modalWindow,
-    show(content) {
-      if (content) {
-        content.classList.add('modalWindow__content');
-        content.id = 'overlayContent';
-        modalOverlay.appendChild(content);
-        modalWindow.style.display = 'block';
-      }
-    },
-    close() {
-      modalWindow.style.display = 'none';
-
-      const contentToRemove = document.getElementById('overlayContent');
-      contentToRemove.remove();
-    },
+  modalWindow.show = (content) => {
+    if (content) {
+      content.classList.add('modalWindow__content');
+      content.id = 'overlayContent';
+      modalOverlay.appendChild(content);
+      modalWindow.style.display = 'block';
+    }
   };
+
+  modalWindow.close = () => {
+    modalWindow.style.display = 'none';
+
+    const contentToRemove = document.getElementById('overlayContent');
+    contentToRemove.remove();
+  };
+
+  return modalWindow;
 };
