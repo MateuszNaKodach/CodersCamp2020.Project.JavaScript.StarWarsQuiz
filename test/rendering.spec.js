@@ -1,5 +1,5 @@
 import { render } from '../src/app/rendering';
-import { SampleDivWithoutClass, SampleDivWithText } from './testFixtures';
+import { SampleDivWithText } from './testFixtures';
 import '@testing-library/jest-dom';
 
 describe('Render component (DOM element) inside another', () => {
