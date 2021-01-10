@@ -11,6 +11,7 @@ import { peopleIdArray, starshipsIdArray, vehiclesIdArray } from './settings';
 import { ModalWindow } from './layouts/ModalWindow';
 import { GameMode } from './components/GameMode';
 import { render } from './rendering';
+import { QuestionAnswers } from './components/QuestionAnswers';
 
 export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
@@ -59,25 +60,15 @@ export const App = ({ options }) => {
     inside: mainContainer,
   });
   playTheGameButton.setSpecial();
-
-  const odpTrue = render({
-    component: Button({
-      id: 'odpTrue',
-      btnText: 'odpTrue',
-      classList: ['mainContainer__odpTrue'],
-      onClickFn: startGame,
-    }),
+  const questionAnswers = render({
+    component: QuestionAnswers(
+      ['Luke Skywalker', 'Jar Jar Binks', 'Padme Amidala', 'Darth Vader'],
+      'Darth Vader',
+      onAnswerChosen,
+    ),
+    //component: QuestionAnswers(answers, correctAnswer, onAnswerChosen),
     inside: mainContainer,
-  });
-
-  const odpFalse = render({
-    component: Button({
-      id: 'odpFalse',
-      btnText: 'odpFalse',
-      classList: ['mainContainer__odpFalse'],
-      onClickFn: '',
-    }),
-    inside: mainContainer,
+    withClasses: 'mainContainer__answersWrapper',
   });
 
   odpTrue.changeText('100% prawda');
@@ -128,6 +119,7 @@ function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
 }
 
 const startGame = () => console.log('witaj w grze');
+const onAnswerChosen = (...params) => console.log(params);
 
 const fetchModeData = (mode, id) =>
   fetchData(mode, id, () =>
