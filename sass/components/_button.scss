@@ -40,10 +40,10 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 30px #ff0000;
   }
 
-  &--correctAnswer {
+  &--success {
     background-color: #41ed25;
   }
-  &--incorrectAnswer {
+  &--danger {
     background-color: #ff0000;
   }
 }

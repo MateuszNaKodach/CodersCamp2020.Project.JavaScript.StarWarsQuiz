@@ -54,10 +54,10 @@ export const App = ({ options }) => {
       btnText: 'play the game',
       classList: ['mainContainer__playTheGameButton'],
       onClickFn: startGame,
-      isSpecial: true,
     }),
     inside: mainContainer,
   });
+  playTheGameButton.setSpecial();
 
   const odpTrue = render({
     component: Button({
@@ -79,8 +79,8 @@ export const App = ({ options }) => {
     inside: mainContainer,
   });
 
-  odpTrue.setCorrectAnswer();
-  odpFalse.setIncorrectAnswer();
+  odpTrue.setSuccess();
+  odpFalse.setDanger();
 };
 
 function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {

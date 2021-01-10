@@ -5,9 +5,6 @@ export const Button = (
     classList: [],
     onClickFn: undefined,
     icon: '',
-    isSpecial: false,
-    isCorrectAnswer: false,
-    isIncorrectAnswer: false,
   },
 ) => {
   const btnDomObj = document.createElement('button');
@@ -19,10 +16,6 @@ export const Button = (
   if (btnObj.classList[0]) btnDomObj.classList.add(...btnObj.classList);
   btnDomObj.onclick = btnObj.onClickFn;
 
-  if (btnObj.isSpecial) {
-    btnDomObj.classList.add('button--special');
-  }
-
   // * set buttons icon
   const spanElem = document.createElement('span');
   if (btnObj.icon != '' && btnObj.icon != undefined) {
@@ -31,17 +24,22 @@ export const Button = (
     btnDomObj.appendChild(spanElem);
   }
 
-  btnDomObj.setCorrectAnswer = () => {
-    btnDomObj.classList.add('button--correctAnswer');
-    btnDomObj.classList.remove('button--incorrectAnswer');
+  btnDomObj.setSuccess = () => {
+    btnDomObj.setResetModifier();
+    btnDomObj.classList.add('button--success');
   };
-  btnDomObj.setIncorrectAnswer = () => {
-    btnDomObj.classList.add('button--incorrectAnswer');
-    btnDomObj.classList.remove('button--correctAnswer');
+  btnDomObj.setDanger = () => {
+    btnDomObj.setResetModifier();
+    btnDomObj.classList.add('button--danger');
   };
-  btnDomObj.setResetAnswer = () => {
-    btnDomObj.classList.remove('button--incorrectAnswer');
-    btnDomObj.classList.remove('button--correctAnswer');
+  btnDomObj.setSpecial = () => {
+    btnDomObj.setResetModifier();
+    btnDomObj.classList.add('button--special');
+  };
+  btnDomObj.setResetModifier = () => {
+    btnDomObj.classList.remove('button--success');
+    btnDomObj.classList.remove('button--danger');
+    btnDomObj.classList.remove('button--special');
   };
 
   return btnDomObj;
