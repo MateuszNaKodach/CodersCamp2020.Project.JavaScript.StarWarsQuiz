@@ -23,11 +23,6 @@ export const Button = (
   if (btnObj.isSpecial) {
     btnDomObj.classList.add('button--special');
   }
-  if (btnObj.isCorrectAnswer) {
-    btnDomObj.classList.add('button--correctAnswer');
-  } else if (btnObj.isIncorrectAnswer) {
-    btnDomObj.classList.add('button--incorrectAnswer');
-  }
 
   // * set buttons icon
   const spanElem = document.createElement('span');
@@ -36,6 +31,15 @@ export const Button = (
     spanElem.style.backgroundImage = `url("../static/assets/ui/Icon${btnObj.icon}.png")`;
     btnDomObj.appendChild(spanElem);
   }
+
+  btnDomObj.setCorrectAnswer = () => {
+    btnDomObj.classList.add('button--correctAnswer');
+    btnDomObj.classList.remove('button--incorrectAnswer');
+  };
+  btnDomObj.setIncorrectAnswer = () => {
+    btnDomObj.classList.add('button--incorrectAnswer');
+    btnDomObj.classList.remove('button--correctAnswer');
+  };
 
   return btnDomObj;
 };

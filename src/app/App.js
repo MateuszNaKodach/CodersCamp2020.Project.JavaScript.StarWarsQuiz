@@ -65,7 +65,6 @@ export const App = ({ options }) => {
       btnText: 'odpTrue',
       classList: ['mainContainer__odpTrue'],
       onClickFn: startGame,
-      isCorrectAnswer: true,
     }),
     inside: mainContainer,
   });
@@ -76,10 +75,12 @@ export const App = ({ options }) => {
       btnText: 'odpFalse',
       classList: ['mainContainer__odpFalse'],
       onClickFn: '',
-      isIncorrectAnswer: true,
     }),
     inside: mainContainer,
   });
+
+  odpTrue.setCorrectAnswer();
+  odpFalse.setIncorrectAnswer();
 };
 
 function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
