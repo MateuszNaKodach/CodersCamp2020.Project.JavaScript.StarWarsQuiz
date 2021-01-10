@@ -58,6 +58,7 @@ export const App = ({ options }) => {
     }),
     inside: mainContainer,
   });
+  playTheGameButton.setSpecial();
   const questionAnswers = render({
     component: QuestionAnswers(
       ['Luke Skywalker', 'Jar Jar Binks', 'Padme Amidala', 'Darth Vader'],
