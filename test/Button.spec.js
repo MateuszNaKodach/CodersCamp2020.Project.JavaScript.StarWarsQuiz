@@ -134,4 +134,20 @@ describe('Function that creates and renders button', () => {
     testButton.setResetModifier();
     expect(testButton.classList.contains('button--success')).toBe(false);
   });
+
+  it('Should create button without class "button--incorrectAnswer" when "isIncorrectAnswer" is "true"', () => {
+    const testButton = Button({
+      id: 'testId',
+      btnText: 'Test',
+      classList: [],
+      onClickFn: undefined,
+      icon: 'fame',
+      isSpecial: false,
+      isCorrectAnswer: false,
+      isIncorrectAnswer: true,
+    });
+
+    testButton.changeText('test text');
+    expect(testButton.innerText).toBe('test text');
+  });
 });

@@ -24,6 +24,10 @@ export const Button = (
     btnDomObj.appendChild(spanElem);
   }
 
+  btnDomObj.changeText = (newText) => {
+    btnDomObj.innerText = newText;
+  };
+
   btnDomObj.setSuccess = () => {
     btnDomObj.setResetModifier();
     btnDomObj.classList.add('button--success');
