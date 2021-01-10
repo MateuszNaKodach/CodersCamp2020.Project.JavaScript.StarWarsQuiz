@@ -70,8 +70,12 @@ export const App = ({ options }) => {
     withClasses: 'mainContainer__answersWrapper',
   });
 
+
+  odpTrue.changeText('100% prawda');
+
   odpTrue.setSuccess();
   odpFalse.setDanger();
+
 };
 
 function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
