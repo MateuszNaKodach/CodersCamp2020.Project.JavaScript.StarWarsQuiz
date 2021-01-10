@@ -55,20 +55,34 @@ export const App = ({ options }) => {
       btnText: 'play the game',
       classList: ['mainContainer__playTheGameButton'],
       onClickFn: startGame,
-      isSpecial: true,
     }),
     inside: mainContainer,
   });
-  const answers = render({
-    component: AnswersWrapper(
-      ['Luke Skywalker', 'Jar Jar Binks', 'Padme Amidala', 'Darth Vader'],
-      'Darth Vader',
-      chosenAnswer,
-    ),
-    //component: AnswerButtons(answers, correctAnswer, chosenAnswer),
+  playTheGameButton.setSpecial();
+
+  const odpTrue = render({
+    component: Button({
+      id: 'odpTrue',
+      btnText: 'odpTrue',
+      classList: ['mainContainer__odpTrue'],
+      onClickFn: startGame,
+    }),
+    inside: mainContainer,
+  });
+
+  const odpFalse = render({
+    component: Button({
+      id: 'odpFalse',
+      btnText: 'odpFalse',
+      classList: ['mainContainer__odpFalse'],
+      onClickFn: '',
+    }),
     inside: mainContainer,
     withClasses: 'mainContainer__answersWrapper',
   });
+
+  odpTrue.setSuccess();
+  odpFalse.setDanger();
 };
 
 function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
