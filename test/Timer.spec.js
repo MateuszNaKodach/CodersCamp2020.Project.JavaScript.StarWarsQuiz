@@ -1,6 +1,5 @@
-import { Timer } from '../src/app/components/Timer';
+import { Timer, countdown } from '../src/app/components/Timer';
 import '@testing-library/jest-dom';
-import { screen } from '@testing-library/dom';
 
 describe('Timers component', () => {
   beforeEach(jest.useFakeTimers);
@@ -16,7 +15,7 @@ describe('Timers component', () => {
   });
 
   describe('Interval function', () => {
-    it('Should call setInterval function 1 time', () => {
+    it('Should call setInterval function 1 time with cb function', () => {
       Timer();
 
       expect(setInterval).toHaveBeenCalledTimes(1);

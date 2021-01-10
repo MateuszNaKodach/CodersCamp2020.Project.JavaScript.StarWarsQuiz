@@ -12,7 +12,7 @@ export const Timer = (duration) => {
   return timerContainer;
 };
 
-function countdown(timer, timerContainer) {
+export function countdown(timer, timerContainer) {
   let minutes, seconds;
 
   minutes = parseInt(timer / 60, 10);
