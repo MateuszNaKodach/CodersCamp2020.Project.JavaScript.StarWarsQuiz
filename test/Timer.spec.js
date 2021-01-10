@@ -6,7 +6,7 @@ describe('Timers component', () => {
   beforeEach(jest.useFakeTimers);
 
   describe('Element creation', () => {
-    it('Should create timer container with class and id attribute', () => {
+    it('Should create timer container as div element with class and id attribute', () => {
       const testTimer = Timer(30);
 
       expect(testTimer.tagName).toBe('DIV');
@@ -15,8 +15,8 @@ describe('Timers component', () => {
     });
   });
 
-  describe('Countdown logic', () => {
-    it('dunno', () => {
+  describe('Interval function', () => {
+    it('Should call setInterval function 1 time', () => {
       Timer();
 
       expect(setInterval).toHaveBeenCalledTimes(1);

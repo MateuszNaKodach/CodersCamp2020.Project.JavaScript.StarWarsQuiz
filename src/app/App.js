@@ -10,6 +10,7 @@ import { getRandomIdFromArray } from '../utils/getRandomIdFromArray';
 import { peopleIdArray, starshipsIdArray, vehiclesIdArray } from './settings';
 import { GameMode } from './components/GameMode';
 import { render } from './rendering';
+import { Timer } from './components/Timer';
 
 export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
@@ -78,6 +79,11 @@ export const App = ({ options }) => {
       onClickFn: '',
       isIncorrectAnswer: true,
     }),
+    inside: mainContainer,
+  });
+
+  const timer = render({
+    component: Timer(10),
     inside: mainContainer,
   });
 };
