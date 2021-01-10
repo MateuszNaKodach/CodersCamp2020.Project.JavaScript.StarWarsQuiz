@@ -81,7 +81,7 @@ export const App = ({ options }) => {
     inside: mainContainer,
   });
 
-  odpFalse.destroy();
+  odpFalse.removeFromParent();
 };
 
 function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {

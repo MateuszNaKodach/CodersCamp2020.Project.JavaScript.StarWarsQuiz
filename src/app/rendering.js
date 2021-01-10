@@ -9,7 +9,7 @@ export function render({ component, inside, withClasses }) {
   const componentToRender = withClassList(component, withClasses);
   inside.appendChild(componentToRender);
 
-  componentToRender.destroy = () => {
+  componentToRender.removeFromParent = () => {
     inside.removeChild(componentToRender);
   };
 

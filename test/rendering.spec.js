@@ -55,7 +55,7 @@ describe('Render component (DOM element) inside another', () => {
     expect(renderedComponent).toBe(aComponent);
   });
 
-  it('when destroy component , then parent component should be not have rendered component', () => {
+  it('when destroy component, then parent component should not have rendered component inside', () => {
     const renderedComponent = render({
       component: aComponent,
       inside: aParent,
@@ -63,7 +63,7 @@ describe('Render component (DOM element) inside another', () => {
     });
 
     expect(aParent).toContainElement(renderedComponent);
-    renderedComponent.destroy();
+    renderedComponent.removeFromParent();
     expect(aParent).not.toContainElement(renderedComponent);
   });
 });
