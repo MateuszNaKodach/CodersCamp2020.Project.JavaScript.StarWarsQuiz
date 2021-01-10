@@ -123,4 +123,20 @@ describe('Function that creates and renders button', () => {
     testButton.setIncorrectAnswer();
     expect(testButton.classList.contains('button--incorrectAnswer')).toBe(true);
   });
+
+  it('Should create button and delete class "button--correctAnswer" when setResetAnswer()', () => {
+    const testButton = Button({
+      id: 'testId',
+      btnText: 'Test',
+      classList: [],
+      onClickFn: undefined,
+      icon: 'fame',
+      isSpecial: false,
+    });
+    testButton.setIncorrectAnswer();
+    testButton.setResetAnswer();
+    expect(testButton.classList.contains('button--incorrectAnswer')).toBe(
+      false,
+    );
+  });
 });

@@ -10,7 +10,6 @@ export const Button = (
     isIncorrectAnswer: false,
   },
 ) => {
-  // * set button
   const btnDomObj = document.createElement('button');
   if (btnObj.id != '' && btnObj.id != undefined) {
     btnDomObj.id = btnObj.id;
@@ -38,6 +37,10 @@ export const Button = (
   };
   btnDomObj.setIncorrectAnswer = () => {
     btnDomObj.classList.add('button--incorrectAnswer');
+    btnDomObj.classList.remove('button--correctAnswer');
+  };
+  btnDomObj.setResetAnswer = () => {
+    btnDomObj.classList.remove('button--incorrectAnswer');
     btnDomObj.classList.remove('button--correctAnswer');
   };
 
