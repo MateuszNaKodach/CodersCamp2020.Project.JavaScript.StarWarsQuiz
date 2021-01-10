@@ -1,34 +1,40 @@
-export class ModalWindow {
-  constructor() {
-    const modalWindow = document.createElement('div');
-    modalWindow.classList.add('modalWindow');
-    modalWindow.id = 'modalWindow';
+export const ModalWindow = () => {
+  const modalWindow = document.createElement('div');
+  modalWindow.classList.add('modalWindow');
+  modalWindow.id = 'modalWindow';
 
-    const parent = document.getElementById('swquiz-app');
-    parent.appendChild(modalWindow);
+  const parent = document.getElementById('swquiz-app');
+  parent.appendChild(modalWindow);
+
+  const modalOverlay = ModalOverlay();
+  withOverlay(modalWindow);
+
+  function withOverlay(modalWindow) {
+    modalWindow.appendChild(modalOverlay);
   }
 
-  show(content) {
-    // ""Komponent umożliwia wyświetlenie okna modalnego z zawartością przekazaną jako inny komponent na wejściu do funkcji.""
-    // wiadomo jaki będzie typ komponentu jaki przyjdzie? Bo if (content) to chyba średni warunek...
-    if (content) {
-      content.classList.add('modalWindow__content');
-
-      // create background for content
-      const contentBackground = document.createElement('div');
-      contentBackground.classList.add('modalWindow__contentBackground');
-      contentBackground.id = 'modalWindow-bg';
-      modalWindow.appendChild(contentBackground);
-
-      contentBackground.appendChild(content);
-      modalWindow.style.display = 'block';
-    }
+  function ModalOverlay() {
+    const modalOverlay = document.createElement('div');
+    modalOverlay.classList.add('modalWindow__overlay');
+    modalOverlay.id = 'overlay';
+    return modalOverlay;
   }
 
-  close() {
-    modalWindow.style.display = 'none';
+  return {
+    ...modalWindow,
+    show(content) {
+      if (content) {
+        content.classList.add('modalWindow__content');
+        content.id = 'overlayContent';
+        modalOverlay.appendChild(content);
+        modalWindow.style.display = 'block';
+      }
+    },
+    close() {
+      modalWindow.style.display = 'none';
 
-    const contentToRemove = document.getElementById('modalWindow-bg');
-    contentToRemove.remove();
-  }
-}
+      const contentToRemove = document.getElementById('overlayContent');
+      contentToRemove.remove();
+    },
+  };
+};
