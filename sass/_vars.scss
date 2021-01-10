@@ -4,7 +4,7 @@ $color-font--primary: #222;
 // $color-font--light: #fff;
 
 $color-bgc: #fff;
-// $color-bgc--special: #fafaff;
+$color-bg--special: rgba(255, 0, 0, 0.8);
 
 // $color-brand--primary: #ffc53d;
 // $color-brand--secondary: #ff9a3d;
@@ -21,3 +21,6 @@ $component-radius: 10px;
 // $mediaQ-mobile-S: 320px;
 
 // $font-size-standard: 18px;
+// :export {
+//   specialBgColor: $color-bgc--special;
+// }
