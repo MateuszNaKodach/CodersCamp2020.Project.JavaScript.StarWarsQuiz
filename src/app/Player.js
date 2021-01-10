@@ -1,8 +1,7 @@
 export class Player {
-  // przekazujemy pytanie oraz funkcje wywołującą rysowanie pytania
   askQuestion(question, onQuestionAsked) {
     if (!onQuestionAsked) return;
-    //
+
     onQuestionAsked(question);
   }
 
@@ -10,15 +9,21 @@ export class Player {
     if (!onQuestionAnswered) return;
 
     onQuestionAnswered(chosenAnswer);
-    // dupa(aas);
   }
 }
 
-export const computerMind = {};
+export const computerMind = {
+  question: undefined,
+  setQuestion(question) {
+    computerMind.question = question;
+  },
+  tryToAnswer() {
+    return computerMind.question.answers[randomAnswer(question.answers)];
+  },
+};
 
-// To ma być dodane gdzieś indziej
-// const humanPlayer = new Player();
-// const computerPlayer = new Player();
-
-// humanPlayer.askQuestion(question, fn());
-// computerPlayer.askQuestion(question, computerMind);
+const randomAnswer = (questionAnswers) => {
+  const min = 0;
+  const max = questionAnswers.lenght;
+  setTimeout(Math.floor(Math.random() * (max - min)) + min, 300);
+};
