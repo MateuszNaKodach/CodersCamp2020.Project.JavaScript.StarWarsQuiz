@@ -1,15 +1,21 @@
-export const computerMind = {
-  question: undefined,
-  setQuestion(question) {
-    computerMind.question = question;
-  },
-  tryToAnswer() {
-    return computerMind.question.answers[randomAnswer(question.answers)];
-  },
-};
+export class ComputerMind {
+  constructor() {
+    question: undefined;
+  }
 
-const randomAnswer = (questionAnswers) => {
+  setQuestion(question) {
+    this.question = question;
+  }
+  tryToAnswer() {
+    const computerAnswer = this.question.answers[
+      randomAnswerNr(this.question.answers)
+    ];
+    return computerAnswer;
+  }
+}
+
+export const randomAnswerNr = (questionAnswersTab) => {
   const min = 0;
-  const max = questionAnswers.lenght;
-  setTimeout(Math.floor(Math.random() * (max - min)) + min, 300);
+  const max = questionAnswersTab.length;
+  return Math.floor(Math.random() * (max - min)) + min;
 };
