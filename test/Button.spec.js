@@ -86,30 +86,53 @@ describe('Function that creates and renders button', () => {
     expect(testButton).not.toHaveAttribute('id');
   });
 
-  it('Should create button with class "button--special" when "isSpecial" is "true"', () => {
+  it('Should create button with class "button--special" when setSpecial()', () => {
     const testButton = Button({
       id: 'testId',
       btnText: 'Test',
       classList: [],
       onClickFn: undefined,
       icon: 'fame',
-      isSpecial: true,
     });
+    testButton.setSpecial();
     expect(testButton.classList.contains('button--special')).toBe(true);
   });
 
-  it('Should create button without class "button--correctAnswer" when "isCorrectAnswer" is "true"', () => {
+  it('Should create button with class "button--success" when setSuccess()', () => {
     const testButton = Button({
       id: 'testId',
       btnText: 'Test',
       classList: [],
       onClickFn: undefined,
       icon: 'fame',
-      isSpecial: false,
-      isCorrectAnswer: true,
-      isIncorrectAnswer: false,
     });
-    expect(testButton.classList.contains('button--correctAnswer')).toBe(true);
+    testButton.setSuccess();
+    expect(testButton.classList.contains('button--success')).toBe(true);
+  });
+
+  it('Should create button with class "button--danger" when setDanger()', () => {
+    const testButton = Button({
+      id: 'testId',
+      btnText: 'Test',
+      classList: [],
+      onClickFn: undefined,
+      icon: 'fame',
+    });
+    testButton.setDanger();
+    expect(testButton.classList.contains('button--danger')).toBe(true);
+  });
+
+  it('Should create button and delete class "button--success" when setResetAnswer()', () => {
+    const testButton = Button({
+      id: 'testId',
+      btnText: 'Test',
+      classList: [],
+      onClickFn: undefined,
+      icon: 'fame',
+    });
+    testButton.setSuccess();
+    testButton.setResetModifier();
+    expect(testButton.classList.contains('button--success')).toBe(false);
   });
 
   it('Should create button without class "button--incorrectAnswer" when "isIncorrectAnswer" is "true"', () => {
@@ -123,6 +146,8 @@ describe('Function that creates and renders button', () => {
       isCorrectAnswer: false,
       isIncorrectAnswer: true,
     });
-    expect(testButton.classList.contains('button--incorrectAnswer')).toBe(true);
+
+    testButton.changeText('test text');
+    expect(testButton.innerText).toBe('test text');
   });
 });

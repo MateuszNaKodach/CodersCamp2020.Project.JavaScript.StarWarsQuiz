@@ -54,10 +54,10 @@ export const App = ({ options }) => {
       btnText: 'play the game',
       classList: ['mainContainer__playTheGameButton'],
       onClickFn: startGame,
-      isSpecial: true,
     }),
     inside: mainContainer,
   });
+  playTheGameButton.setSpecial();
 
   const odpTrue = render({
     component: Button({
@@ -65,7 +65,6 @@ export const App = ({ options }) => {
       btnText: 'odpTrue',
       classList: ['mainContainer__odpTrue'],
       onClickFn: startGame,
-      isCorrectAnswer: true,
     }),
     inside: mainContainer,
   });
@@ -76,12 +75,19 @@ export const App = ({ options }) => {
       btnText: 'odpFalse',
       classList: ['mainContainer__odpFalse'],
       onClickFn: '',
-      isIncorrectAnswer: true,
     }),
     inside: mainContainer,
   });
 
-  odpFalse.removeFromParent();
+
+
+
+  odpTrue.changeText('100% prawda');
+
+  odpTrue.setSuccess();
+  odpFalse.setDanger();
+
+
 };
 
 function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
