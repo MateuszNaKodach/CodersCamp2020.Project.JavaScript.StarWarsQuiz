@@ -1,5 +1,5 @@
 import { render } from '../src/app/rendering';
-import { SampleDivWithText } from './testFixtures';
+import { SampleDivWithoutClass, SampleDivWithText } from './testFixtures';
 import '@testing-library/jest-dom';
 
 describe('Render component (DOM element) inside another', () => {
@@ -53,6 +53,18 @@ describe('Render component (DOM element) inside another', () => {
     expect(renderedComponent).toHaveClass('sample-div-default-class');
     expect(renderedComponent).toHaveClass('with-class');
     expect(renderedComponent).toBe(aComponent);
+  });
+
+  it('when define component without classes, then rendered component should have only classes assigned before', () => {
+    const renderedComp = render({
+      component: aComponent,
+      inside: aParent,
+    });
+
+    expect(aParent).toContainElement(renderedComp);
+    expect(renderedComp).toHaveClass('sample-div-default-class', {
+      exact: true,
+    });
   });
 });
 
