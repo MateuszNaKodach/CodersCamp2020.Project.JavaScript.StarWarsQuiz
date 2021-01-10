@@ -2,42 +2,31 @@ import { Player } from '../src/app/Player';
 import { ComputerMind, randomAnswerNr } from '../src/app/ComputerMind';
 
 describe('Computer Mind', () => {
-  it('When true is true', () => {
-    let flag = true;
-    expect(flag).toBe(true);
-  });
+  const computerPlayer = new Player();
+  const spyComputerPlayerAnswer = jest.spyOn(computerPlayer, 'answer');
+  const onQuestionAnswered = jest.fn();
 
-  it('When call setQuestion(), check if question in computer mind is set', () => {
+  it('when computer player is asked, then computer mind should answer the question', () => {
     const question = {
       answers: ['Luke Skywalker', 'R2-D2', 'Chewbacca', 'Boba Fett'],
       image: 'c3RhdGljL2Fzc2V0cy9pbWcvbW9kZXMvcGVvcGxlLzEuanBn',
       rightAnswer: 'Luke Skywalker',
     };
-    const computerMind = new ComputerMind();
-    computerMind.setQuestion(question);
-    expect(computerMind.question).toBe(question);
-  });
+    const randomizedNumberId = 2;
+    const answerAtRandomizedNumberId = 'Chewbacca';
+    const computerMind = new ComputerMind(
+      computerPlayer,
+      () => randomizedNumberId,
+    );
 
-  it('When randomAnswerNr() working, check if return 0-3', () => {
-    const question = {
-      answers: ['Luke Skywalker', 'R2-D2', 'Chewbacca', 'Boba Fett'],
-      image: 'c3RhdGljL2Fzc2V0cy9pbWcvbW9kZXMvcGVvcGxlLzEuanBn',
-      rightAnswer: 'Luke Skywalker',
-    };
-    const result = randomAnswerNr(question.answers);
-    for (let i = 0; i < 100; i++) expect(result < 4).toBe(true);
-  });
+    computerPlayer.askQuestion(question, (question) =>
+      computerMind.tryToAnswer(question, onQuestionAnswered),
+    );
 
-  it('When computer try To Answer, check if computer mind return String', () => {
-    const question = {
-      answers: ['Luke Skywalker', 'R2-D2', 'Chewbacca', 'Boba Fett'],
-      image: 'c3RhdGljL2Fzc2V0cy9pbWcvbW9kZXMvcGVvcGxlLzEuanBn',
-      rightAnswer: 'Luke Skywalker',
-    };
-    const computerMind = new ComputerMind();
-    computerMind.setQuestion(question);
-    const response = computerMind.tryToAnswer();
-    const responseType = typeof response;
-    expect(responseType).toBe('string');
+    expect(spyComputerPlayerAnswer).toBeCalledWith(
+      answerAtRandomizedNumberId,
+      onQuestionAnswered,
+    );
+    expect(onQuestionAnswered).toBeCalledWith(answerAtRandomizedNumberId);
   });
 });
