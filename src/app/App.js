@@ -4,13 +4,13 @@ import { Logo } from './layouts/Logo';
 import { MainContainer } from './layouts/MainContainer';
 import { Wrapper } from './layouts/Wrapper';
 import { Button } from './components/Button';
-import { RedButton } from './components/RedButton';
 import { QuestionGenerator } from './QuestionGenrator';
 import { fetchData } from '../utils/fetchData';
 import { getRandomIdFromArray } from '../utils/getRandomIdFromArray';
 import { peopleIdArray, starshipsIdArray, vehiclesIdArray } from './settings';
 import { GameMode } from './components/GameMode';
 import { render } from './rendering';
+import { QuestionAnswers } from './components/QuestionAnswers';
 
 export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
@@ -40,19 +40,45 @@ export const App = ({ options }) => {
   });
   const hallOfFameButton = render({
     component: Button({
-      id: 'HallOfFameButton',
+      id: 'hallOfFameButton',
       btnText: 'HallOfFame',
-      classList: ['HallOfFameButton'],
+      classList: ['mainContainer__hallOfFameButton'],
       onClickFn: undefined,
       icon: 'fame',
     }),
     inside: mainContainer,
   });
+
   const playTheGameButton = render({
-    component: RedButton('play the game', startGame),
+    component: Button({
+      id: 'playTheGameButton',
+      btnText: 'play the game',
+      classList: ['mainContainer__playTheGameButton'],
+      onClickFn: startGame,
+    }),
     inside: mainContainer,
-    withClasses: 'mainContainer__redButton',
   });
+  playTheGameButton.setSpecial();
+  const questionAnswers = render({
+    component: QuestionAnswers(
+      ['Luke Skywalker', 'Jar Jar Binks', 'Padme Amidala', 'Darth Vader'],
+      'Darth Vader',
+      onAnswerChosen,
+    ),
+    //component: QuestionAnswers(answers, correctAnswer, onAnswerChosen),
+    inside: mainContainer,
+    withClasses: 'mainContainer__answersWrapper',
+  });
+
+
+
+
+  odpTrue.changeText('100% prawda');
+
+  odpTrue.setSuccess();
+  odpFalse.setDanger();
+
+
 };
 
 function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
@@ -91,6 +117,7 @@ function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
 }
 
 const startGame = () => console.log('witaj w grze');
+const onAnswerChosen = (...params) => console.log(params);
 
 const fetchModeData = (mode, id) =>
   fetchData(mode, id, () =>
