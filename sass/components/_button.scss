@@ -1,0 +1,49 @@
+//Style buttonów zmieniłem na razie pod to co wskazuje projekt, pewnie będzie trzeba zrobić refactor w przyszłości - Tomek
+
+.button {
+  display: block;
+  height: auto;
+  width: auto;
+  padding: 12px 7px;
+  border-radius: 16px;
+  border: none;
+  background-color: $color-bgc;
+  text-align: center;
+  font-family: $font-family--primary;
+  font-size: 2.6rem;
+  font-style: normal;
+  font-weight: 500;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: ease-in-out 0.5s;
+
+  &:hover {
+    background-color: $color-bg--special;
+    cursor: pointer;
+    transition: ease-in-out 0.5s;
+  }
+
+  &__icon {
+    float: left;
+    position: relative;
+    left: 30px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-width: 35px;
+    min-height: 35px;
+  }
+
+  &--special {
+    border: none;
+    background-color: #ff0000;
+    color: #fff;
+    text-transform: uppercase;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 30px #ff0000;
+  }
+
+  &--correctAnswer {
+    background-color: #41ed25;
+  }
+  &--incorrectAnswer {
+    background-color: #ff0000;
+  }
+}
