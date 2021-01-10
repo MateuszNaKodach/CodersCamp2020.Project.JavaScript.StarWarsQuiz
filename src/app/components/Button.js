@@ -26,6 +26,7 @@ export const Button = (
 
   btnDomObj.changeText = (newText) => {
     btnDomObj.innerText = newText;
+  };
 
   btnDomObj.setSuccess = () => {
     btnDomObj.setResetModifier();
@@ -43,7 +44,6 @@ export const Button = (
     btnDomObj.classList.remove('button--success');
     btnDomObj.classList.remove('button--danger');
     btnDomObj.classList.remove('button--special');
-
   };
 
   return btnDomObj;
