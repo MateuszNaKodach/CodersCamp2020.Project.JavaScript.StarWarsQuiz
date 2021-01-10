@@ -4,79 +4,90 @@ import { Logo } from './layouts/Logo';
 import { MainContainer } from './layouts/MainContainer';
 import { Wrapper } from './layouts/Wrapper';
 import { Button } from './components/Button';
-import { RedButton } from './components/RedButton';
 import { QuestionGenerator } from './QuestionGenrator';
 import { fetchData } from '../utils/fetchData';
 import { getRandomIdFromArray } from '../utils/getRandomIdFromArray';
 import { peopleIdArray, starshipsIdArray, vehiclesIdArray } from './settings';
+import { GameMode } from './components/GameMode';
+import { render } from './rendering';
+import { QuestionAnswers } from './components/QuestionAnswers';
 
 export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
-  renderWrapper(app);
-  const wrapper = document.getElementById('wrapper');
-  renderNavMenu(wrapper);
-  renderLogo(wrapper);
-  renderMainContainer(wrapper);
-  renderQuestionImage(wrapper);
-  renderBtn(document.getElementById('mainContainer'), {
-    id: 'HallOfFameButton',
-    btnText: 'HallOfFame',
-    classList: ['HallOfFameButton'],
-    icon: 'fame',
+  const wrapper = render({ component: Wrapper(), inside: app });
+  const navMenu = renderNavMenu(wrapper);
+  const logo = render({
+    component: Logo(),
+    inside: wrapper,
+    withClasses: 'wrapper__logo',
   });
-  const mainCointainer = document.getElementById('mainContainer');
-  renderRedButton(mainCointainer);
+  const mainContainer = render({
+    component: MainContainer(),
+    inside: wrapper,
+    withClasses: 'wrapper__mainContainer',
+  });
+  const questionImage = render({
+    component: QuestionImage(
+      'c3RhdGljL2Fzc2V0cy9pbWcvbW9kZXMvcGVvcGxlLzQuanBn',
+    ),
+    inside: wrapper,
+    withClasses: 'wrapper__mainImg',
+  });
+  const gameMode = render({
+    component: GameMode(),
+    inside: mainContainer,
+    withClasses: 'mainContainer__gameMode',
+  });
+  const hallOfFameButton = render({
+    component: Button({
+      id: 'hallOfFameButton',
+      btnText: 'HallOfFame',
+      classList: ['mainContainer__hallOfFameButton'],
+      onClickFn: undefined,
+      icon: 'fame',
+    }),
+    inside: mainContainer,
+  });
+
+  const playTheGameButton = render({
+    component: Button({
+      id: 'playTheGameButton',
+      btnText: 'play the game',
+      classList: ['mainContainer__playTheGameButton'],
+      onClickFn: startGame,
+    }),
+    inside: mainContainer,
+  });
+  playTheGameButton.setSpecial();
+  const questionAnswers = render({
+    component: QuestionAnswers(
+      ['Luke Skywalker', 'Jar Jar Binks', 'Padme Amidala', 'Darth Vader'],
+      'Darth Vader',
+      onAnswerChosen,
+    ),
+    //component: QuestionAnswers(answers, correctAnswer, onAnswerChosen),
+    inside: mainContainer,
+    withClasses: 'mainContainer__answersWrapper',
+  });
+
+  odpTrue.changeText('100% prawda');
+
+  odpTrue.setSuccess();
+  odpFalse.setDanger();
 };
 
-function renderWrapper(parent) {
-  parent.appendChild(Wrapper());
-}
+function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
+  if (parent && previousState) {
+    parent.removeChild(previousState);
+  }
 
-function renderQuestionImage(parent) {
-  const comp = QuestionImage(
-    'c3RhdGljL2Fzc2V0cy9pbWcvbW9kZXMvcGVvcGxlLzQuanBn',
-  );
-  comp.classList.add('wrapper__mainImg');
-  parent.appendChild(comp);
-}
-
-function renderLogo(parent) {
-  const comp = Logo();
-  comp.classList.add('wrapper__logo');
-  parent.appendChild(comp);
-}
-
-function renderMainContainer(parent) {
-  const comp = MainContainer();
-  comp.classList.add('wrapper__mainContainer');
-  parent.appendChild(comp);
-}
-
-function renderBtn(
-  parent,
-  btnObj = {
-    id: '',
-    btnText: '',
-    classList: [],
-    onClickFn: undefined,
-    icon: '',
-  },
-) {
-  const comp = Button(btnObj);
-  parent.appendChild(comp);
-}
-
-function renderNavMenu(parent, activeItemNr = 0) {
-  if (document.getElementById('navMenu'))
-    parent.removeChild(document.getElementById('navMenu'));
-
-  const comp = NavMenu([
+  const component = NavMenu([
     {
       name: 'people',
       id: 'navMenu__people',
       isActivated: activeItemNr == 0,
       onClickFn() {
-        renderNavMenu(parent, 0);
+        renderNavMenu(parent, 0, component);
       },
     },
     {
@@ -84,7 +95,7 @@ function renderNavMenu(parent, activeItemNr = 0) {
       id: 'navMenu__vehicles',
       isActivated: activeItemNr == 1,
       onClickFn() {
-        renderNavMenu(parent, 1);
+        renderNavMenu(parent, 1, component);
       },
     },
     {
@@ -92,22 +103,16 @@ function renderNavMenu(parent, activeItemNr = 0) {
       id: 'navMenu__starships',
       isActivated: activeItemNr == 2,
       onClickFn() {
-        renderNavMenu(parent, 2);
+        renderNavMenu(parent, 2, component);
       },
     },
   ]);
 
-  comp.classList.add('wrapper__nav');
-  parent.appendChild(comp);
-}
-
-function renderRedButton(parent) {
-  const comp = RedButton('play the game', startGame);
-  comp.classList.add('mainContainer__redButton');
-  parent.appendChild(comp);
+  return render({ component, inside: parent, withClasses: 'wrapper__nav' });
 }
 
 const startGame = () => console.log('witaj w grze');
+const onAnswerChosen = (...params) => console.log(params);
 
 const fetchModeData = (mode, id) =>
   fetchData(mode, id, () =>
