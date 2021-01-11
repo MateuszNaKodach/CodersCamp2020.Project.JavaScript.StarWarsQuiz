@@ -1,25 +1,23 @@
 import { Timer, countdown } from '../src/app/components/Timer';
 import '@testing-library/jest-dom';
+import { screen } from '@testing-library/dom';
 
-describe('Timers component', () => {
+describe('Timer component', () => {
   beforeEach(jest.useFakeTimers);
 
-  describe('Element creation', () => {
-    it('Should create timer container as div element with class and id attribute', () => {
-      const testTimer = Timer(30);
+  it('Should create timer container as div element with class and id attribute', () => {
+    const testTimer = Timer(30);
 
-      expect(testTimer.tagName).toBe('DIV');
-      expect(testTimer.id).toBe('quiz-timer');
-      expect(testTimer).toHaveClass('timer');
-    });
+    expect(testTimer.tagName).toBe('DIV');
+    expect(testTimer.id).toBe('quiz-timer');
+    expect(testTimer).toHaveClass('timer');
+    expect(testTimer).toBeVisible();
   });
 
-  describe('Interval function', () => {
-    it('Should call setInterval function 1 time with cb function', () => {
-      Timer();
+  it('Should call setInterval function 1 time with cb function', () => {
+    Timer();
 
-      expect(setInterval).toHaveBeenCalledTimes(1);
-      expect(setInterval).toHaveBeenLastCalledWith(expect.any(Function), 1000);
-    });
+    expect(setInterval).toHaveBeenCalledTimes(1);
+    expect(setInterval).toHaveBeenLastCalledWith(expect.any(Function), 1000);
   });
 });

@@ -12,7 +12,7 @@ export const Timer = (duration) => {
   return timerContainer;
 };
 
-export function countdown(timer, timerContainer) {
+export function countdown(timer, htmlElem) {
   let minutes, seconds;
 
   minutes = parseInt(timer / 60, 10);
@@ -21,7 +21,7 @@ export function countdown(timer, timerContainer) {
   minutes = minutes < 10 ? '0' + minutes : minutes;
   seconds = seconds < 10 ? '0' + seconds : seconds;
 
-  timerContainer.textContent = `Time Left: ${minutes}m ${seconds}s`;
+  htmlElem.textContent = `Time Left: ${minutes}m ${seconds}s`;
 
   if (--timer <= 0) {
     timer = 0;
