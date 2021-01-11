@@ -8,10 +8,15 @@ export function render({ component, inside, withClasses }) {
   }
   const componentToRender = withClassList(component, withClasses);
   inside.appendChild(componentToRender);
+
+  componentToRender.removeFromParent = () => {
+    inside.removeChild(componentToRender);
+  };
+
   return componentToRender;
 }
 
 function withClassList(component, classList) {
-  component.classList.add(classList);
+  if (classList) component.classList.add(classList);
   return component;
 }

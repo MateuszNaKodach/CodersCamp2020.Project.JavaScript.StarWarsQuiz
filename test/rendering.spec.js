@@ -42,6 +42,18 @@ describe('Render component (DOM element) inside another', () => {
     expect(renderedComponent).toBe(aComponent);
   });
 
+  it('when define component without classes, then rendered component should have only classes assigned before', () => {
+    const renderedComp = render({
+      component: aComponent,
+      inside: aParent,
+    });
+
+    expect(aParent).toContainElement(renderedComp);
+    expect(renderedComp).toHaveClass('sample-div-default-class', {
+      exact: true,
+    });
+  });
+
   it('when define component with classes and inside what to render, then rendered component should be a child of "inside" and have additional classes + those assigned before', () => {
     const renderedComponent = render({
       component: aComponent,
@@ -53,6 +65,18 @@ describe('Render component (DOM element) inside another', () => {
     expect(renderedComponent).toHaveClass('sample-div-default-class');
     expect(renderedComponent).toHaveClass('with-class');
     expect(renderedComponent).toBe(aComponent);
+  });
+
+  it('when destroy component, then parent component should not have rendered component inside', () => {
+    const renderedComponent = render({
+      component: aComponent,
+      inside: aParent,
+      withClasses: 'with-class',
+    });
+
+    expect(aParent).toContainElement(renderedComponent);
+    renderedComponent.removeFromParent();
+    expect(aParent).not.toContainElement(renderedComponent);
   });
 });
 

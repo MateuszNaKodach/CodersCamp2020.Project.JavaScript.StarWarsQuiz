@@ -10,7 +10,7 @@ import { getRandomIdFromArray } from '../utils/getRandomIdFromArray';
 import { peopleIdArray, starshipsIdArray, vehiclesIdArray } from './settings';
 import { GameMode } from './components/GameMode';
 import { render } from './rendering';
-import { Timer } from './components/Timer';
+import { QuestionAnswers } from './components/QuestionAnswers';
 
 export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
@@ -55,37 +55,25 @@ export const App = ({ options }) => {
       btnText: 'play the game',
       classList: ['mainContainer__playTheGameButton'],
       onClickFn: startGame,
-      isSpecial: true,
     }),
     inside: mainContainer,
   });
-
-  const odpTrue = render({
-    component: Button({
-      id: 'odpTrue',
-      btnText: 'odpTrue',
-      classList: ['mainContainer__odpTrue'],
-      onClickFn: startGame,
-      isCorrectAnswer: true,
-    }),
+  playTheGameButton.setSpecial();
+  const questionAnswers = render({
+    component: QuestionAnswers(
+      ['Luke Skywalker', 'Jar Jar Binks', 'Padme Amidala', 'Darth Vader'],
+      'Darth Vader',
+      onAnswerChosen,
+    ),
+    //component: QuestionAnswers(answers, correctAnswer, onAnswerChosen),
     inside: mainContainer,
+    withClasses: 'mainContainer__answersWrapper',
   });
 
-  const odpFalse = render({
-    component: Button({
-      id: 'odpFalse',
-      btnText: 'odpFalse',
-      classList: ['mainContainer__odpFalse'],
-      onClickFn: '',
-      isIncorrectAnswer: true,
-    }),
-    inside: mainContainer,
-  });
+  odpTrue.changeText('100% prawda');
 
-  const timer = render({
-    component: Timer(10),
-    inside: mainContainer,
-  });
+  odpTrue.setSuccess();
+  odpFalse.setDanger();
 };
 
 function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
@@ -124,6 +112,7 @@ function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
 }
 
 const startGame = () => console.log('witaj w grze');
+const onAnswerChosen = (...params) => console.log(params);
 
 const fetchModeData = (mode, id) =>
   fetchData(mode, id, () =>
