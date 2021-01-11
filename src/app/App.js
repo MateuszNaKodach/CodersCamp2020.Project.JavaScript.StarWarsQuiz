@@ -71,11 +71,6 @@ export const App = ({ options }) => {
     withClasses: 'mainContainer__answersWrapper',
   });
 
-  odpTrue.changeText('100% prawda');
-
-  odpTrue.setSuccess();
-  odpFalse.setDanger();
-
   // Modal window
   ModalWindow(app);
   // Modal window methods
