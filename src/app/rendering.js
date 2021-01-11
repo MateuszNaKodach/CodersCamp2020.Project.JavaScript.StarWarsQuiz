@@ -8,6 +8,11 @@ export function render({ component, inside, withClasses }) {
   }
   const componentToRender = withClassList(component, withClasses);
   inside.appendChild(componentToRender);
+
+  componentToRender.removeFromParent = () => {
+    inside.removeChild(componentToRender);
+  };
+
   return componentToRender;
 }
 
