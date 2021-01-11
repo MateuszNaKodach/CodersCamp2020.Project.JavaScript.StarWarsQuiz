@@ -17,6 +17,6 @@ export function render({ component, inside, withClasses }) {
 }
 
 function withClassList(component, classList) {
-  component.classList.add(classList);
+  if (classList) component.classList.add(classList);
   return component;
 }
