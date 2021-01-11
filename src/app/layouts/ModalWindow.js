@@ -21,7 +21,6 @@ export const ModalWindow = (parent) => {
 
   modalWindow.show = (content) => {
     if (content) {
-      content.classList.add('modalWindow__content');
       content.id = 'overlayContent';
       modalOverlay.appendChild(content);
       modalWindow.style.display = 'block';

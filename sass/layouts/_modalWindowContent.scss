@@ -1,0 +1,64 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-family--primary;
+  font-weight: 600;
+  padding: 3% 5%;
+
+  &__gameOver {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+
+  &__finalResults {
+    font-size: 1.8rem;
+    text-align: left;
+    margin-bottom: 30px;
+  }
+
+  &__yodaImage {
+    background-image: url('../static/assets/ui/MasterYodaLeft.png');
+    background-color: #fff;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    text-align: center;
+    height: 100%;
+    width: 30%;
+    align-self: flex-start;
+  }
+
+  &__rowContainer {
+    display: flex;
+    width: 100%;
+    height: 20%;
+    max-height: 50px;
+    margin-bottom: 2%;
+  }
+
+  &__input {
+    width: 40%;
+    border: 3px solid #bebebe;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-right: 20px;
+  }
+
+  &__inputTip {
+    width: 50%;
+    font-size: 1.8rem;
+    align-self: center;
+  }
+
+  &__submitButton {
+    transform: scale(0.8);
+  }
+}

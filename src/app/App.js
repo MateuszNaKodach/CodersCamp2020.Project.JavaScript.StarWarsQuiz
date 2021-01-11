@@ -9,6 +9,7 @@ import { fetchData } from '../utils/fetchData';
 import { getRandomIdFromArray } from '../utils/getRandomIdFromArray';
 import { peopleIdArray, starshipsIdArray, vehiclesIdArray } from './settings';
 import { ModalWindow } from './layouts/ModalWindow';
+import { ModalWindowContent } from './layouts/ModalWindowContent';
 import { GameMode } from './components/GameMode';
 import { render } from './rendering';
 import { QuestionAnswers } from './components/QuestionAnswers';
@@ -72,10 +73,36 @@ export const App = ({ options }) => {
   });
 
   // Modal window
-  ModalWindow(app);
+  const modalWindow = ModalWindow(app);
   // Modal window methods
   // modalWindow.show(Here_some_content_as_HTMLElement);
   // modalWindow.close  to close the window and remove the content
+
+  const contemodalWindowContent = ModalWindowContent(
+    [
+      { id: 1, isCorrect: true },
+      { id: 2, isCorrect: true },
+    ],
+    [
+      { id: 1, isCorrect: false },
+      { id: 2, isCorrect: true },
+    ],
+    () => console.log('here we go'),
+  );
+
+  const testButton = render({
+    component: Button({
+      id: 'abcd',
+      btnText: 'TEST BUTTON',
+      classList: [''],
+      onClickFn: testFunction,
+    }),
+    inside: app,
+  });
+
+  function testFunction() {
+    modalWindow.show(contemodalWindowContent);
+  }
 };
 
 function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
