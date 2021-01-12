@@ -4,7 +4,7 @@ import { render } from '../rendering';
 export const ModalWindowContent = (
   playerAnswers,
   computerAnswers,
-  onCloseFunction,
+  onWindowClose,
 ) => {
   const content = document.createElement('div');
   content.classList.add('content');
@@ -18,16 +18,16 @@ export const ModalWindowContent = (
   gameOver.textContent = 'game over';
 
   const playerResult = correctAnswersCounter(playerAnswers);
-  const playerAnswersCountity = playerAnswers.length;
+  const playerAnswersQuantity = playerAnswers.length;
   const computerResult = correctAnswersCounter(computerAnswers);
-  const computerAnswersCountity = computerAnswers.length;
+  const computerAnswersQuantity = computerAnswers.length;
   const finalResults = render({
     component: document.createElement('div'),
     inside: content,
     withClasses: 'content__finalResults',
   });
   //we can also use variable for game time length
-  finalResults.textContent = `The force is strong in you young Padawan! During 1 minute you have answered ${playerResult} / ${playerAnswersCountity} questions and Computer quessed ${computerResult} / ${computerAnswersCountity}.`;
+  finalResults.textContent = `The force is strong in you young Padawan! During 1 minute you have answered ${playerResult} / ${playerAnswersQuantity} questions and Computer quessed ${computerResult} / ${computerAnswersQuantity}.`;
 
   function correctAnswersCounter(answers) {
     if (answers) {
@@ -81,11 +81,30 @@ export const ModalWindowContent = (
       id: 'mayTheForceBeWithYouButton',
       btnText: 'may the force be with you!',
       classList: ['content__submitButton'],
-      onClickFn: onCloseFunction,
+      // onClickFn: onSubmit
+      onClickFn: onWindowClose(
+        input.value,
+        playerResult,
+        playerAnswersQuantity,
+      ),
     }),
     inside: form,
   });
   button.setSpecial();
+
+  // function onSubmit(playerName, playerResult, playerAnswersCountity) {
+  //   const isFormValid = input.checkValidity();
+  //   console.log(isFormValid);
+  //   if (isFormValid) {
+  //     onWindowClose();
+  //     console.log('kdasdas');
+  //     return {
+  //       player: playerName,
+  //       correctAnswers: playerResult,
+  //       questionsCountity: playerAnswersCountity,
+  //     };
+  //   }
+  // }
 
   return content;
 };

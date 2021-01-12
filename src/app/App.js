@@ -78,18 +78,6 @@ export const App = ({ options }) => {
   // modalWindow.show(Here_some_content_as_HTMLElement);
   // modalWindow.close  to close the window and remove the content
 
-  const contemodalWindowContent = ModalWindowContent(
-    [
-      { id: 1, isCorrect: true },
-      { id: 2, isCorrect: true },
-    ],
-    [
-      { id: 1, isCorrect: false },
-      { id: 2, isCorrect: true },
-    ],
-    () => console.log('here we go'),
-  );
-
   const testButton = render({
     component: Button({
       id: 'abcd',
@@ -101,7 +89,24 @@ export const App = ({ options }) => {
   });
 
   function testFunction() {
+    const contemodalWindowContent = ModalWindowContent(
+      [
+        { id: 1, isCorrect: true },
+        { id: 2, isCorrect: true },
+      ],
+      [
+        { id: 1, isCorrect: false },
+        { id: 2, isCorrect: true },
+      ],
+      onSubmit,
+    );
+
     modalWindow.show(contemodalWindowContent);
+  }
+
+  function onSubmit(playerName, playerResult, playerAnswersQuantity) {
+    console.log(playerName, playerResult, playerAnswersQuantity);
+    modalWindow.close;
   }
 };
 
