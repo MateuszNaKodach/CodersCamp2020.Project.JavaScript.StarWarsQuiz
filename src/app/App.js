@@ -12,6 +12,7 @@ import { ModalWindow } from './layouts/ModalWindow';
 import { GameMode } from './components/GameMode';
 import { render } from './rendering';
 import { QuestionAnswers } from './components/QuestionAnswers';
+import { ModeRules } from './components/ModeRules';
 
 export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
@@ -38,6 +39,12 @@ export const App = ({ options }) => {
     component: GameMode(),
     inside: mainContainer,
     withClasses: 'mainContainer__gameMode',
+  });
+  const modeRules = render({
+    //component: ModeRules('You have one minute (1m) to answer as many questions as possible. During the game on each question you need to select who from Star Wars is showed on the left (Jar Jar Binks right now) from available options'),
+    component: ModeRules(),
+    inside: mainContainer,
+    withClasses: 'mainContainer__modeRules',
   });
   const hallOfFameButton = render({
     component: Button({
