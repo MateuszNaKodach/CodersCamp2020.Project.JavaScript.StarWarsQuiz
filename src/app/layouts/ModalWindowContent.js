@@ -81,30 +81,18 @@ export const ModalWindowContent = (
       id: 'mayTheForceBeWithYouButton',
       btnText: 'may the force be with you!',
       classList: ['content__submitButton'],
-      // onClickFn: onSubmit
-      onClickFn: onWindowClose(
-        input.value,
-        playerResult,
-        playerAnswersQuantity,
-      ),
+      onClickFn: onSubmit,
     }),
     inside: form,
   });
   button.setSpecial();
 
-  // function onSubmit(playerName, playerResult, playerAnswersCountity) {
-  //   const isFormValid = input.checkValidity();
-  //   console.log(isFormValid);
-  //   if (isFormValid) {
-  //     onWindowClose();
-  //     console.log('kdasdas');
-  //     return {
-  //       player: playerName,
-  //       correctAnswers: playerResult,
-  //       questionsCountity: playerAnswersCountity,
-  //     };
-  //   }
-  // }
+  function onSubmit() {
+    const isFormValid = input.checkValidity();
+    if (isFormValid) {
+      onWindowClose(input.value, playerResult, playerAnswersQuantity);
+    }
+  }
 
   return content;
 };

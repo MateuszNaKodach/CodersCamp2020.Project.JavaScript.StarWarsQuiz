@@ -98,14 +98,13 @@ export const App = ({ options }) => {
         { id: 1, isCorrect: false },
         { id: 2, isCorrect: true },
       ],
-      onSubmit,
+      onSubmitFunction,
     );
 
     modalWindow.show(contemodalWindowContent);
   }
 
-  function onSubmit(playerName, playerResult, playerAnswersQuantity) {
-    console.log(playerName, playerResult, playerAnswersQuantity);
+  function onSubmitFunction(playerName, playerResult, playerAnswersQuantity) {
     modalWindow.close;
   }
 };
