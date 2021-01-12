@@ -10,20 +10,24 @@ export const ModalWindowContent = (
   content.classList.add('content');
   content.id = 'content';
 
-  const gameOver = document.createElement('h2');
-  gameOver.classList.add('content__gameOver');
+  const gameOver = render({
+    component: document.createElement('div'),
+    inside: content,
+    withClasses: 'content__gameOver',
+  });
   gameOver.textContent = 'game over';
-  content.appendChild(gameOver);
 
-  const finalResults = document.createElement('h2');
-  finalResults.classList.add('content__finalResults');
   const playerResult = correctAnswersCounter(playerAnswers);
   const playerAnswersCountity = playerAnswers.length;
   const computerResult = correctAnswersCounter(computerAnswers);
   const computerAnswersCountity = computerAnswers.length;
+  const finalResults = render({
+    component: document.createElement('div'),
+    inside: content,
+    withClasses: 'content__finalResults',
+  });
   //we can also use variable for game time length
   finalResults.textContent = `The force is strong in you young Padawan! During 1 minute you have answered ${playerResult} / ${playerAnswersCountity} questions and Computer quessed ${computerResult} / ${computerAnswersCountity}.`;
-  content.appendChild(finalResults);
 
   function correctAnswersCounter(answers) {
     if (answers) {
@@ -37,30 +41,40 @@ export const ModalWindowContent = (
     }
   }
 
-  const yodaImage = document.createElement('div');
-  yodaImage.classList.add('content__yodaImage');
-  content.appendChild(yodaImage);
+  const yodaImage = render({
+    component: document.createElement('div'),
+    inside: content,
+    withClasses: 'content__yodaImage',
+  });
 
-  const rowContainer = document.createElement('div');
-  rowContainer.classList.add('content__rowContainer');
+  const form = render({
+    component: document.createElement('form'),
+    inside: content,
+  });
 
-  const form = document.createElement('form');
+  const rowContainer = render({
+    component: document.createElement('div'),
+    inside: form,
+    withClasses: 'content__rowContainer',
+  });
 
-  const input = document.createElement('input');
-  input.classList.add('content__input');
+  const input = render({
+    component: document.createElement('input'),
+    inside: rowContainer,
+    withClasses: 'content__input',
+  });
   input.setAttribute('type', 'text');
   input.setAttribute('placeholder', 'Type your name...');
   input.setAttribute('autocomplete', 'off');
   input.required = true;
-  form.appendChild(input);
-  rowContainer.appendChild(input);
 
-  const inputTip = document.createElement('div');
+  const inputTip = render({
+    component: document.createElement('div'),
+    inside: rowContainer,
+    withClasses: 'content__inputTip',
+  });
   inputTip.textContent =
     'Please fill your name in order to receive eternal glory in whole Galaxy!';
-  inputTip.classList.add('content__inputTip');
-  rowContainer.appendChild(inputTip);
-  content.appendChild(rowContainer);
 
   const button = render({
     component: Button({
@@ -72,8 +86,6 @@ export const ModalWindowContent = (
     inside: form,
   });
   button.setSpecial();
-
-  content.appendChild(form);
 
   return content;
 };
