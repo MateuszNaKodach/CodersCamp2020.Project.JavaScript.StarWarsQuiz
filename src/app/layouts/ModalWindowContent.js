@@ -86,6 +86,7 @@ export const ModalWindowContent = (
     inside: form,
   });
   button.setSpecial();
+  button.setAttribute('type', 'button');
 
   function onSubmit() {
     const isFormValid = input.checkValidity();

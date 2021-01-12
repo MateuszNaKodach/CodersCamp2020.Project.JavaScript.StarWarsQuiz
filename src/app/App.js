@@ -105,7 +105,7 @@ export const App = ({ options }) => {
   }
 
   function onSubmitFunction(playerName, playerResult, playerAnswersQuantity) {
-    modalWindow.close;
+    modalWindow.close();
   }
 };
 
