@@ -1,17 +1,18 @@
 import { ModalWindowContent } from '../../src/app/layouts/ModalWindowContent';
 import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
 
 describe('Modal window content', () => {
   it('when button is clicked onSubmitFunction is called', () => {
     //Given
     const modalContent = ModalWindowContent(
       [
-        { id: 1, isCorrect: true },
-        { id: 2, isCorrect: true },
+        { answer: 'test', isCorrect: true },
+        { answer: 'test', isCorrect: true },
       ],
       [
-        { id: 1, isCorrect: false },
-        { id: 2, isCorrect: true },
+        { answer: 'test', isCorrect: false },
+        { answer: 'test', isCorrect: true },
       ],
       onSubmitFunction,
     );
@@ -20,21 +21,23 @@ describe('Modal window content', () => {
     button.onClickFn = onSubmitFunction;
 
     //When
-    button.onClickFn();
+    userEvent.click(button);
+    // button.onClickFn();
 
     //Then
-    expect(onSubmitFunction).toHaveBeenCalled();
+    // expect(button).toHaveBeenCalledWith(onSubmitFunction);
+    expect(button.onSubmitFunction).toHaveBeenCalled();
   });
 
   it('displaying correctly summary of players and computers answers', () => {
     //Given
     const playerAnswers = [
-      { id: 1, isCorrect: true },
-      { id: 2, isCorrect: true },
+      { answer: 'test', isCorrect: true },
+      { answer: 'test', isCorrect: true },
     ];
     const computerAnswers = [
-      { id: 1, isCorrect: false },
-      { id: 2, isCorrect: true },
+      { answer: 'test', isCorrect: false },
+      { answer: 'test', isCorrect: true },
     ];
 
     //When
