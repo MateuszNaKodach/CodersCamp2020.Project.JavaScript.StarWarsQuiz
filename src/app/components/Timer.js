@@ -1,4 +1,4 @@
-export const Timer = (duration) => {
+export const TextTimer = (duration, timeSource) => {
   let timer = duration;
 
   const timerContainer = document.createElement('div');
@@ -6,7 +6,7 @@ export const Timer = (duration) => {
   timerContainer.classList.add('timer');
 
   setInterval(() => {
-    ({ timer } = countdown(timer, timerContainer));
+    timer = countdown(timer, timerContainer);
   }, 1000);
 
   return timerContainer;
@@ -26,5 +26,7 @@ export function countdown(timer, htmlElem) {
   if (--timer <= 0) {
     timer = 0;
   }
-  return { timer };
+  return timer;
 }
+
+class IntervalTimer {}
