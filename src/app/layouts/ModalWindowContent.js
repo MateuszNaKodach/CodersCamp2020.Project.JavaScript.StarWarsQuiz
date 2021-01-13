@@ -31,10 +31,7 @@ export const ModalWindowContent = (
   finalResults.setAttribute('data-testid', 'final-result-text');
 
   function correctAnswersCounter(answers) {
-    if (answers) {
-      const correctAnswers = answers.filter((elem) => elem.isCorrect);
-      return correctAnswers.length;
-    }
+    return answers?.filter((elem) => elem.isCorrect)?.length;
   }
 
   const yodaImage = render({
