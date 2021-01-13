@@ -1,32 +1,60 @@
 import { ModalWindowContent } from '../../src/app/layouts/ModalWindowContent';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
+import { renderComponent } from '../renderComponent';
+import { screen } from '@testing-library/dom';
 
 describe('Modal window content', () => {
-  it('when button is clicked onSubmitFunction is called', () => {
+  it('when button is clicked and username not filled then onSubmitFunction is not called', () => {
     //Given
-    const modalContent = ModalWindowContent(
-      [
-        { answer: 'test', isCorrect: true },
-        { answer: 'test', isCorrect: true },
-      ],
-      [
-        { answer: 'test', isCorrect: false },
-        { answer: 'test', isCorrect: true },
-      ],
-      onSubmitFunction,
-    );
     const onSubmitFunction = jest.fn();
-    const button = modalContent.querySelector('button');
-    button.onClickFn = onSubmitFunction;
+    renderComponent(
+      ModalWindowContent(
+        [
+          { answer: 'test', isCorrect: true },
+          { answer: 'test', isCorrect: true },
+        ],
+        [
+          { answer: 'test', isCorrect: false },
+          { answer: 'test', isCorrect: true },
+        ],
+        onSubmitFunction,
+      ),
+    );
 
     //When
-    userEvent.click(button);
-    // button.onClickFn();
+    const closeModalWindowButton = screen.queryByTestId('close-window-button');
+    userEvent.click(closeModalWindowButton);
 
     //Then
-    // expect(button).toHaveBeenCalledWith(onSubmitFunction);
-    expect(button.onSubmitFunction).toHaveBeenCalled();
+    expect(onSubmitFunction).not.toHaveBeenCalled();
+  });
+
+  it('when button is clicked and username is filled then onSubmitFunction is not called', () => {
+    //Given
+    const onSubmitFunction = jest.fn();
+    renderComponent(
+      ModalWindowContent(
+        [
+          { answer: 'test', isCorrect: true },
+          { answer: 'test', isCorrect: true },
+        ],
+        [
+          { answer: 'test', isCorrect: false },
+          { answer: 'test', isCorrect: true },
+        ],
+        onSubmitFunction,
+      ),
+    );
+
+    //When
+    const usernameInput = screen.getByTestId('username-input');
+    userEvent.type(usernameInput, 'John');
+    const closeModalWindowButton = screen.queryByTestId('close-window-button');
+    userEvent.click(closeModalWindowButton);
+
+    //Then
+    expect(onSubmitFunction).toHaveBeenCalled('John', 2, 2);
   });
 
   it('displaying correctly summary of players and computers answers', () => {
@@ -39,21 +67,15 @@ describe('Modal window content', () => {
       { answer: 'test', isCorrect: false },
       { answer: 'test', isCorrect: true },
     ];
+    renderComponent(
+      ModalWindowContent(playerAnswers, computerAnswers, jest.fn()),
+    );
 
     //When
-    const modalContent = ModalWindowContent(
-      playerAnswers,
-      computerAnswers,
-      onSubmitFunction,
-    );
-
-    const onSubmitFunction = jest.fn();
-    const finalResult = modalContent.getElementsByClassName(
-      'content__finalResults',
-    );
+    const finalResult = screen.queryByTestId('final-result-text');
 
     //Then
-    expect(finalResult.textContent).toBe(
+    expect(finalResult).toHaveTextContent(
       `The force is strong in you young Padawan! During 1 minute you have answered 2 / 2 questions and Computer quessed 1 / 2.`,
     );
   });

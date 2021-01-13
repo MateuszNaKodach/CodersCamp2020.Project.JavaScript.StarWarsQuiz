@@ -28,6 +28,7 @@ export const ModalWindowContent = (
   });
   //we can also use variable for game time length
   finalResults.textContent = `The force is strong in you young Padawan! During 1 minute you have answered ${playerResult} / ${playerAnswersQuantity} questions and Computer quessed ${computerResult} / ${computerAnswersQuantity}.`;
+  finalResults.setAttribute('data-testid', 'final-result-text');
 
   function correctAnswersCounter(answers) {
     if (answers) {
@@ -61,6 +62,7 @@ export const ModalWindowContent = (
   input.setAttribute('type', 'text');
   input.setAttribute('placeholder', 'Type your name...');
   input.setAttribute('autocomplete', 'off');
+  input.setAttribute('data-testid', 'username-input');
   input.required = true;
 
   const inputTip = render({
@@ -81,9 +83,11 @@ export const ModalWindowContent = (
     inside: form,
   });
   button.setSpecial();
+  button.setAttribute('data-testid', 'close-window-button');
   // button.setAttribute('type', 'button'); <-- but now there is "Form submission canceled because the form is not connected" in console after modal window close
 
-  function onSubmit() {
+  function onSubmit(e) {
+    e.preventDefault();
     const isFormValid = input.checkValidity();
     if (isFormValid) {
       onWindowClose(input.value, playerResult, playerAnswersQuantity);
