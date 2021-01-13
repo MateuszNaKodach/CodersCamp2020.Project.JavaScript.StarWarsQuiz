@@ -54,7 +54,7 @@ describe('Modal window content', () => {
     userEvent.click(closeModalWindowButton);
 
     //Then
-    expect(onSubmitFunction).toHaveBeenCalled('John', 2, 2);
+    expect(onSubmitFunction).toHaveBeenCalledWith('John', 2, 2);
   });
 
   it('displaying correctly summary of players and computers answers', () => {
