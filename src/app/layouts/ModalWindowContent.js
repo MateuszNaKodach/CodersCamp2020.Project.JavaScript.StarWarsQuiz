@@ -27,7 +27,7 @@ export const ModalWindowContent = (
     withClasses: 'content__finalResults',
   });
   //we can also use variable for game time length
-  finalResults.textContent = `The force is strong in you young Padawan! During 1 minute you have answered ${playerResult} / ${playerAnswersQuantity} questions and Computer quessed ${computerResult} / ${computerAnswersQuantity}.`;
+  finalResults.textContent = `The force is strong in you young Padawan! During 2 minutes you have answered ${playerResult} / ${playerAnswersQuantity} questions and Computer quessed ${computerResult} / ${computerAnswersQuantity}.`;
   finalResults.setAttribute('data-testid', 'final-result-text');
 
   function correctAnswersCounter(answers) {
@@ -38,10 +38,11 @@ export const ModalWindowContent = (
   }
 
   const yodaImage = render({
-    component: document.createElement('div'),
+    component: document.createElement('img'),
     inside: content,
     withClasses: 'content__yodaImage',
   });
+  yodaImage.src = '../../../static/assets/ui/MasterYodaLeft.png';
 
   const form = render({
     component: document.createElement('form'),

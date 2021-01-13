@@ -23,14 +23,10 @@
   }
 
   &__yodaImage {
-    background-image: url('../static/assets/ui/MasterYodaLeft.png');
-    background-color: #fff;
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    text-align: center;
-    height: 100%;
-    width: 30%;
+    display: block;
+    max-height: 200px;
+    max-width: 400px;
+    object-fit: contain;
     align-self: flex-start;
   }
 
