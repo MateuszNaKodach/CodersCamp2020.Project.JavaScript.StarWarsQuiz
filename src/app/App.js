@@ -85,6 +85,7 @@ export const App = ({ options }) => {
   // modalWindow.show(Here_some_content_as_HTMLElement);
   // modalWindow.close  to close the window and remove the content
 
+  /* MODAL WINDOW CONTENT TO REMOVE LATER!
   const testButton = render({
     component: Button({
       id: 'abcd',
@@ -114,6 +115,7 @@ export const App = ({ options }) => {
   function onSubmitFunction(playerName, playerResult, playerAnswersQuantity) {
     modalWindow.close();
   }
+  */
 };
 
 function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
