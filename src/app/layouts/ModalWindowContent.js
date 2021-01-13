@@ -31,13 +31,8 @@ export const ModalWindowContent = (
 
   function correctAnswersCounter(answers) {
     if (answers) {
-      let counter = 0;
-      for (const answer of answers) {
-        if (answer.isCorrect) {
-          counter += 1;
-        }
-      }
-      return counter;
+      const correctAnswers = answers.filter((elem) => elem.isCorrect);
+      return correctAnswers.length;
     }
   }
 
@@ -86,7 +81,7 @@ export const ModalWindowContent = (
     inside: form,
   });
   button.setSpecial();
-  button.setAttribute('type', 'button');
+  // button.setAttribute('type', 'button'); <-- but now there is "Form submission canceled because the form is not connected" in console after modal window close
 
   function onSubmit() {
     const isFormValid = input.checkValidity();
