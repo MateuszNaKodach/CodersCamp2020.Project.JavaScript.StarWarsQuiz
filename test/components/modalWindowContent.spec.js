@@ -76,7 +76,7 @@ describe('Modal window content', () => {
 
     //Then
     expect(finalResult).toHaveTextContent(
-      `The force is strong in you young Padawan! During 1 minute you have answered 2 / 2 questions and Computer quessed 1 / 2.`,
+      `The force is strong in you young Padawan! During 2 minutes you have answered 2 / 2 questions and Computer quessed 1 / 2.`,
     );
   });
 });
