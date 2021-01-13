@@ -47,6 +47,7 @@ export const ModalWindowContent = (
     component: document.createElement('form'),
     inside: content,
   });
+  form.id = 'hall-of-fame-save';
 
   const rowContainer = render({
     component: document.createElement('div'),
@@ -78,21 +79,19 @@ export const ModalWindowContent = (
       id: 'mayTheForceBeWithYouButton',
       btnText: 'may the force be with you!',
       classList: ['content__submitButton'],
-      onClickFn: onSubmit,
     }),
     inside: form,
   });
   button.setSpecial();
   button.setAttribute('data-testid', 'close-window-button');
-  // button.setAttribute('type', 'button'); <-- but now there is "Form submission canceled because the form is not connected" in console after modal window close
 
-  function onSubmit(e) {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
     const isFormValid = input.checkValidity();
     if (isFormValid) {
       onWindowClose(input.value, playerResult, playerAnswersQuantity);
     }
-  }
+  });
 
   return content;
 };
