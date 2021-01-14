@@ -29,6 +29,6 @@ describe('Players ranking', () => {
     const rankingComponent = ModeRanking(emptyRanking);
     parent.appendChild(rankingComponent);
 
-    expect(screen.getByText('Leadboard is empty...')).toBeInTheDocument();
+    expect(screen.getByText('Leaderboard is empty...')).toBeInTheDocument();
   });
 });
