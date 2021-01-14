@@ -1,0 +1,129 @@
+.startWindow {
+  z-index: 99999999;
+  overflow: hidden;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  font-size: 18px;
+  background: #000;
+
+  &__fadeComponent {
+    position: relative;
+    width: 100%;
+    min-height: 60vh;
+    top: -25px;
+    background-image: linear-gradient(0deg, transparent, black 75%);
+    z-index: 1;
+  }
+
+  &__trailerComponent {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 800px;
+
+    color: #feda4a;
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size: 500%;
+    font-weight: 600;
+    letter-spacing: 6px;
+    line-height: 150%;
+    perspective: 400px;
+    text-align: justify;
+  }
+
+  &__crawlElement {
+    position: relative;
+    top: 9999px;
+    transform-origin: 50% 100%;
+    animation: startWindow__crawl 45s linear;
+  }
+
+  &__header {
+    font-size: 90%;
+    text-align: center;
+  }
+
+  &__episodeSubtitle {
+  }
+
+  &__episodeTitle {
+    margin: 0 0 100px;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 2em;
+    line-height: 200%;
+  }
+
+  &__paragraph {
+    text-align: justify;
+  }
+
+  &__paragraph--first {
+  }
+
+  &__paragraph--second {
+  }
+
+  &__paragraph--third {
+  }
+
+  &__deathStarContainer {
+    z-index: 1000;
+    display: block;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    width: 250px;
+  }
+  &__deathStar {
+    height: 250px;
+    width: 100%;
+    opacity: 0.5;
+    filter: grayscale(100%) blur(1px) saturate(80%);
+    animation: startWindow__deathStar 5s linear infinite;
+  }
+
+  &__startGameInformation {
+    z-index: 2000;
+    display: block;
+    position: absolute;
+    width: 100%;
+    padding: 10px 0px;
+    text-align: center;
+
+    color: #feda4a;
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size: 120%;
+    font-weight: 600;
+    letter-spacing: 6px;
+    line-height: 150%;
+    text-shadow: 0 0 6px red;
+  }
+}
+
+@keyframes startWindow__crawl {
+  0% {
+    top: -100px;
+    transform: rotateX(20deg) translateZ(0);
+  }
+  100% {
+    top: -6000px;
+    transform: rotateX(25deg) translateZ(-2500px);
+  }
+}
+
+@keyframes startWindow__deathStar {
+  0% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
