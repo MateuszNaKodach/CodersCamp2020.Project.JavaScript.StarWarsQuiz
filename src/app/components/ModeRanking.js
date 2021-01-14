@@ -22,47 +22,52 @@ export const ModeRanking = (topScores) => {
 
     const placesList = ['1st', '2nd', '3rd'];
 
-    const placeColumn = document.createElement('div');
-    const placeHeader = document.createElement('div');
-    placeHeader.textContent = 'Place';
-    placeColumn.appendChild(placeHeader);
-    placeColumn.setAttribute(`id`, `scoresColumnPlace`);
-    placeColumn.classList.add('modeRanking__scoresColumn');
-    placeColumn.classList.add('modeRanking__scoresColumn--place');
-    rankingContainer.appendChild(placeColumn);
+    const titleRow = document.createElement('header');
+    titleRow.classList.add(
+      'modeRanking__rankingRow',
+      'modeRanking__rankingRow--title',
+    );
 
-    for (let i = 0; i < placesList.length; i++) {
-      const place = document.createElement('div');
-      place.textContent = placesList[i];
-      placeColumn.appendChild(place);
+    const headerElementTitles = ['Place', 'Player', 'Answered'];
+
+    for (let i = 0; i < headerElementTitles.length; i++) {
+      rankingContainer.appendChild(titleRow);
+      const headerElement = document.createElement('div');
+      headerElement.classList.add(
+        'modeRanking__headerItem',
+        `modeRanking__headerItem--${headerElementTitles[i].toLowerCase()}`,
+      );
+      headerElement.textContent = headerElementTitles[i];
+      titleRow.appendChild(headerElement);
     }
 
-    const playerColumn = document.createElement('div');
-    const playerHeader = document.createElement('div');
-    playerHeader.textContent = 'Player';
-    playerColumn.appendChild(playerHeader);
-    playerColumn.setAttribute(`id`, `scoreColumnPlayer`);
-    playerColumn.classList.add(`modeRanking__scoresColumn`);
-    playerColumn.classList.add(`modeRanking__scoresColumn--player`);
-    rankingContainer.appendChild(playerColumn);
-
-    const answeredColumn = document.createElement('div');
-    const answeredHeader = document.createElement('div');
-    answeredHeader.textContent = 'Answered';
-    answeredColumn.appendChild(answeredHeader);
-    answeredColumn.setAttribute(`id`, `scoreColumnAnswered`);
-    answeredColumn.classList.add(`modeRanking__scoresColumn`);
-    answeredColumn.classList.add(`modeRanking__scoresColumn--answered`);
-    rankingContainer.appendChild(answeredColumn);
+    // * koniec pętli
 
     for (let i = 0; i < topScores.length; i++) {
-      const player = document.createElement('div');
-      player.textContent = topScores[i].user;
-      playerColumn.appendChild(player);
-      const answered = document.createElement('div');
-      answered.textContent = topScores[i].maxScore;
-      answeredColumn.appendChild(answered);
+      const playerRow = document.createElement('div');
+      playerRow.classList.add('modeRanking__rankingRow');
+
+      const playerNumber = document.createElement('div');
+      let numberText = placesList[i];
+      playerNumber.textContent = numberText;
+      playerNumber.classList.add('modeRanking__rankingPlace');
+      playerRow.appendChild(playerNumber);
+
+      const playerName = document.createElement('div');
+      playerName.textContent = topScores[i].user;
+      playerName.classList.add('modeRanking__rankingPlayer');
+      playerRow.appendChild(playerName);
+
+      const playerAnswered = document.createElement('div');
+      playerAnswered.textContent = `${topScores[i].score}/${topScores[i].maxScore}`;
+      playerAnswered.classList.add('modeRanking__rankingAnswered');
+      playerRow.appendChild(playerAnswered);
+
+      rankingContainer.appendChild(playerRow);
     }
+
+    // * koniec pętli
+
     modeRankingObj.appendChild(rankingContainer);
   } else {
     const emptyRankingElem = document.createElement('p');
