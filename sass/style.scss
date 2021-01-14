@@ -9,6 +9,7 @@
 @import 'components/gameMode';
 @import 'components/button';
 @import 'components/questionAnswers';
+@import 'components/modeRules';
 
 // * LAYOUTS
 @import 'layouts/example';
@@ -17,3 +18,5 @@
 @import 'layouts/questionImage';
 @import 'layouts/logo';
 @import 'layouts/mainContainer';
+@import 'layouts/modalWindow';
+@import 'layouts/modalWindowContent';

@@ -8,9 +8,12 @@ import { QuestionGenerator } from './QuestionGenrator';
 import { fetchData } from '../utils/fetchData';
 import { getRandomIdFromArray } from '../utils/getRandomIdFromArray';
 import { peopleIdArray, starshipsIdArray, vehiclesIdArray } from './settings';
+import { ModalWindow } from './layouts/ModalWindow';
+import { ModalWindowContent } from './layouts/ModalWindowContent';
 import { GameMode } from './components/GameMode';
 import { render } from './rendering';
 import { QuestionAnswers } from './components/QuestionAnswers';
+import { ModeRules } from './components/ModeRules';
 
 export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
@@ -37,6 +40,12 @@ export const App = ({ options }) => {
     component: GameMode(),
     inside: mainContainer,
     withClasses: 'mainContainer__gameMode',
+  });
+  const modeRules = render({
+    //component: ModeRules('You have one minute (1m) to answer as many questions as possible. During the game on each question you need to select who from Star Wars is showed on the left (Jar Jar Binks right now) from available options'),
+    component: ModeRules(),
+    inside: mainContainer,
+    withClasses: 'mainContainer__modeRules',
   });
   const hallOfFameButton = render({
     component: Button({
@@ -70,10 +79,43 @@ export const App = ({ options }) => {
     withClasses: 'mainContainer__answersWrapper',
   });
 
-  odpTrue.changeText('100% prawda');
+  // Modal window
+  const modalWindow = ModalWindow(app);
+  // Modal window methods
+  // modalWindow.show(Here_some_content_as_HTMLElement);
+  // modalWindow.close  to close the window and remove the content
 
-  odpTrue.setSuccess();
-  odpFalse.setDanger();
+  /* MODAL WINDOW CONTENT TO REMOVE LATER!
+  const testButton = render({
+    component: Button({
+      id: 'abcd',
+      btnText: 'TEST BUTTON',
+      classList: [''],
+      onClickFn: testFunction,
+    }),
+    inside: app,
+  });
+
+  function testFunction() {
+    const contemodalWindowContent = ModalWindowContent(
+      [
+        { id: 1, isCorrect: true },
+        { id: 2, isCorrect: true },
+      ],
+      [
+        { id: 1, isCorrect: false },
+        { id: 2, isCorrect: true },
+      ],
+      onSubmitFunction,
+    );
+
+    modalWindow.show(contemodalWindowContent);
+  }
+
+  function onSubmitFunction(playerName, playerResult, playerAnswersQuantity) {
+    modalWindow.close();
+  }
+  */
 };
 
 function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {

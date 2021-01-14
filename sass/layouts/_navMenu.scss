@@ -5,9 +5,9 @@
   height: 100px;
   width: 750px;
   width: 100%;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: #e60001 0px 0px 35px;
+  background: $color-bgc;
+  border-radius: $component-radius;
+  box-shadow: $component-shadow;
 
   &__list {
     display: flex;
