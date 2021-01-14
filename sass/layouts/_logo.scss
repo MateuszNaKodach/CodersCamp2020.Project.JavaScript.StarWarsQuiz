@@ -5,3 +5,13 @@
   margin: 0 auto;
   object-fit: contain;
 }
+
+@media screen and (min-width: 360px) and (max-width: 414px) {
+  .logo {
+    margin: 0;
+    max-width: 130px;
+    max-height: 70px;
+    // transform: scale(0.3);
+    // display: none;
+  }
+}

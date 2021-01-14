@@ -39,3 +39,52 @@
     background-color: rgba(0, 0, 255, 0.3);
   }
 }
+
+@media screen and (min-width: 360px) and (max-width: 414px) {
+  .wrapper {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    border: 0;
+
+    $gap: 10px;
+    grid-template-columns: $gap 4fr 7fr 2fr;
+    grid-template-rows: $gap 1fr 1fr 3fr auto 1fr 1fr;
+
+    // background-color: chartreuse;
+
+    &__logo {
+      grid-column: 2 / span 1;
+      grid-row: 2 / span 1;
+      display: none;
+    }
+
+    &__nav {
+      margin: 0;
+      display: none;
+
+      // grid-column: 4 / span 1;
+      // grid-row: 2 / span 1;
+    }
+
+    &__mainImg {
+      grid-column: 2 / span 1;
+      grid-row: 3 / span 1;
+      display: none;
+
+      background-color: rgba(0, 0, 255, 0.3);
+    }
+
+    &__mainContainer {
+      grid-column: 1 / 3;
+      grid-row: 4 / 6;
+      display: none;
+
+      background-color: rgba(0, 0, 255, 0.3);
+    }
+  }
+}
