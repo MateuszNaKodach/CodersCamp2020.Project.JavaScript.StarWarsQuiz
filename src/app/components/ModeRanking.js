@@ -18,7 +18,7 @@ export const ModeRanking = (topScores) => {
     modeRankingObj.appendChild(headerContainer);
 
     const rankingContainer = document.createElement('div');
-    rankingContainer.classList.add('rankingContainer');
+    rankingContainer.classList.add('modeRanking__rankingContainer');
 
     const placesList = ['1st', '2nd', '3rd'];
 
@@ -27,8 +27,8 @@ export const ModeRanking = (topScores) => {
     placeHeader.textContent = 'Place';
     placeColumn.appendChild(placeHeader);
     placeColumn.setAttribute(`id`, `scoresColumnPlace`);
-    placeColumn.classList.add('scoresColumn');
-    placeColumn.classList.add('scoresColumn--place');
+    placeColumn.classList.add('modeRanking__scoresColumn');
+    placeColumn.classList.add('modeRanking__scoresColumn--place');
     rankingContainer.appendChild(placeColumn);
 
     for (let i = 0; i < placesList.length; i++) {
@@ -42,8 +42,8 @@ export const ModeRanking = (topScores) => {
     playerHeader.textContent = 'Player';
     playerColumn.appendChild(playerHeader);
     playerColumn.setAttribute(`id`, `scoreColumnPlayer`);
-    playerColumn.classList.add(`scoresColumn`);
-    playerColumn.classList.add(`scoresColumn--player`);
+    playerColumn.classList.add(`modeRanking__scoresColumn`);
+    playerColumn.classList.add(`modeRanking__scoresColumn--player`);
     rankingContainer.appendChild(playerColumn);
 
     const answeredColumn = document.createElement('div');
@@ -51,8 +51,8 @@ export const ModeRanking = (topScores) => {
     answeredHeader.textContent = 'Answered';
     answeredColumn.appendChild(answeredHeader);
     answeredColumn.setAttribute(`id`, `scoreColumnAnswered`);
-    answeredColumn.classList.add(`scoresColumn`);
-    answeredColumn.classList.add(`scoresColumn--answered`);
+    answeredColumn.classList.add(`modeRanking__scoresColumn`);
+    answeredColumn.classList.add(`modeRanking__scoresColumn--answered`);
     rankingContainer.appendChild(answeredColumn);
 
     for (let i = 0; i < topScores.length; i++) {
