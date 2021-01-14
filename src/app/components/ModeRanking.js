@@ -66,7 +66,8 @@ export const ModeRanking = (topScores) => {
     modeRankingObj.appendChild(rankingContainer);
   } else {
     const emptyRankingElem = document.createElement('p');
-    emptyRankingElem.classList.add('someClass');
+    emptyRankingElem.classList.add('modeRanking__text');
+    emptyRankingElem.setAttribute('data-testid', '');
     emptyRankingElem.textContent = 'Leaderboard is empty...';
     modeRankingObj.appendChild(emptyRankingElem);
   }
