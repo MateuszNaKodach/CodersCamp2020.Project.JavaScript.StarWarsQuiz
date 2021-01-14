@@ -14,6 +14,7 @@ import { GameMode } from './components/GameMode';
 import { render } from './rendering';
 import { QuestionAnswers } from './components/QuestionAnswers';
 import { ModeRules } from './components/ModeRules';
+import { Sword } from './components/Sword';
 
 export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
@@ -77,6 +78,12 @@ export const App = ({ options }) => {
     //component: QuestionAnswers(answers, correctAnswer, onAnswerChosen),
     inside: mainContainer,
     withClasses: 'mainContainer__answersWrapper',
+  });
+
+  const sword = render({
+    component: Sword(),
+    inside: app,
+    withClasses: 'mainContainer__sword',
   });
 
   // Modal window
