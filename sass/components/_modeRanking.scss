@@ -54,7 +54,6 @@
   }
   &__headerItem--player,
   &__rankingPlayer {
-    // flex-grow: 2;
     flex-basis: 60%;
     text-align: left;
   }
@@ -64,7 +63,14 @@
     text-align: left;
   }
 
-  &__headerItem {
+  &__headerItem,
+  &__emptyLeaderboardText {
     font-weight: 700;
+  }
+
+  &__emptyLeaderboardText {
+    padding: 40px 30px;
+    font-size: 15px;
+    font-style: italic;
   }
 }
