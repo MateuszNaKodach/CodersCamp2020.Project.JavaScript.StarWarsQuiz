@@ -1,5 +1,6 @@
 import { GameMode } from '../components/GameMode';
 import { ModeRules } from '../components/ModeRules';
+import { ModeRanking } from '../components/ModeRanking';
 import { Button } from '../components/Button';
 import { render } from '../../app/rendering';
 
@@ -32,19 +33,20 @@ function setGameMode(parent, gameMode = 'people') {
 function renderView(parent, gameMode, viewMode) {
   cleanView(parent);
   //// ****************************************************************
-  // * TITLE
-  // const gameModeTitle  GameMode(' Who is this character?');
+  // * TITLE BOX
+  const gameModeTitle = GameMode(getModeText(gameMode, gameModeTitlesList));
+  gameModeTitle.classList.add('mainContainer__titleBox');
 
   //// ****************************************************************
-  // * CENTRAL
-  const modeRulesBox = ModeRules('tutaj trzeba podać zasady gry!');
-  modeRulesBox.classList.add('mainContainer__modeBox');
+  // * CENTRAL BOX
+  const modeRulesBox = ModeRules(getModeText(gameMode, gameModeRulesList));
+  modeRulesBox.classList.add('mainContainer__centralBox');
 
-  // TODO: const modeRulesBox = ModeRanking('tutaj trzeba podać zasady gry!');
-  // TODO:  modeRulesBox.classList.add('mainContainer__modeBox');
+  const modeRankingBox = ModeRanking([]);
+  modeRankingBox.classList.add('mainContainer__centralBox');
 
   //// ****************************************************************
-  // * BTNS
+  // * BTNS BOX
   const buttonBox = document.createElement('div');
   buttonBox.classList.add('mainContainer__buttonBox');
 
@@ -82,18 +84,21 @@ function renderView(parent, gameMode, viewMode) {
   // * SWITCHER - VIEW MODE
   switch (viewMode) {
     case 'rulesView':
+      parent.appendChild(gameModeTitle);
       parent.appendChild(modeRulesBox);
       buttonBox.appendChild(hallOfFameButton);
       buttonBox.appendChild(playTheGameButton);
       break;
     case 'rankingView':
-      // TODO: parent.appendChild(modeRankingBox);
+      parent.appendChild(gameModeTitle);
+      parent.appendChild(modeRankingBox);
       buttonBox.appendChild(rulesButton);
       buttonBox.appendChild(playTheGameButton);
       break;
     case 'gameView':
       break;
     default:
+      parent.appendChild(gameModeTitle);
       buttonBox.appendChild(hallOfFameButton);
       buttonBox.appendChild(playTheGameButton);
       break;
@@ -124,3 +129,35 @@ function renderView(parent, gameMode, viewMode) {
 //   default:
 //     // renderView('people', 'RulesView');
 // }
+
+function getModeText(gameMode, gameModesList) {
+  switch (gameMode) {
+    case 'people':
+      return gameModesList.people;
+      break;
+    case 'vehicles':
+      return gameModesList.vehicles;
+      break;
+    case 'starships':
+      return gameModesList.starships;
+      break;
+    default:
+      return gameModesList.people;
+      break;
+  }
+}
+
+const gameModeTitlesList = {
+  people: 'Who is this character?',
+  vehicles: 'What is this vehicle?',
+  starships: 'What is this starship?',
+};
+
+const gameModeRulesList = {
+  people:
+    'You have one minute (1m) to answer as many questions as possible. During the game on each question you need to select who from Star Wars is showed on the left from available options',
+  vehicles:
+    'You have one minute (1m) to answer as many questions as possible. During the game on each question you need to select what vehicle from Star Wars is showed on the left from available options',
+  starships:
+    'You have one minute (1m) to answer as many questions as possible. During the game on each question you need to select what starship from Star Wars is showed on the left from available options',
+};

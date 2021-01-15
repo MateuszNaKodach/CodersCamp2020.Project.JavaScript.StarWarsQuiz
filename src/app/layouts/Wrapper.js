@@ -14,12 +14,17 @@ export const Wrapper = () => {
   return wrapper;
 };
 
+// *****************************************************
+// *****************************************************
+// *****************************************************
+
 function setStartView(parent) {
   const logo = render({
     component: Logo(),
     inside: parent,
     withClasses: 'wrapper__logo',
   });
+
   const questionImage = render({
     component: QuestionImage(
       'c3RhdGljL2Fzc2V0cy9pbWcvbW9kZXMvcGVvcGxlLzQuanBn',
@@ -27,6 +32,7 @@ function setStartView(parent) {
     inside: parent,
     withClasses: 'wrapper__mainImg',
   });
+
   const mainContainer = render({
     component: MainContainer(),
     inside: parent,
@@ -36,18 +42,24 @@ function setStartView(parent) {
   renderNavMenu(parent);
 }
 
-function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
-  if (parent && previousState) {
-    parent.removeChild(previousState);
+// *****************************************************
+
+function renderNavMenu(
+  parent,
+  activeItemNr = 0,
+  navMenuPreviousState = undefined,
+) {
+  if (parent && navMenuPreviousState) {
+    parent.removeChild(navMenuPreviousState);
   }
 
-  const component = NavMenu([
+  const navMenuComponent = NavMenu([
     {
       name: 'people',
       id: 'navMenu__people',
       isActivated: activeItemNr == 0,
       onClickFn() {
-        renderNavMenu(parent, 0, component);
+        onClickNavMenuButton(parent, mainContainer, 0, 'people');
       },
     },
     {
@@ -55,7 +67,7 @@ function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
       id: 'navMenu__vehicles',
       isActivated: activeItemNr == 1,
       onClickFn() {
-        renderNavMenu(parent, 1, component);
+        onClickNavMenuButton(parent, mainContainer, 1, 'vehicles');
       },
     },
     {
@@ -63,13 +75,42 @@ function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
       id: 'navMenu__starships',
       isActivated: activeItemNr == 2,
       onClickFn() {
-        renderNavMenu(parent, 2, component);
+        onClickNavMenuButton(parent, mainContainer, 2, 'starships');
       },
     },
   ]);
 
-  return render({ component, inside: parent, withClasses: 'wrapper__nav' });
+  return render({
+    component: navMenuComponent,
+    inside: parent,
+    withClasses: 'wrapper__nav',
+  });
 }
+
+// *****************************************************
+
+function onClickNavMenuButton(
+  parent,
+  gameModeItemNr = 0,
+  navMenuPreviousState = undefined,
+  gameModeName,
+) {
+  // mainContainer.remove();
+  // parent.removeChild(previousState);
+
+  // TODO: TU WYWPOŁAJ funkcję ktora jest w maincontainer i renderuje nowy komponent albo coś
+  // const updatedMainContainer = render({
+  //   component: MainContainer(gameModeName),
+  //   inside: parent,
+  //   withClasses: 'wrapper__mainContainer',
+  // });
+
+  renderNavMenu(parent, gameModeItemNr, navMenuPreviousState);
+}
+
+// *****************************************************
+// *****************************************************
+// *****************************************************
 
 // TODO: Kliknięcie w nav menu wywołuje funkcję (cleanAndFill() lub cleanAndFillMainContainer() - nazwa do wyboru):
 // TODO: -- niszczy dzieci mainContainer
