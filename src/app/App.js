@@ -30,9 +30,7 @@ export const App = ({ options }) => {
     withClasses: 'wrapper__mainContainer',
   });
   const questionImage = render({
-    component: QuestionImage(
-      'c3RhdGljL2Fzc2V0cy9pbWcvbW9kZXMvcGVvcGxlLzQuanBn',
-    ),
+    component: QuestionImage(),
     inside: wrapper,
     withClasses: 'wrapper__mainImg',
   });
