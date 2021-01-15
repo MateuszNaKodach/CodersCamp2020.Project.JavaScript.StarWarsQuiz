@@ -2,4 +2,25 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  &__titleBox {
+  }
+  &__modeBox {
+  }
+  &__buttonBox {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__hallOfFameButton {
+    order: 1;
+    flex-basis: 50%;
+  }
+  &__rulesButton {
+    order: 1;
+    flex-basis: 50%;
+  }
+  &__playTheGameButton {
+    order: 2;
+    flex-basis: 50%;
+  }
 }
