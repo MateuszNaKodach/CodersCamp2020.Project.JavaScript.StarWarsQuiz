@@ -1,4 +1,4 @@
-import { TextTimer, countdown } from '../src/app/components/Timer';
+import { TextTimer } from '../src/app/components/TextTimer';
 import '@testing-library/jest-dom';
 import { screen } from '@testing-library/dom';
 
@@ -14,8 +14,17 @@ describe('Timer component', () => {
     expect(testTimer).toBeVisible();
   });
 
+  it('Should call updateTextTime function with argument 2 when textTimer is 00:02 ', () => {
+    const testTextTimer = TextTimer();
+    testTextTimer.updateTextTime();
+
+    expect(setInterval).toHaveBeenCalledTimes(1);
+    expect(setInterval).toHaveBeenLastCalledWith(expect.any(Function), 1000);
+  });
+
   it('Should call setInterval function 1 time with cb function', () => {
-    TextTimer();
+    const testTextTimer = TextTimer();
+    testTextTimer.updateTextTime();
 
     expect(setInterval).toHaveBeenCalledTimes(1);
     expect(setInterval).toHaveBeenLastCalledWith(expect.any(Function), 1000);

@@ -77,15 +77,20 @@ export const App = ({ options }) => {
   // odpTrue.setSuccess();
   // odpFalse.setDanger();
 
-  const timer = new MainTimer(5);
-  timer.countdown();
-  console.log(timer);
-
   const textTimer = render({
     component: TextTimer(timer),
     inside: mainContainer,
   });
+
+  const timer = new MainTimer(5);
+  timer.startCountdown((time) => {
+    updateTime(textTimer, time);
+  });
 };
+
+function updateTime(timerComp, time) {
+  timerComp.updateTextTime(time);
+}
 
 function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
   if (parent && previousState) {
