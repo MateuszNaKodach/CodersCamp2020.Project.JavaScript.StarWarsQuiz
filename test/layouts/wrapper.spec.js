@@ -8,12 +8,15 @@ describe('Main "Wrapper":', () => {
     const testLogo = testWrapper.querySelector('.logo');
     const testNavMenu = testWrapper.querySelector('.navMenu');
     const testQuestionImage = testWrapper.querySelector('.questionImage');
-    const mainContainer = testWrapper.querySelector('.mainContainer');
+    const testMainContainer = testWrapper.querySelector('.mainContainer');
 
     expect(testWrapper).toContainElement(testLogo);
     expect(testLogo).toBeVisible();
+    expect(testWrapper).toContainElement(testNavMenu);
     expect(testNavMenu).toBeVisible();
+    expect(testWrapper).toContainElement(testQuestionImage);
     expect(testQuestionImage).toBeVisible();
-    expect((mainContainer = testWrapper.querySelector)).toBeVisible();
+    expect(testWrapper).toContainElement(testMainContainer);
+    expect(testMainContainer).toBeVisible();
   });
 });
