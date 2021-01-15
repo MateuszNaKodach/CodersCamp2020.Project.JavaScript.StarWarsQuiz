@@ -121,14 +121,14 @@ function onClickNavMenuButton(
 
   // TODO: TU WYWPOŁAJ funkcję ktora jest w maincontainer i renderuje nowy komponent albo coś
 
-  console.log(mainContainer);
-  console.log(gameModeName);
+  // console.log(mainContainer);
+  // console.log(gameModeName);
   mainContainer.setGameMode(mainContainer, gameModeName);
 
-  console.log('Pochodzę z onClicka');
-  console.log(parent);
-  console.log(gameModeItemNr);
-  console.log(navMenuPreviousState);
+  // console.log('Pochodzę z onClicka');
+  // console.log(parent);
+  // console.log(gameModeItemNr);
+  // console.log(navMenuPreviousState);
   renderNavMenu(parent, mainContainer, gameModeItemNr, navMenuPreviousState);
 }
 

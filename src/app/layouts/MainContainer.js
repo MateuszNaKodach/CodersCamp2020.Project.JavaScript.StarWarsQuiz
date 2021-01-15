@@ -1,6 +1,7 @@
 import { GameMode } from '../components/GameMode';
 import { ModeRules } from '../components/ModeRules';
 import { ModeRanking } from '../components/ModeRanking';
+import { Ranking } from '../Ranking';
 import { Button } from '../components/Button';
 import { render } from '../../app/rendering';
 
@@ -35,19 +36,19 @@ function setGameMode(parent, gameMode = 'people') {
 }
 
 //// ****************************************************************
-function renderView(parent, gameMode, viewMode) {
+function renderView(parent, gameModeName, viewMode) {
   cleanView(parent);
   //// ****************************************************************
   // * TITLE BOX
-  const gameModeTitle = GameMode(getModeText(gameMode, gameModeTitlesList));
+  const gameModeTitle = GameMode(getModeText(gameModeName, gameModeTitlesList));
   gameModeTitle.classList.add('mainContainer__titleBox');
 
   //// ****************************************************************
   // * CENTRAL BOX
-  const modeRulesBox = ModeRules(getModeText(gameMode, gameModeRulesList));
+  const modeRulesBox = ModeRules(getModeText(gameModeName, gameModeRulesList));
   modeRulesBox.classList.add('mainContainer__centralBox');
 
-  const modeRankingBox = ModeRanking([]);
+  const modeRankingBox = ModeRanking(getScoresTabFromDataBase(gameModeName));
   modeRankingBox.classList.add('mainContainer__centralBox');
 
   //// ****************************************************************
@@ -60,7 +61,7 @@ function renderView(parent, gameMode, viewMode) {
     btnText: 'Hall of fame',
     classList: ['mainContainer__hallOfFameButton'],
     onClickFn: () => {
-      renderView(parent, gameMode, 'rankingView');
+      renderView(parent, gameModeName, 'rankingView');
     },
     icon: 'Fame',
   });
@@ -70,7 +71,7 @@ function renderView(parent, gameMode, viewMode) {
     btnText: 'Rules',
     classList: ['mainContainer__rulesButton'],
     onClickFn: () => {
-      renderView(parent, gameMode, 'rulesView');
+      renderView(parent, gameModeName, 'rulesView');
     },
     icon: 'Rules',
   });
@@ -80,7 +81,7 @@ function renderView(parent, gameMode, viewMode) {
     btnText: 'play the game',
     classList: ['mainContainer__playTheGameButton'],
     onClickFn: () => {
-      renderView(parent, gameMode, 'gameView');
+      renderView(parent, gameModeName, 'gameView');
     },
   });
   playTheGameButton.setSpecial();
@@ -135,8 +136,15 @@ function renderView(parent, gameMode, viewMode) {
 //     // renderView('people', 'RulesView');
 // }
 
-function getModeText(gameMode, gameModesList) {
-  switch (gameMode) {
+// TODO:
+function getScoresTabFromDataBase(gameModeName) {
+  console.log(gameModeName);
+  const scorseTabFromDataBase = new Ranking(gameModeName);
+  return scorseTabFromDataBase.getScores();
+}
+
+function getModeText(gameModeName, gameModesList) {
+  switch (gameModeName) {
     case 'people':
       return gameModesList.people;
       break;
