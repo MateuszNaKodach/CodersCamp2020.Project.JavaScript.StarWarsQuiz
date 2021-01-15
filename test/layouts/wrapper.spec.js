@@ -1,20 +1,19 @@
 import { Wrapper } from '../../src/app/layouts/Wrapper';
-// import '@testing-library/jest-dom';
-// import userEvent from '@testing-library/user-event';
-// import { screen } from '@testing-library/dom';
+import '@testing-library/jest-dom';
 
 describe('Main "Wrapper":', () => {
-  const callBackFunction = jest.fn();
-  const testWrapper = Wrapper();
-
   it('When use "setStartView()" function then check viseable of "logo", "menu", "photo","mainContainer" ', () => {
-    expect().toHaveBeenCalled();
+    const testWrapper = Wrapper();
+
+    const testLogo = testWrapper.querySelector('.logo');
+    const testNavMenu = testWrapper.querySelector('.navMenu');
+    const testQuestionImage = testWrapper.querySelector('.questionImage');
+    const mainContainer = testWrapper.querySelector('.mainContainer');
+
+    expect(testWrapper).toContainElement(testLogo);
+    expect(testLogo).toBeVisible();
+    expect(testNavMenu).toBeVisible();
+    expect(testQuestionImage).toBeVisible();
+    expect((mainContainer = testWrapper.querySelector)).toBeVisible();
   });
 });
-
-// TODO: funkcja wypełniająca poczatkowy stan wrappera
-
-// TODO: Ustaw logo
-// TODO: Ustaw menu
-// TODO: ustaw photo
-// TODO: ustaw mainContainer
