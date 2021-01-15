@@ -59,7 +59,7 @@ function renderNavMenu(
       id: 'navMenu__people',
       isActivated: activeItemNr == 0,
       onClickFn() {
-        onClickNavMenuButton(parent, mainContainer, 0, 'people');
+        onClickNavMenuButton(parent, 0, navMenuComponent, 'people');
       },
     },
     {
@@ -67,7 +67,7 @@ function renderNavMenu(
       id: 'navMenu__vehicles',
       isActivated: activeItemNr == 1,
       onClickFn() {
-        onClickNavMenuButton(parent, mainContainer, 1, 'vehicles');
+        onClickNavMenuButton(parent, 1, navMenuComponent, 'vehicles');
       },
     },
     {
@@ -75,7 +75,7 @@ function renderNavMenu(
       id: 'navMenu__starships',
       isActivated: activeItemNr == 2,
       onClickFn() {
-        onClickNavMenuButton(parent, mainContainer, 2, 'starships');
+        onClickNavMenuButton(parent, 2, navMenuComponent, 'starships');
       },
     },
   ]);
@@ -85,6 +85,7 @@ function renderNavMenu(
     inside: parent,
     withClasses: 'wrapper__nav',
   });
+  console.log('Jestem funkcją renderNavMenu');
 }
 
 // *****************************************************
@@ -104,7 +105,10 @@ function onClickNavMenuButton(
   //   inside: parent,
   //   withClasses: 'wrapper__mainContainer',
   // });
-
+  console.log('Pochodzę z onClicka');
+  console.log(parent);
+  console.log(gameModeItemNr);
+  console.log(navMenuPreviousState);
   renderNavMenu(parent, gameModeItemNr, navMenuPreviousState);
 }
 
