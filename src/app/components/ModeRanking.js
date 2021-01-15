@@ -19,8 +19,19 @@ export const ModeRanking = (topScores) => {
   const rankingContainer = document.createElement('div');
   rankingContainer.classList.add('modeRanking__rankingContainer');
 
-  const placesList = ['1st', '2nd', '3rd'];
+  createHeaderRow(rankingContainer);
 
+  const rankingIsFilled = topScores && topScores.length > 0;
+  rankingIsFilled
+    ? createRankingWithScores(rankingContainer, topScores)
+    : createEmptyRanking(rankingContainer);
+
+  modeRankingObj.appendChild(rankingContainer);
+
+  return modeRankingObj;
+};
+
+function createHeaderRow(rankingContainer) {
   const titleRow = document.createElement('header');
   titleRow.classList.add(
     'modeRanking__rankingRow',
@@ -39,40 +50,41 @@ export const ModeRanking = (topScores) => {
     headerElement.textContent = headerElementTitles[i];
     titleRow.appendChild(headerElement);
   }
+}
 
-  if (typeof topScores !== 'undefined' && topScores.length > 0) {
-    for (let i = 0; i < topScores.length; i++) {
-      const playerRow = document.createElement('div');
-      playerRow.classList.add('modeRanking__rankingRow');
-      playerRow.setAttribute('data-testId', `playerRowNum${i + 1}`); // Attribute needed only for testing purpose.
+function createRankingWithScores(htmlElement, topScores) {
+  const placesList = ['1st', '2nd', '3rd'];
 
-      const playerNumber = document.createElement('div');
-      let numberText = placesList[i];
-      playerNumber.textContent = numberText;
-      playerNumber.classList.add('modeRanking__rankingPlace');
-      playerRow.appendChild(playerNumber);
+  const rankingWithScores = htmlElement;
 
-      const playerName = document.createElement('div');
-      playerName.textContent = topScores[i].user;
-      playerName.classList.add('modeRanking__rankingPlayer');
-      playerRow.appendChild(playerName);
+  for (let i = 0; i < topScores.length; i++) {
+    const playerRow = document.createElement('div');
+    playerRow.classList.add('modeRanking__rankingRow');
+    playerRow.setAttribute('data-testId', `playerRowNum${i + 1}`); // Attribute needed only for testing purpose.
 
-      const playerAnswered = document.createElement('div');
-      playerAnswered.textContent = `${topScores[i].score}/${topScores[i].maxScore}`;
-      playerAnswered.classList.add('modeRanking__rankingAnswered');
-      playerRow.appendChild(playerAnswered);
+    const playerNumber = document.createElement('div');
+    let numberText = placesList[i];
+    playerNumber.textContent = numberText;
+    playerNumber.classList.add('modeRanking__rankingPlace');
+    playerRow.appendChild(playerNumber);
 
-      rankingContainer.appendChild(playerRow);
-    }
-  } else {
-    const emptyRankingElem = document.createElement('p');
-    emptyRankingElem.classList.add('modeRanking__emptyLeaderboardText');
-    emptyRankingElem.setAttribute('data-testid', '');
-    emptyRankingElem.textContent = 'Leaderboard is empty...';
-    rankingContainer.appendChild(emptyRankingElem);
+    const playerName = document.createElement('div');
+    playerName.textContent = topScores[i].user;
+    playerName.classList.add('modeRanking__rankingPlayer');
+    playerRow.appendChild(playerName);
+
+    const playerAnswered = document.createElement('div');
+    playerAnswered.textContent = `${topScores[i].score}/${topScores[i].maxScore}`;
+    playerAnswered.classList.add('modeRanking__rankingAnswered');
+    playerRow.appendChild(playerAnswered);
+    rankingWithScores.appendChild(playerRow);
   }
+}
 
-  modeRankingObj.appendChild(rankingContainer);
-
-  return modeRankingObj;
-};
+function createEmptyRanking(rankingContainer) {
+  const emptyRankingElem = document.createElement('p');
+  emptyRankingElem.classList.add('modeRanking__emptyLeaderboardText');
+  emptyRankingElem.setAttribute('data-testid', '');
+  emptyRankingElem.textContent = 'Leaderboard is empty...';
+  rankingContainer.appendChild(emptyRankingElem);
+}
