@@ -39,13 +39,14 @@ function setStartView(parent) {
     withClasses: 'wrapper__mainContainer',
   });
 
-  renderNavMenu(parent);
+  renderNavMenu(parent, mainContainer);
 }
 
 // *****************************************************
 
 function renderNavMenu(
   parent,
+  mainContainer,
   activeItemNr = 0,
   navMenuPreviousState = undefined,
 ) {
@@ -59,7 +60,13 @@ function renderNavMenu(
       id: 'navMenu__people',
       isActivated: activeItemNr == 0,
       onClickFn() {
-        onClickNavMenuButton(parent, 0, navMenuComponent, 'people');
+        onClickNavMenuButton(
+          parent,
+          0,
+          navMenuComponent,
+          'people',
+          mainContainer,
+        );
       },
     },
     {
@@ -67,7 +74,13 @@ function renderNavMenu(
       id: 'navMenu__vehicles',
       isActivated: activeItemNr == 1,
       onClickFn() {
-        onClickNavMenuButton(parent, 1, navMenuComponent, 'vehicles');
+        onClickNavMenuButton(
+          parent,
+          1,
+          navMenuComponent,
+          'vehicles',
+          mainContainer,
+        );
       },
     },
     {
@@ -75,7 +88,13 @@ function renderNavMenu(
       id: 'navMenu__starships',
       isActivated: activeItemNr == 2,
       onClickFn() {
-        onClickNavMenuButton(parent, 2, navMenuComponent, 'starships');
+        onClickNavMenuButton(
+          parent,
+          2,
+          navMenuComponent,
+          'starships',
+          mainContainer,
+        );
       },
     },
   ]);
@@ -95,21 +114,22 @@ function onClickNavMenuButton(
   gameModeItemNr = 0,
   navMenuPreviousState = undefined,
   gameModeName,
+  mainContainer,
 ) {
   // mainContainer.remove();
   // parent.removeChild(previousState);
 
   // TODO: TU WYWPOŁAJ funkcję ktora jest w maincontainer i renderuje nowy komponent albo coś
-  // const updatedMainContainer = render({
-  //   component: MainContainer(gameModeName),
-  //   inside: parent,
-  //   withClasses: 'wrapper__mainContainer',
-  // });
+
+  console.log(mainContainer);
+  console.log(gameModeName);
+  mainContainer.setGameMode(mainContainer, gameModeName);
+
   console.log('Pochodzę z onClicka');
   console.log(parent);
   console.log(gameModeItemNr);
   console.log(navMenuPreviousState);
-  renderNavMenu(parent, gameModeItemNr, navMenuPreviousState);
+  renderNavMenu(parent, mainContainer, gameModeItemNr, navMenuPreviousState);
 }
 
 // *****************************************************

@@ -12,6 +12,11 @@ export const MainContainer = (gameMode = undefined) => {
   cleanView(container);
   setGameMode(container);
 
+  container.setGameMode = (parent, gameMode) => {
+    // console.log('Jestem setGameMode z MainContainer!');
+    setGameMode(parent, gameMode);
+  };
+
   return container;
 };
 
