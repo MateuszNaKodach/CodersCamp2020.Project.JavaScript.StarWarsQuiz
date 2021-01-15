@@ -41,9 +41,9 @@ describe('Players ranking', () => {
     renderComponent(ModeRanking(emptyRanking));
 
     expect(screen.getByText('Leaderboard is empty...')).toBeInTheDocument();
-    expect(screen.queryByTestId('playerRowNum1')).toBeFalsy();
-    expect(screen.queryByTestId('playerRowNum2')).toBeFalsy();
-    expect(screen.queryByTestId('playerRowNum3')).toBeFalsy();
+    expect(screen.queryByTestId('playerRowNum1')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('playerRowNum2')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('playerRowNum3')).not.toBeInTheDocument();
   });
 
   it('Given an array with scores of three players should render ranking with names and results of each player', () => {
