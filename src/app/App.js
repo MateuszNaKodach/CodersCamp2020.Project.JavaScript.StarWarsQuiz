@@ -30,7 +30,7 @@ export const App = ({ options }) => {
     withClasses: 'wrapper__mainContainer',
   });
   const questionImage = render({
-    component: QuestionImage(),
+    component: QuestionImage('people', 4),
     inside: wrapper,
     withClasses: 'wrapper__mainImg',
   });
