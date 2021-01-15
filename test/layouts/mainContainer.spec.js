@@ -1,19 +1,14 @@
-export const Wrapper = () => {
-  const wrapper = document.createElement('div');
-  wrapper.classList.add('wrapper');
-  wrapper.id = 'wrapper';
+import { MainContainer } from '../../src/app/layouts/MainContainer';
+import '@testing-library/jest-dom';
+// import userEvent from '@testing-library/user-event';
+import { screen } from '@testing-library/dom';
+import { renderedComponent } from '../../src/app/rendering';
 
-  return wrapper;
-};
-
-// TODO: funkcja wypełniająca poczatkowy stan wrappera
-
-// TODO: Ustaw logo
-// TODO: Ustaw menu
-// TODO: ustaw photo
-// TODO: ustaw mainContainer
-
-//////
+describe('Main "Wrapper":', () => {
+  it('When use "setStartView()" function then check viseable of "logo", "menu", "photo","mainContainer" ', () => {
+    // expect().toHaveBeenCalled();
+  });
+});
 
 // TODO: Kliknięcie w nav menu wywołuje funkcję (cleanAndFill() lub cleanAndFillMainContainer() - nazwa do wyboru):
 // TODO: -- niszczy dzieci mainContainer
@@ -31,9 +26,3 @@ export const Wrapper = () => {
 // TODO:  -- btns
 
 // TODO: Kliknięcie przycisku PLAY wywoła metodę cleanAndFill();
-// TODO:
-// TODO:
-// TODO:
-// TODO:
-// TODO:
-// TODO:

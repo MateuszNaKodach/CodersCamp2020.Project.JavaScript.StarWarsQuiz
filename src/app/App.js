@@ -1,3 +1,5 @@
+// import { StartWindow } from '';
+import { StartWindow } from './components/StartWindow';
 import { NavMenu } from './layouts/NavMenu';
 import { QuestionImage } from './layouts/QuestionImage';
 import { Logo } from './layouts/Logo';
@@ -16,23 +18,23 @@ import { ModeRules } from './components/ModeRules';
 
 export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
-  const wrapper = render({ component: Wrapper(), inside: app });
-  const navMenu = renderNavMenu(wrapper);
+  const wrapper1 = render({ component: Wrapper(), inside: app });
+  const navMenu = renderNavMenu(wrapper1);
   const logo = render({
     component: Logo(),
-    inside: wrapper,
+    inside: wrapper1,
     withClasses: 'wrapper__logo',
   });
   const mainContainer = render({
     component: MainContainer(),
-    inside: wrapper,
+    inside: wrapper1,
     withClasses: 'wrapper__mainContainer',
   });
   const questionImage = render({
     component: QuestionImage(
       'c3RhdGljL2Fzc2V0cy9pbWcvbW9kZXMvcGVvcGxlLzQuanBn',
     ),
-    inside: wrapper,
+    inside: wrapper1,
     withClasses: 'wrapper__mainImg',
   });
   const gameMode = render({
@@ -83,6 +85,24 @@ export const App = ({ options }) => {
   // Modal window methods
   // modalWindow.show(Here_some_content_as_HTMLElement);
   // modalWindow.close  to close the window and remove the content
+
+  // ! dla programistów: nie pisać kodu poniżej
+  // ! dla Tomasz i Piotr: Nasz kod poniżej
+  // ! >>> TU NIE ZMIENIAĆ (NIC TU NIE DODAWAĆ) >>>
+
+  app.innerHTML = '';
+  const startWindow = render({
+    component: StartWindow(() => {}),
+    inside: app,
+  });
+
+  const wrapper = render({ component: Wrapper(), inside: app });
+
+  // ! <<< TU NIE ZMIENIAĆ (NIC TU NIE DODAWAĆ) <<<
+  // ! ---------------
+  // ! ---------------
+  // ! ---------------
+  // ! ---------------
 };
 
 function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
