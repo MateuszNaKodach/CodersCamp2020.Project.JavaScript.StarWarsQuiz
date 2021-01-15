@@ -44,6 +44,7 @@ export const ModeRanking = (topScores) => {
     for (let i = 0; i < topScores.length; i++) {
       const playerRow = document.createElement('div');
       playerRow.classList.add('modeRanking__rankingRow');
+      playerRow.setAttribute('data-testId', `playerRowNum${i + 1}`); // Attribute needed only for testing purpose.
 
       const playerNumber = document.createElement('div');
       let numberText = placesList[i];
