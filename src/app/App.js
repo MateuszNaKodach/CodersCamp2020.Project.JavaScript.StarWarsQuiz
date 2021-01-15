@@ -11,6 +11,7 @@ import { fetchData } from '../utils/fetchData';
 import { getRandomIdFromArray } from '../utils/getRandomIdFromArray';
 import { peopleIdArray, starshipsIdArray, vehiclesIdArray } from './settings';
 import { ModalWindow } from './layouts/ModalWindow';
+import { ModalWindowContent } from './layouts/ModalWindowContent';
 import { GameMode } from './components/GameMode';
 import { render } from './rendering';
 import { QuestionAnswers } from './components/QuestionAnswers';
@@ -81,7 +82,7 @@ export const App = ({ options }) => {
   });
 
   // Modal window
-  ModalWindow(app);
+  const modalWindow = ModalWindow(app);
   // Modal window methods
   // modalWindow.show(Here_some_content_as_HTMLElement);
   // modalWindow.close  to close the window and remove the content
