@@ -11,6 +11,8 @@ import { peopleIdArray, starshipsIdArray, vehiclesIdArray } from './settings';
 import { GameMode } from './components/GameMode';
 import { render } from './rendering';
 import { QuestionAnswers } from './components/QuestionAnswers';
+import { MainTimer } from './components/MainTimer';
+import { TextTimer } from './components/TextTimer';
 
 export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
@@ -70,10 +72,19 @@ export const App = ({ options }) => {
     withClasses: 'mainContainer__answersWrapper',
   });
 
-  odpTrue.changeText('100% prawda');
+  // odpTrue.changeText('100% prawda');
 
-  odpTrue.setSuccess();
-  odpFalse.setDanger();
+  // odpTrue.setSuccess();
+  // odpFalse.setDanger();
+
+  const timer = new MainTimer(5);
+  timer.countdown();
+  console.log(timer);
+
+  const textTimer = render({
+    component: TextTimer(timer),
+    inside: mainContainer,
+  });
 };
 
 function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
