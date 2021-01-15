@@ -52,8 +52,8 @@
     border: 0;
 
     $gap: 10px;
-    grid-template-columns: $gap 4fr 7fr 2fr;
-    grid-template-rows: $gap 1fr 1fr 3fr auto 1fr 1fr;
+    grid-template-columns: $gap 3fr 10fr 3fr $gap;
+    grid-template-rows: $gap 1fr $gap 1fr $gap 7fr $gap 2fr $gap 2fr $gap 2fr $gap 2fr $gap 2fr $gap;
 
     // background-color: chartreuse;
 
@@ -72,9 +72,9 @@
     }
 
     &__mainImg {
-      grid-column: 2 / span 1;
-      grid-row: 3 / span 1;
-      display: none;
+      grid-column: 3 / span 1;
+      grid-row: 6 / span 1;
+      justify-self: center;
 
       background-color: rgba(0, 0, 255, 0.3);
     }
