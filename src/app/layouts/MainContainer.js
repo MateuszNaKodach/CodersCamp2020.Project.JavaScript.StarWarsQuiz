@@ -14,7 +14,7 @@ export const MainContainer = (gameMode = undefined) => {
         container,
         cleanView,
         gameModeName,
-        renderComponentsFromComponentsArray,
+        onClickFunctionForGameOptionsView,
       ),
     );
   };
@@ -33,4 +33,16 @@ function renderComponentsFromComponentsArray(mainContainer, componentsArray) {
   componentsArray.forEach((item) => {
     mainContainer.appendChild(item);
   });
+}
+
+function onClickFunctionForGameOptionsView(
+  expectedViewModeName,
+  mainContainer,
+  componentsArray,
+) {
+  if (expectedViewModeName != 'gameView') {
+    renderComponentsFromComponentsArray(mainContainer, componentsArray);
+  } else {
+    console.log('Tu wyświetli się GameQuizView');
+  }
 }

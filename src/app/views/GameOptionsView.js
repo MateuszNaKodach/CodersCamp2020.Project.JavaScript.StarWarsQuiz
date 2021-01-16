@@ -42,7 +42,7 @@ function renderViewArray(
   parent,
   cleanViewCallbackFunction,
   gameModeName,
-  viewMode,
+  viewModeName,
   onClickCallBackFunction,
 ) {
   cleanViewCallbackFunction(parent);
@@ -70,6 +70,7 @@ function renderViewArray(
     classList: ['mainContainer__hallOfFameButton'],
     onClickFn: () => {
       onClickCallBackFunction(
+        viewModeName,
         parent,
         renderViewArray(
           parent,
@@ -89,6 +90,7 @@ function renderViewArray(
     classList: ['mainContainer__rulesButton'],
     onClickFn: () => {
       onClickCallBackFunction(
+        viewModeName,
         parent,
         renderViewArray(
           parent,
@@ -107,16 +109,7 @@ function renderViewArray(
     btnText: 'play the game',
     classList: ['mainContainer__playTheGameButton'],
     onClickFn: () => {
-      onClickCallBackFunction(
-        parent,
-        renderViewArray(
-          parent,
-          cleanViewCallbackFunction,
-          gameModeName,
-          'gameView',
-          onClickCallBackFunction,
-        ),
-      );
+      onClickCallBackFunction('gameView');
     },
   });
   playTheGameButton.setSpecial();
@@ -126,7 +119,7 @@ function renderViewArray(
   //// ****************************************************************
   // * SWITCHER - VIEW MODE
 
-  switch (viewMode) {
+  switch (viewModeName) {
     case 'rulesView':
       elementsArray.push(gameModeTitle);
       elementsArray.push(modeRulesBox);
