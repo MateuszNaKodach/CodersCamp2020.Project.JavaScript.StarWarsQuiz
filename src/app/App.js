@@ -98,11 +98,11 @@ export const App = ({ options }) => {
   // ! dla Tomasz i Piotr: Nasz kod poniżej
   // ! >>> TU NIE ZMIENIAĆ (NIC TU NIE DODAWAĆ) >>>
 
-  // app.innerHTML = '';
-  // const startWindow = render({
-  //   component: StartWindow(() => {}),
-  //   inside: app,
-  // });
+  app.innerHTML = '';
+  const startWindow = render({
+    component: StartWindow(() => {}),
+    inside: app,
+  });
 
   const wrapper = render({ component: Wrapper(), inside: app });
 
