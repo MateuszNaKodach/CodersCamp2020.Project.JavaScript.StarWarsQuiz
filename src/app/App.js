@@ -14,6 +14,7 @@ import { GameMode } from './components/GameMode';
 import { render } from './rendering';
 import { QuestionAnswers } from './components/QuestionAnswers';
 import { ModeRules } from './components/ModeRules';
+import { ModeRanking } from './components/ModeRanking';
 
 export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
@@ -41,12 +42,36 @@ export const App = ({ options }) => {
     inside: mainContainer,
     withClasses: 'mainContainer__gameMode',
   });
-  const modeRules = render({
-    //component: ModeRules('You have one minute (1m) to answer as many questions as possible. During the game on each question you need to select who from Star Wars is showed on the left (Jar Jar Binks right now) from available options'),
-    component: ModeRules(),
+  // const modeRules = render({
+  //   //component: ModeRules('You have one minute (1m) to answer as many questions as possible. During the game on each question you need to select who from Star Wars is showed on the left (Jar Jar Binks right now) from available options'),
+  //   component: ModeRules(),
+  //   inside: mainContainer,
+  //   withClasses: 'mainContainer__modeRules',
+  // });
+
+  const topScores = [
+    {
+      user: 'user1',
+      score: 15,
+      maxScore: 30,
+    },
+    {
+      user: 'user2',
+      score: 18,
+      maxScore: 40,
+    },
+    {
+      user: 'user3',
+      score: 15,
+      maxScore: 25,
+    },
+  ];
+
+  const modeRanking = render({
+    component: ModeRanking(topScores),
     inside: mainContainer,
-    withClasses: 'mainContainer__modeRules',
   });
+
   const hallOfFameButton = render({
     component: Button({
       id: 'hallOfFameButton',
