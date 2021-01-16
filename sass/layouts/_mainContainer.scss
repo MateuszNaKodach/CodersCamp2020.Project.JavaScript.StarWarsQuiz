@@ -1,7 +1,35 @@
 .mainContainer {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
+
+  &__titleBox,
+  &__centralBox,
+  &__buttonBox {
+    margin: 15px 0;
+  }
+
+  &__titleBox {
+  }
+  &__centralBox {
+    flex-grow: 1;
+  }
+  &__buttonBox {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__hallOfFameButton,
+  &__rulesButton {
+    order: 1;
+    flex-basis: 50%;
+    margin-right: 8px;
+  }
+  &__playTheGameButton {
+    order: 2;
+    flex-basis: 50%;
+    margin-left: 8px;
+  }
 }
 
 @media screen and (min-width: 360px) and (max-width: 414px) {
