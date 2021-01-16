@@ -1,4 +1,3 @@
-// import { StartWindow } from '';
 import { StartWindow } from './components/StartWindow';
 import { NavMenu } from './layouts/NavMenu';
 import { QuestionImage } from './layouts/QuestionImage';
@@ -20,64 +19,18 @@ import { ModeRanking } from './components/ModeRanking';
 
 export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
-  const wrapper = render({ component: Wrapper(), inside: app });
-  const navMenu = renderNavMenu(wrapper);
-  const logo = render({
-    component: Logo(),
-    inside: wrapper,
-    withClasses: 'wrapper__logo',
-  });
-  const mainContainer = render({
-    component: MainContainer(),
-    inside: wrapper,
-    withClasses: 'wrapper__mainContainer',
-  });
-  const questionImage = render({
-    component: QuestionImage('people', 4),
-    inside: wrapper,
-    withClasses: 'wrapper__mainImg',
-  });
-  const gameMode = render({
-    component: GameMode(),
-    inside: mainContainer,
-    withClasses: 'mainContainer__gameMode',
-  });
-  // const modeRules = render({
-  //   //component: ModeRules('You have one minute (1m) to answer as many questions as possible. During the game on each question you need to select who from Star Wars is showed on the left (Jar Jar Binks right now) from available options'),
-  //   component: ModeRules(),
-  //   inside: mainContainer,
-  //   withClasses: 'mainContainer__modeRules',
-  // });
-
-  const topScores = [
-    {
-      user: 'user1',
-      score: 15,
-      maxScore: 30,
-    },
-    {
-      user: 'user2',
-      score: 18,
-      maxScore: 40,
-    },
-    {
-      user: 'user3',
-      score: 15,
-      maxScore: 25,
-    },
-  ];
 
   // ! dla programistów: nie pisać kodu poniżej
   // ! dla Tomasz i Piotr: Nasz kod poniżej
   // ! >>> TU NIE ZMIENIAĆ (NIC TU NIE DODAWAĆ) >>>
 
-  // app.innerHTML = '';
-  // const startWindow = render({
-  //   component: StartWindow(() => {}),
-  //   inside: app,
-  // });
+  app.innerHTML = '';
+  const startWindow = render({
+    component: StartWindow(() => {}),
+    inside: app,
+  });
 
-  const wrapper2 = render({ component: Wrapper(), inside: app });
+  const wrapper = render({ component: Wrapper(), inside: app });
 
   // ! <<< TU NIE ZMIENIAĆ (NIC TU NIE DODAWAĆ) <<<
   // ! ---------------
@@ -147,7 +100,7 @@ const vehiclesQuestionGenerator = new QuestionGenerator(
 );
 
 // how to get data from QuestionGenerator
-console.log(
-  peopleQuestionGenerator.generateQuestion().then((res) => console.log(res)),
-);
-console.log(startshipsQuestionGenerator.generateQuestion());
+// console.log(
+//   peopleQuestionGenerator.generateQuestion().then((res) => console.log(res)),
+// );
+// console.log(startshipsQuestionGenerator.generateQuestion());
