@@ -4,18 +4,38 @@ import { ModeRanking } from '../components/ModeRanking';
 import { Ranking } from '../Ranking';
 import { Button } from '../components/Button';
 
-export const GameOptionsView = (container, cleanViewCallbackFunction) => {
-  return setGameMode;
+export const gameOptionsView = (
+  container,
+  cleanViewCallbackFunction,
+  gameModeName = 'people',
+) => {
+  return setGameModeView(container, cleanViewCallbackFunction, gameModeName);
 };
 
 //// ****************************************************************
-function setGameMode(parent, cleanViewCallbackFunction, gameMode = 'people') {
-  renderView(parent, cleanViewCallbackFunction, gameMode, 'rulesView');
-  renderView(parent, cleanViewCallbackFunction, gameMode, 'rulesView');
+//// ****************************************************************
+function setGameModeView(
+  parent,
+  cleanViewCallbackFunction,
+  gameMode = 'people',
+) {
+  return renderViewArray(
+    parent,
+    cleanViewCallbackFunction,
+    gameMode,
+    'rulesView',
+  );
+  // renderView(parent, cleanViewCallbackFunction, gameMode, 'rulesView');
+  // return [];
 }
 
 //// ****************************************************************
-function renderView(parent, cleanViewCallbackFunction, gameModeName, viewMode) {
+function renderViewArray(
+  parent,
+  cleanViewCallbackFunction,
+  gameModeName,
+  viewMode,
+) {
   cleanViewCallbackFunction(parent);
   //// ****************************************************************
   // * TITLE BOX
@@ -40,7 +60,7 @@ function renderView(parent, cleanViewCallbackFunction, gameModeName, viewMode) {
     btnText: 'Hall of fame',
     classList: ['mainContainer__hallOfFameButton'],
     onClickFn: () => {
-      renderView(
+      renderViewArray(
         parent,
         cleanViewCallbackFunction,
         gameModeName,
@@ -55,7 +75,12 @@ function renderView(parent, cleanViewCallbackFunction, gameModeName, viewMode) {
     btnText: 'Rules',
     classList: ['mainContainer__rulesButton'],
     onClickFn: () => {
-      renderView(parent, cleanViewCallbackFunction, gameModeName, 'rulesView');
+      renderViewArray(
+        parent,
+        cleanViewCallbackFunction,
+        gameModeName,
+        'rulesView',
+      );
     },
     icon: 'Rules',
   });
@@ -65,36 +90,53 @@ function renderView(parent, cleanViewCallbackFunction, gameModeName, viewMode) {
     btnText: 'play the game',
     classList: ['mainContainer__playTheGameButton'],
     onClickFn: () => {
-      renderView(parent, cleanViewCallbackFunction, gameModeName, 'gameView');
+      renderViewArray(
+        parent,
+        cleanViewCallbackFunction,
+        gameModeName,
+        'gameView',
+      );
     },
   });
   playTheGameButton.setSpecial();
+
+  const elementsArray = [];
 
   //// ****************************************************************
   // * SWITCHER - VIEW MODE
   switch (viewMode) {
     case 'rulesView':
-      parent.appendChild(gameModeTitle);
-      parent.appendChild(modeRulesBox);
+      elementsArray.push(gameModeTitle);
+      elementsArray.push(modeRulesBox);
+      // parent.appendChild(gameModeTitle);
+      // parent.appendChild(modeRulesBox);
       buttonBox.appendChild(hallOfFameButton);
       buttonBox.appendChild(playTheGameButton);
+      elementsArray.push(buttonBox);
       break;
     case 'rankingView':
-      parent.appendChild(gameModeTitle);
-      parent.appendChild(modeRankingBox);
+      elementsArray.push(gameModeTitle);
+      elementsArray.push(modeRankingBox);
+      // parent.appendChild(gameModeTitle);
+      // parent.appendChild(modeRankingBox);
       buttonBox.appendChild(rulesButton);
       buttonBox.appendChild(playTheGameButton);
+      elementsArray.push(buttonBox);
       break;
     case 'gameView':
       break;
     default:
-      parent.appendChild(gameModeTitle);
+      elementsArray.push(gameModeTitle);
+      // parent.appendChild(gameModeTitle);
       buttonBox.appendChild(hallOfFameButton);
       buttonBox.appendChild(playTheGameButton);
+      elementsArray.push(buttonBox);
       break;
   }
 
-  parent.appendChild(buttonBox);
+  // parent.appendChild(buttonBox);
+  console.log(elementsArray);
+  return elementsArray;
 }
 
 //// ****************************************************************
