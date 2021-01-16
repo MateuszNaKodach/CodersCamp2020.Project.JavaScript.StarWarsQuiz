@@ -1,3 +1,5 @@
+// import { StartWindow } from '';
+import { StartWindow } from './components/StartWindow';
 import { NavMenu } from './layouts/NavMenu';
 import { QuestionImage } from './layouts/QuestionImage';
 import { Logo } from './layouts/Logo';
@@ -65,80 +67,23 @@ export const App = ({ options }) => {
     },
   ];
 
-  const modeRanking = render({
-    component: ModeRanking(topScores),
-    inside: mainContainer,
-  });
+  // ! dla programistów: nie pisać kodu poniżej
+  // ! dla Tomasz i Piotr: Nasz kod poniżej
+  // ! >>> TU NIE ZMIENIAĆ (NIC TU NIE DODAWAĆ) >>>
 
-  const hallOfFameButton = render({
-    component: Button({
-      id: 'hallOfFameButton',
-      btnText: 'HallOfFame',
-      classList: ['mainContainer__hallOfFameButton'],
-      onClickFn: undefined,
-      icon: 'fame',
-    }),
-    inside: mainContainer,
-  });
+  // app.innerHTML = '';
+  // const startWindow = render({
+  //   component: StartWindow(() => {}),
+  //   inside: app,
+  // });
 
-  const playTheGameButton = render({
-    component: Button({
-      id: 'playTheGameButton',
-      btnText: 'play the game',
-      classList: ['mainContainer__playTheGameButton'],
-      onClickFn: startGame,
-    }),
-    inside: mainContainer,
-  });
-  playTheGameButton.setSpecial();
-  const questionAnswers = render({
-    component: QuestionAnswers(
-      ['Luke Skywalker', 'Jar Jar Binks', 'Padme Amidala', 'Darth Vader'],
-      'Darth Vader',
-      onAnswerChosen,
-    ),
-    //component: QuestionAnswers(answers, correctAnswer, onAnswerChosen),
-    inside: mainContainer,
-    withClasses: 'mainContainer__answersWrapper',
-  });
+  const wrapper = render({ component: Wrapper(), inside: app });
 
-  // Modal window
-  const modalWindow = ModalWindow(app);
-  // Modal window methods
-  // modalWindow.show(Here_some_content_as_HTMLElement);
-  // modalWindow.close  to close the window and remove the content
-
-  /* MODAL WINDOW CONTENT TO REMOVE LATER!
-  const testButton = render({
-    component: Button({
-      id: 'abcd',
-      btnText: 'TEST BUTTON',
-      classList: [''],
-      onClickFn: testFunction,
-    }),
-    inside: app,
-  });
-
-  function testFunction() {
-    const contemodalWindowContent = ModalWindowContent(
-      [
-        { id: 1, isCorrect: true },
-        { id: 2, isCorrect: true },
-      ],
-      [
-        { id: 1, isCorrect: false },
-        { id: 2, isCorrect: true },
-      ],
-      onSubmitFunction,
-    );
-
-    modalWindow.show(contemodalWindowContent);
-  }
-
-  function onSubmitFunction(playerName, playerResult, playerAnswersQuantity) {
-    modalWindow.close();
-  }
-  */
+  // ! <<< TU NIE ZMIENIAĆ (NIC TU NIE DODAWAĆ) <<<
+  // ! ---------------
+  // ! ---------------
+  // ! ---------------
+  // ! ---------------
 };
 
 function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
