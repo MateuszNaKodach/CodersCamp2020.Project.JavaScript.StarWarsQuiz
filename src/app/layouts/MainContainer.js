@@ -1,4 +1,4 @@
-import { GameOptionsView } from '../views/GameOptionsView';
+import { gameOptionsView } from '../views/GameOptionsView';
 
 export const MainContainer = (gameMode = undefined) => {
   const container = document.createElement('section');
@@ -7,23 +7,29 @@ export const MainContainer = (gameMode = undefined) => {
 
   cleanView(container);
 
-  // ! TO NIŻEJ TO FUNKCJA
-  const gameOptionsView = GameOptionsView(container, cleanView);
-  console.log('Tu jestem: container.setGameMode');
-  gameOptionsView(container, cleanView);
-
-  container.setGameMode = (parent, gameModeName) => {
-    console.log('Tu jestem: container.setGameMode');
-    gameOptionsView(container, cleanView, gameModeName);
+  container.setGameModeFromMainContainer = (gameModeName) => {
+    renderComponentsFromComponentsArray(
+      container,
+      gameOptionsView(
+        container,
+        cleanView,
+        gameModeName,
+        renderComponentsFromComponentsArray,
+      ),
+    );
   };
 
+  container.setGameModeFromMainContainer();
   return container;
 };
 
-//// ****************************************************************
-//// ****************************************************************
-//// ****************************************************************
-
 function cleanView(parent) {
   parent.innerHTML = '';
+}
+
+function renderComponentsFromComponentsArray(mainContainer, componentsArray) {
+  console.log(componentsArray);
+  componentsArray.forEach((item) => {
+    mainContainer.appendChild(item);
+  });
 }

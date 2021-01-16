@@ -123,7 +123,7 @@ function onClickNavMenuButton(
 
   // console.log(mainContainer);
   // console.log(gameModeName);
-  mainContainer.setGameMode(mainContainer, gameModeName);
+  mainContainer.setGameModeFromMainContainer(gameModeName);
 
   // console.log('Pochodzę z onClicka');
   // console.log(parent);
