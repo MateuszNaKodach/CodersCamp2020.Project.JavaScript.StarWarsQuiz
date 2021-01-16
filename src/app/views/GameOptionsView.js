@@ -5,12 +5,14 @@ import { Ranking } from '../Ranking';
 import { Button } from '../components/Button';
 
 export const gameOptionsView = (
+  settings = { gameModeName: undefined, gameModeTitlesList: undefined },
   container,
   cleanViewCallbackFunction,
   gameModeName = 'people',
   onClickCallBackFunction,
 ) => {
   return setGameModeView(
+    settings,
     container,
     cleanViewCallbackFunction,
     gameModeName,
@@ -21,12 +23,14 @@ export const gameOptionsView = (
 //// ****************************************************************
 //// ****************************************************************
 function setGameModeView(
+  settings = { gameModeName: undefined, gameModeTitlesList: undefined },
   parent,
   cleanViewCallbackFunction,
   gameMode = 'people',
   onClickCallBackFunction,
 ) {
   return renderViewArray(
+    settings,
     parent,
     cleanViewCallbackFunction,
     gameMode,
@@ -39,6 +43,7 @@ function setGameModeView(
 
 //// ****************************************************************
 function renderViewArray(
+  settings = { gameModeName: undefined, gameModeTitlesList: undefined },
   parent,
   cleanViewCallbackFunction,
   gameModeName,
@@ -48,12 +53,16 @@ function renderViewArray(
   cleanViewCallbackFunction(parent);
   //// ****************************************************************
   // * TITLE BOX
-  const gameModeTitle = GameMode(getModeText(gameModeName, gameModeTitlesList));
+  const gameModeTitle = GameMode(
+    getModeText(gameModeName, settings.gameModeTitlesList),
+  );
   gameModeTitle.classList.add('mainContainer__titleBox');
 
   //// ****************************************************************
   // * CENTRAL BOX
-  const modeRulesBox = ModeRules(getModeText(gameModeName, gameModeRulesList));
+  const modeRulesBox = ModeRules(
+    getModeText(gameModeName, settings.gameModeRulesList),
+  );
   modeRulesBox.classList.add('mainContainer__centralBox');
 
   const modeRankingBox = ModeRanking(getScoresTabFromDataBase(gameModeName));
@@ -70,9 +79,11 @@ function renderViewArray(
     classList: ['mainContainer__hallOfFameButton'],
     onClickFn: () => {
       onClickCallBackFunction(
+        gameModeName,
         viewModeName,
         parent,
         renderViewArray(
+          settings,
           parent,
           cleanViewCallbackFunction,
           gameModeName,
@@ -90,9 +101,11 @@ function renderViewArray(
     classList: ['mainContainer__rulesButton'],
     onClickFn: () => {
       onClickCallBackFunction(
+        gameModeName,
         viewModeName,
         parent,
         renderViewArray(
+          settings,
           parent,
           cleanViewCallbackFunction,
           gameModeName,
@@ -109,7 +122,7 @@ function renderViewArray(
     btnText: 'play the game',
     classList: ['mainContainer__playTheGameButton'],
     onClickFn: () => {
-      onClickCallBackFunction('gameView');
+      onClickCallBackFunction(gameModeName, 'gameView', parent);
     },
   });
   playTheGameButton.setSpecial();
@@ -174,18 +187,3 @@ function getModeText(gameModeName, gameModesList) {
       break;
   }
 }
-
-const gameModeTitlesList = {
-  people: 'Who is this character?',
-  vehicles: 'What is this vehicle?',
-  starships: 'What is this starship?',
-};
-
-const gameModeRulesList = {
-  people:
-    'You have one minute (1m) to answer as many questions as possible. During the game on each question you need to select who from Star Wars is showed on the left from available options',
-  vehicles:
-    'You have one minute (1m) to answer as many questions as possible. During the game on each question you need to select what vehicle from Star Wars is showed on the left from available options',
-  starships:
-    'You have one minute (1m) to answer as many questions as possible. During the game on each question you need to select what starship from Star Wars is showed on the left from available options',
-};

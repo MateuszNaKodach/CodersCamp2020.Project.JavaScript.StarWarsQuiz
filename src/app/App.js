@@ -21,88 +21,15 @@ import { ModeRanking } from './components/ModeRanking';
 export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
 
-  // const wrapper1 = render({ component: Wrapper(), inside: app });
-  // const navMenu = renderNavMenu(wrapper1);
-  // const logo = render({
-  //   component: Logo(),
-  //   inside: wrapper1,
-  //   withClasses: 'wrapper__logo',
-  // });
-  // const mainContainer = render({
-  //   component: MainContainer(),
-  //   inside: wrapper1,
-  //   withClasses: 'wrapper__mainContainer',
-  // });
-  // const questionImage = render({
-  //   component: QuestionImage(
-  //     'c3RhdGljL2Fzc2V0cy9pbWcvbW9kZXMvcGVvcGxlLzQuanBn',
-  //   ),
-  //   inside: wrapper1,
-  //   withClasses: 'wrapper__mainImg',
-  // });
-  // const gameMode = render({
-  //   component: GameMode(),
-  //   inside: mainContainer,
-  //   withClasses: 'mainContainer__gameMode',
-  // });
-
-  // const modeRules = render({
-  //   //component: ModeRules('You have one minute (1m) to answer as many questions as possible. During the game on each question you need to select who from Star Wars is showed on the left (Jar Jar Binks right now) from available options'),
-  //   component: ModeRules(),
-  //   inside: mainContainer,
-  //   withClasses: 'mainContainer__modeRules',
-  // });
-
-  // const topScores = [
-  //   {
-  //     user: 'user1',
-  //     score: 15,
-  //     maxScore: 30,
-  //   },
-  //   {
-  //     user: 'user2',
-  //     score: 18,
-  //     maxScore: 40,
-  //   },
-  //   {
-  //     user: 'user3',
-  //     score: 15,
-  //     maxScore: 25,
-  //   },
-  // ];
-
-  // const modeRanking = render({
-  //   component: ModeRanking(topScores),
-  //   inside: mainContainer,
-  // });
-
-  // playTheGameButton.setSpecial();
-  // const questionAnswers = render({
-  //   component: QuestionAnswers(
-  //     ['Luke Skywalker', 'Jar Jar Binks', 'Padme Amidala', 'Darth Vader'],
-  //     'Darth Vader',
-  //     onAnswerChosen,
-  //   ),
-  //   //component: QuestionAnswers(answers, correctAnswer, onAnswerChosen),
-  //   inside: mainContainer,
-  //   withClasses: 'mainContainer__answersWrapper',
-  // });
-
-  // Modal window
-  // const modalWindow = ModalWindow(app);
-  // Modal window methods
-  // modalWindow.show(Here_some_content_as_HTMLElement);
-  // modalWindow.close  to close the window and remove the content
-
   // ! dla programistów: nie pisać kodu poniżej
   // ! dla Tomasz i Piotr: Nasz kod poniżej
   // ! >>> TU NIE ZMIENIAĆ (NIC TU NIE DODAWAĆ) >>>
 
-  app.innerHTML = '';
-  const startWindow = render({
-    component: StartWindow(() => {}),
-    inside: app,
-  });
+  // app.innerHTML = '';
+  // const startWindow = render({
+  //   component: StartWindow(() => {}),
+  //   inside: app,
+  // });
 
   const wrapper = render({ component: Wrapper(), inside: app });
 
