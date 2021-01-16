@@ -1,5 +1,4 @@
 .wrapper {
-  // ! przemyśleć czy zostawić
   overflow: hidden;
   display: grid;
 
@@ -12,16 +11,12 @@
   grid-template-columns: $padding_horizontal__wrapper 1fr $padding_horizontal__wrapper 2fr $padding_horizontal__wrapper;
   grid-template-rows: 0px 200px 25px auto 20px;
 
-  // background-color: chartreuse;
-
   &__logo {
     grid-column: 2 / span 1;
     grid-row: 2 / span 1;
   }
 
   &__nav {
-    margin: 50px auto;
-
     grid-column: 4 / span 1;
     grid-row: 2 / span 1;
   }
@@ -29,14 +24,11 @@
   &__mainImg {
     grid-column: 2 / span 1;
     grid-row: 4 / span 1;
-
-    background-color: rgba(0, 0, 255, 0.3);
   }
 
   &__mainContainer {
     grid-column: 4 / span 1;
     grid-row: 4 / span 1;
-    background-color: rgba(0, 0, 255, 0.3);
   }
 }
 
@@ -53,38 +45,26 @@
 
     $gap: 10px;
     grid-template-columns: $gap 3fr 10fr 3fr $gap;
-    grid-template-rows: $gap 1fr $gap 1fr $gap 7fr $gap 2fr $gap 2fr $gap 2fr $gap 2fr $gap 2fr $gap;
-
-    // background-color: chartreuse;
+    grid-template-rows: 5px 1fr 1fr 15px 9fr $gap 2fr $gap 2fr $gap 2fr $gap 2fr $gap 2fr $gap 2fr $gap;
 
     &__logo {
-      grid-column: 2 / span 1;
+      grid-column: 3 / span 1;
       grid-row: 2 / span 1;
-      display: none;
     }
 
     &__nav {
-      margin: 0;
-      display: none;
-
-      // grid-column: 4 / span 1;
-      // grid-row: 2 / span 1;
+      grid-column: 2 / span 3;
+      grid-row: 3 / span 1;
     }
 
     &__mainImg {
       grid-column: 3 / span 1;
-      grid-row: 6 / span 1;
-      justify-self: center;
-
-      background-color: rgba(0, 0, 255, 0.3);
+      grid-row: 5 / span 1;
     }
 
     &__mainContainer {
-      grid-column: 1 / 3;
-      grid-row: 4 / 6;
-      display: none;
-
-      background-color: rgba(0, 0, 255, 0.3);
+      grid-column: 2 / span 4;
+      grid-row: 7 / span 11;
     }
   }
 }

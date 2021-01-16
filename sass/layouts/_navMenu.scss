@@ -50,3 +50,54 @@
     outline: none;
   }
 }
+
+@media screen and (min-width: 360px) and (max-width: 414px) {
+  .navMenu {
+    height: 100%;
+    width: 100%;
+    background: $color-bgc;
+    border-radius: $component-radius;
+    box-shadow: $component-shadow;
+
+    &__list {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      padding: 5px;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    &__li {
+      height: 100%;
+      text-align: center;
+    }
+    &__btn {
+      display: inline-block;
+      height: 100%;
+      padding: 0 10px;
+      background-color: transparent;
+      font-size: 15px;
+      font-weight: bold;
+      text-transform: capitalize;
+      line-height: 1;
+      border: none;
+    }
+
+    &__btn--active::after {
+      content: '';
+      display: block;
+      height: 3px;
+      width: 100%;
+      border-radius: 10px;
+      background-color: #e04f4f;
+      box-shadow: 0px 0px 25px 2px rgba(230, 0, 1, 0.8);
+    }
+
+    &__btn:focus {
+      outline: none;
+    }
+  }
+}
