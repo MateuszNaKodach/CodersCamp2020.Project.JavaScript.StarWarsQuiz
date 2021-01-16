@@ -202,5 +202,7 @@ const vehiclesQuestionGenerator = new QuestionGenerator(
 );
 
 // how to get data from QuestionGenerator
-// console.log(peopleQuestionGenerator.generateQuestion().then(res => console.log(res)));
-// console.log(startshipsQuestionGenerator.generateQuestion());
+console.log(
+  peopleQuestionGenerator.generateQuestion().then((res) => console.log(res)),
+);
+console.log(startshipsQuestionGenerator.generateQuestion());
