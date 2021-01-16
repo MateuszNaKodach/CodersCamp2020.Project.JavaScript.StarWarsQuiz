@@ -77,7 +77,7 @@ export const App = ({ options }) => {
   //   inside: app,
   // });
 
-  const wrapper = render({ component: Wrapper(), inside: app });
+  const wrapper2 = render({ component: Wrapper(), inside: app });
 
   // ! <<< TU NIE ZMIENIAĆ (NIC TU NIE DODAWAĆ) <<<
   // ! ---------------
