@@ -125,18 +125,11 @@ function renderViewArray(
 
   //// ****************************************************************
   // * SWITCHER - VIEW MODE
-  console.log('SWITCHER');
-  console.log('SWITCHER');
-  console.log('SWITCHER');
-  console.log('SWITCHER');
-  console.log('SWITCHER');
-  console.log(viewMode);
+
   switch (viewMode) {
     case 'rulesView':
       elementsArray.push(gameModeTitle);
       elementsArray.push(modeRulesBox);
-      // parent.appendChild(gameModeTitle);
-      // parent.appendChild(modeRulesBox);
       buttonBox.appendChild(hallOfFameButton);
       buttonBox.appendChild(playTheGameButton);
       elementsArray.push(buttonBox);
@@ -144,8 +137,6 @@ function renderViewArray(
     case 'rankingView':
       elementsArray.push(gameModeTitle);
       elementsArray.push(modeRankingBox);
-      // parent.appendChild(gameModeTitle);
-      // parent.appendChild(modeRankingBox);
       buttonBox.appendChild(rulesButton);
       buttonBox.appendChild(playTheGameButton);
       elementsArray.push(buttonBox);
@@ -154,7 +145,6 @@ function renderViewArray(
       break;
     default:
       elementsArray.push(gameModeTitle);
-      // parent.appendChild(gameModeTitle);
       buttonBox.appendChild(hallOfFameButton);
       buttonBox.appendChild(playTheGameButton);
       elementsArray.push(buttonBox);

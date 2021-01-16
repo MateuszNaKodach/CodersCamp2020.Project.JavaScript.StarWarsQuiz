@@ -20,6 +20,7 @@ export const MainContainer = (gameMode = undefined) => {
   };
 
   container.setGameModeFromMainContainer();
+
   return container;
 };
 
