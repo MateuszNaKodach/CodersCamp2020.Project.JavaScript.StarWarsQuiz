@@ -20,9 +20,7 @@ export class QuestionGenerator {
     const rightAnswer = questions.find(
       (question) => rightAnswerId === question.id,
     ).name;
-    const questionImage = btoa(
-      `static/assets/img/modes/${this.mode}/${rightAnswerId}.jpg`,
-    );
+    const questionImage = { mode: this.mode, rightAnswer: rightAnswerId };
     return {
       image: questionImage,
       answers,

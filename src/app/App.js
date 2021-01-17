@@ -1,4 +1,3 @@
-// import { StartWindow } from '';
 import { StartWindow } from './components/StartWindow';
 import { NavMenu } from './layouts/NavMenu';
 import { QuestionImage } from './layouts/QuestionImage';
@@ -101,5 +100,7 @@ const vehiclesQuestionGenerator = new QuestionGenerator(
 );
 
 // how to get data from QuestionGenerator
-// console.log(peopleQuestionGenerator.generateQuestion().then(res => console.log(res)));
+// console.log(
+//   peopleQuestionGenerator.generateQuestion().then((res) => console.log(res)),
+// );
 // console.log(startshipsQuestionGenerator.generateQuestion());

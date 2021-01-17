@@ -26,9 +26,7 @@ function setStartView(parent) {
   });
 
   const questionImage = render({
-    component: QuestionImage(
-      'c3RhdGljL2Fzc2V0cy9pbWcvbW9kZXMvcGVvcGxlLzQuanBn',
-    ),
+    component: QuestionImage('people', 4),
     inside: parent,
     withClasses: 'wrapper__mainImg',
   });
