@@ -25,6 +25,8 @@ export class GameQuizView {
       (questionObjectFromGameMenager) =>
         this._setQuestionFromGameManager(questionObjectFromGameMenager),
       () => this._setEndOfGame,
+      () => this._setUpdatedTime,
+      this.settings.gameModeName,
     );
   }
 
@@ -33,6 +35,8 @@ export class GameQuizView {
     console.log('Gra zakończyła się!');
     console.log('Strona powinna przeładować się automatycznie!');
   }
+
+  _setUpdatedTime(time) {}
 
   // ******************************************************
   _renderWaitingTitleComponent() {
@@ -90,13 +94,14 @@ export class GameQuizView {
   _setNewMainQuestionImage(imageFromQuestionObjectFromGameMenager) {
     const mainQuestionImage = document.getElementById('mainQuestionImage');
 
-    mainQuestionImage.style.backgroundImage = `url(./../../../../static/assets/img/modes/${imageFromQuestionObjectFromGameMenager.mode}/${imageFromQuestionObjectFromGameMenager.rightAnswer}.jpg)`;
+    mainQuestionImage.src = `static/assets/img/modes/${imageFromQuestionObjectFromGameMenager.mode}/${imageFromQuestionObjectFromGameMenager.rightAnswer}.jpg`;
   }
 
   // ******************************************************
   _onClickButton(answerAddedByUser, isAnswerddedByUserCorrect) {
     this._clearMainContainer();
     this._renderWaitingTitleComponent();
+    // this.gameManager.savePlayerAnswer(
     this.gameManager.setAnswerFromUI(
       answerAddedByUser,
       isAnswerddedByUserCorrect,
@@ -112,7 +117,7 @@ function modifiedGameModeComponent(
 ) {
   let questionTitle = '';
   const questionContainer = gameModeTitleComponent(questionTitle);
-  questionContainer.classList.add = 'quizQuestion';
+  // ? questionContainer.classList.add('quizQuestion');
 
   if (!isWaitingForRendering) {
     switch (gameModeName) {

@@ -24,7 +24,7 @@ export const MainContainer = (gameMode = undefined) => {
     );
   };
 
-  container.setGameModeFromMainContainer();
+  container.setGameModeFromMainContainer('people');
 
   return container;
 };
