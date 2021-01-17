@@ -175,15 +175,11 @@ function getModeText(gameModeName, gameModesList) {
   switch (gameModeName) {
     case 'people':
       return gameModesList.people;
-      break;
     case 'vehicles':
       return gameModesList.vehicles;
-      break;
     case 'starships':
       return gameModesList.starships;
-      break;
     default:
       return gameModesList.people;
-      break;
   }
 }
