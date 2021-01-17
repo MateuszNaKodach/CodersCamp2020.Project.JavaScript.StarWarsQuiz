@@ -196,26 +196,24 @@ class TemplateClass {
 class TemplateGeneratorClass {
   constructor() {
     this.itemNumber = 0;
-    this.internetServer;
+    this.internetServer = [
+      {
+        answers: ['Luke Skywalker', 'R2-D2', 'Chewbacca', 'Boba Fett'],
+        image: { mode: 'people', rightAnswer: 1 },
+        rightAnswer: 'Luke Skywalker',
+      },
+      {
+        answers: ['Brzuszek', 'R2-D2', 'Kot filemon', 'JSON'],
+        image: { mode: 'people', rightAnswer: 2 },
+        rightAnswer: 'R2-D2',
+      },
+      {
+        answers: ['Brzuszek', 'Kot filemon', 'JSON', 'C-3PO'],
+        image: { mode: 'people', rightAnswer: 3 },
+        rightAnswer: 'C-3PO',
+      },
+    ];
   }
-
-  internetServer = [
-    {
-      answers: ['Luke Skywalker', 'R2-D2', 'Chewbacca', 'Boba Fett'],
-      image: { mode: 'people', rightAnswer: 1 },
-      rightAnswer: 'Luke Skywalker',
-    },
-    {
-      answers: ['Brzuszek', 'R2-D2', 'Kot filemon', 'JSON'],
-      image: { mode: 'people', rightAnswer: 2 },
-      rightAnswer: 'R2-D2',
-    },
-    {
-      answers: ['Brzuszek', 'Kot filemon', 'JSON', 'C-3PO'],
-      image: { mode: 'people', rightAnswer: 3 },
-      rightAnswer: 'C-3PO',
-    },
-  ];
 
   getGenereatedQuestion(callbackFunctionFromTampleClass) {
     const downloadingTime = 1000;
