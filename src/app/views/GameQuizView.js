@@ -62,10 +62,6 @@ export class GameQuizView {
 
   _renderLoadedGameViewArray(questionObjectFromGameMenager) {
     this._clearMainContainer();
-    // TODO: Zbierz komponenty
-    console.log('object');
-    console.log('object');
-    console.log('object');
     console.log(questionObjectFromGameMenager);
 
     const modifiedGameModeComp = modifiedGameModeComponent(
@@ -82,10 +78,6 @@ export class GameQuizView {
     const renderedLoadedGameViewArray = [
       modifiedGameModeComp,
       questionAnswersButtonsBoxComp,
-      // TODO: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      // TODO: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      // TODO: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      // TODO: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     ];
 
     this.settings.renderComponentsFromComponentsArrayCallbackFunction(
@@ -104,10 +96,27 @@ export class GameQuizView {
     console.log(questionObjectFromGameMenager);
     this._renderLoadedGameViewArray(questionObjectFromGameMenager);
 
-    // TODO: TUTAJ wywołuję ustawienie -> OBRAZEK
-    // TODO: TUTAJ wywołuję ustawienie -> OBRAZEK
-    // TODO: TUTAJ wywołuję ustawienie -> OBRAZEK
-    // TODO: TUTAJ wywołuję ustawienie -> OBRAZEK
+    this._setNewMainQuestionImage(questionObjectFromGameMenager.image);
+    // console.log(mainQuestionImage);
+    // mainQuestionImage.
+  }
+
+  _setNewMainQuestionImage(imageFromQuestionObjectFromGameMenager) {
+    console.log('*********************************************');
+    console.log('*********************************************');
+    const mainQuestionImage = document.getElementById('mainQuestionImage');
+    console.log(mainQuestionImage);
+    // const imageWrapper = document.createElement('div');
+    // image = atob(image);
+    // console.log(image);
+    // imageWrapper.setAttribute('data-testid', 'imageWrapper');
+    // imageWrapper.classList.add('questionImage');
+
+    // mainQuestionImage.style.backgroundImage = `url(./static/assets/img/modes/${imageFromQuestionObjectFromGameMenager.mode}/${imageFromQuestionObjectFromGameMenager.rightAnswer})`;
+    mainQuestionImage.style.backgroundImage = `url(./../../../../static/assets/img/modes/${imageFromQuestionObjectFromGameMenager.mode}/${imageFromQuestionObjectFromGameMenager.rightAnswer}.jpg)`;
+    console.log(mainQuestionImage);
+
+    // return imageWrapper;
   }
 
   // ******************************************************

@@ -32,6 +32,7 @@ function setStartView(parent) {
     inside: parent,
     withClasses: 'wrapper__mainImg',
   });
+  questionImage.id = 'mainQuestionImage';
 
   const mainContainer = render({
     component: MainContainer(),
