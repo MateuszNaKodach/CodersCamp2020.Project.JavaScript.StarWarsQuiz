@@ -3,8 +3,6 @@ import { ModeRules } from '../components/ModeRules';
 import { ModeRanking } from '../components/ModeRanking';
 import { Ranking } from '../Ranking';
 import { Button } from '../components/Button';
-import { Sword } from '../components/Sword';
-import { render } from '../rendering';
 
 export const gameOptionsView = (
   settings = { gameModeName: undefined, gameModeTitlesList: undefined },
@@ -150,7 +148,6 @@ function renderViewArray(
       elementsArray.push(buttonBox);
       break;
     case 'gameView':
-      elementsArray.push(sword);
       break;
     default:
       elementsArray.push(gameModeTitle);
