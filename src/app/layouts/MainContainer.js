@@ -58,19 +58,24 @@ function onClickFunctionForGameOptionsView(
     const gameQuizView = new GameQuizView({
       gameModeName: gameModeName,
       gameModeTitlesList: gameModeTitlesList,
-      clearViewCallbackFunction: () => {
+      clearMainContainerViewCallbackFunction: () => {
         cleanView(mainContainer);
       },
+      renderComponentsFromComponentsArrayCallbackFunction: (
+        componentsArray,
+      ) => {
+        renderComponentsFromComponentsArray(mainContainer, componentsArray);
+      },
     });
-    const waitingTitleComponent = gameQuizView.startGame();
-    console.log(waitingTitleComponent);
-    console.log('Renderowanie informacji o wczytywaniu pytania');
+    gameQuizView.startGame();
+    // console.log(waitingTitleComponent);
+    // console.log('Renderowanie informacji o wczytywaniu pytania');
+    // renderComponentsFromComponentsArray(mainContainer, waitingTitleComponent);
 
-    renderComponentsFromComponentsArray(mainContainer, waitingTitleComponent);
+    // ! <<<<<< TU JESTEŚMY
+    // ! <<<<<< TU JESTEŚMY
+    // ! <<<<<< TU JESTEŚMY
   }
-  // ! <<<<<< TU JESTEŚMY
-  // ! <<<<<< TU JESTEŚMY
-  // ! <<<<<< TU JESTEŚMY
 }
 
 const gameModeTitlesList = {

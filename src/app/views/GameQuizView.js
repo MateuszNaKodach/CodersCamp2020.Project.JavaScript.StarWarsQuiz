@@ -5,10 +5,12 @@ export class GameQuizView {
     settings = {
       gameModeName: undefined,
       gameModeTitlesList: undefined,
-      clearViewCallbackFunction: undefined,
+      clearMainContainerViewCallbackFunction: undefined,
+      renderComponentsFromComponentsArrayCallbackFunction: undefined,
     },
   ) {
     this.settings = settings;
+    this.tamplateClass;
     console.log('Jestem z konstruktora GAMEQUIZVIEW');
   }
 
@@ -19,14 +21,22 @@ export class GameQuizView {
     this._clearMainContainer();
 
     console.log('Funkcja ustawiająca komponent z tytułem pytania');
+    this.settings.renderComponentsFromComponentsArrayCallbackFunction([
+      this._getWaitingTitleComponent(),
+    ]);
 
-    // ! TUTAJ ODDAJEMY WODZE GameMaszynie!
-    const tamplateClass = new TemplateClass(this.setQuestionFromGameManager);
-
-    const renderedArray = [this._getWaitingTitleComponent()];
-    return renderedArray;
+    // ! TUTAJ ODDAJEMY GŁOS Maszynie GameManager !
+    this.tamplateClass = new TemplateClass(
+      () => this._setQuestionFromGameManager(),
+      () => this._setEndOfGame,
+    );
   }
 
+  // ******************************************************
+  _setEndOfGame() {
+    console.log('Gra zakończyła się!');
+    console.log('Strona powinna przeładować się automatycznie!');
+  }
   // ******************************************************
   _getWaitingTitleComponent() {
     return modifiedGameModeComponent(
@@ -39,35 +49,53 @@ export class GameQuizView {
   // ******************************************************
   _clearMainContainer() {
     console.log('Czyszczę mainContainer');
-    this.settings.clearViewCallbackFunction();
+    this.settings.clearMainContainerViewCallbackFunction();
   }
 
   // ******************************************************
-  _setQuestionComponent() {
-    modifiedGameModeComponent();
-  }
+  // _setQuestionComponent() {
+  //   modifiedGameModeComponent();
+  // }
 
   // console.log('Funkcja ustawiająca komponent z odpowiedziami');
 
-  _renderGameViewArray() {}
+  _renderLoadedGameViewArray() {
+    this._clearMainContainer();
+    // TODO: Zbierz komponenty
 
-  setQuestionFromGameManager(
+    const renderedLoadedGameViewArray = [
+      modifiedGameModeComponent(
+        this.settings.gameModeName,
+        this.settings.gameModeTitlesList,
+      ),
+    ];
+
+    // TODO: Wstaw komponenty do tablicy
+    // TODO: wyrenderuj komponenty
+    this.settings.renderComponentsFromComponentsArrayCallbackFunction(
+      renderedLoadedGameViewArray,
+    );
+  }
+
+  _setQuestionFromGameManager(
     questionObjectFromGameMenager = {
-      image: questionImage,
-      answers,
-      rightAnswer,
+      answers: ['example_1', 'example_2', 'example_3', 'example_4'],
+      image: { mode: 'people', rightAnswer: 1 },
+      rightAnswer: 'example_1',
     },
   ) {
     console.log('Funkcja ustawiająca treść nowego pytania! ');
-    // TODO: TUTAJ wywołuję ustawienie -> PRZYCISKI
+    this._renderLoadedGameViewArray(questionObjectFromGameMenager);
     // TODO: TUTAJ wywołuję ustawienie -> OBRAZEK
   }
 
   // ******************************************************
+  _onClickButton() {
+    this._clearMainContainer();
+    this._getWaitingTitleComponent();
+  }
+  // ******************************************************
 }
-
-// TODO: TUTAJ SOBIE USTAWIAM PRZYCISKI
-// TODO: TUTAJ SOBIE USTAWIAM OBRAZEK
 
 function modifiedGameModeComponent(
   gameModeName,
@@ -81,15 +109,15 @@ function modifiedGameModeComponent(
   if (!isWaitingForRendering) {
     switch (gameModeName) {
       case 'people':
-        questionTitle = questionsArray[0];
+        questionTitle = questionsArray.people;
         questionContainer.textContent = `Question: ${questionTitle}`;
         break;
       case 'vehicles':
-        questionTitle = questionsArray[1];
+        questionTitle = questionsArray.vehicles;
         questionContainer.textContent = `Question: ${questionTitle}`;
         break;
       case 'starships':
-        questionTitle = questionsArray[2];
+        questionTitle = questionsArray.starships;
         questionContainer.textContent = `Question: ${questionTitle}`;
         break;
     }
@@ -106,8 +134,12 @@ function modifiedGameModeComponent(
 // ! WIRTUALNY TEST!
 
 class TemplateClass {
-  constructor(setQuestionFromGameManager) {
-    this.callbackFunction = setQuestionFromGameManager;
+  constructor(
+    setQuestionFromGameManagerCallBackFunction,
+    setEndOfGameCallbackFunction,
+  ) {
+    this.callbackFunction_setQuestionFromGameManager = setQuestionFromGameManagerCallBackFunction;
+    this.callbackFunction_setEndOfGame = setEndOfGameCallbackFunction;
     this.templateGeneratorClass;
     this._tampleMethods_1();
   }
@@ -121,7 +153,7 @@ class TemplateClass {
   _setQuestionInUI() {
     console.log('TemplateClass._setQuestionInUI');
     this.templateGeneratorClass.getGenereatedQuestion((returnedObj) => {
-      this.callbackFunction(returnedObj);
+      this.callbackFunction_setQuestionFromGameManager(returnedObj);
     });
   }
 
@@ -133,6 +165,11 @@ class TemplateClass {
   _tampleMethods() {
     console.log('TemplateClass._tampleMethods');
     this._setQuestionInUI();
+  }
+
+  _templeEndOfGame() {
+    console.log('KONIEC GRY!');
+    this.callbackFunction_setEndOfGame();
   }
 }
 
@@ -149,19 +186,19 @@ class TemplateGeneratorClass {
       rightAnswer: 'Luke Skywalker',
     },
     {
-      answers: ['Brzuszek', 'Kot filemon', 'JSON', 'R2-D2'],
+      answers: ['Brzuszek', 'R2-D2', 'Kot filemon', 'JSON'],
       image: { mode: 'people', rightAnswer: 2 },
-      rightAnswer: 'JSON',
+      rightAnswer: 'R2-D2',
     },
     {
-      answers: ['Brzuszek', 'Kot filemon', 'JSON', 'Boba Fett'],
+      answers: ['Brzuszek', 'Kot filemon', 'JSON', 'C-3PO'],
       image: { mode: 'people', rightAnswer: 3 },
-      rightAnswer: 'JSON',
+      rightAnswer: 'C-3PO',
     },
   ];
 
   getGenereatedQuestion(callbackFunctionFromTampleClass) {
-    const downloadingTime = 5000;
+    const downloadingTime = 1000;
     console.log(`----------------------------------------`);
     console.log(`UWAGA!`);
     console.log(`Trwa pobieranie pytania...`);
@@ -171,9 +208,15 @@ class TemplateGeneratorClass {
     console.log(`(Może zostać naliczona opłata za transmisje danych )`);
     console.log(`----------------------------------------`);
     setTimeout(() => {
+      console.log(`----------------------------------------`);
+      console.log(`UWAGA! Pobrano pytanie z internetu! `);
+      console.log(`Czas pobierania wynosi ${downloadingTime} sec`);
       console.log(
-        `UWAGA! Pobrano pytanie z internetu! Czas pobierania wynosi ${downloadingTime} sec`,
+        `-->>>>> UWAGA! Naliczono %c${(Math.random() * 4).toFixed(2)} zł`,
+        'background: yellow;  font-weight: bold; ',
+        `złotego opłaty za transmisje!`,
       );
+      console.log(`----------------------------------------`);
       callbackFunctionFromTampleClass(this.tab[this.itemNumber++]);
     }, downloadingTime);
   }
