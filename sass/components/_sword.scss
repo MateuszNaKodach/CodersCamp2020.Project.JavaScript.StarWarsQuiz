@@ -2,43 +2,46 @@
   height: 50px;
   width: 1280px;
   margin: auto;
-}
-.sword-wrap {
-  display: flex;
-  align-items: center;
-}
 
-.sword-hilt {
-  position: relative;
-  width: 299px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-}
-.sword-hilt-image {
-  width: 299px;
-  position: absolute;
-  z-index: -20;
-  left: 20px;
-}
-.power-track {
-  height: 26px;
-  width: 900px;
-  background-color: #bcbcbc;
-  border-radius: 8px;
-}
-.power-track-light {
-  width: 900px;
-  height: 26px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 10px -5px 15px #ff0000, 10px 5px 15px #ff0000,
-    inset 0px 5px 4px rgba(255, 0, 0, 0.25);
-}
+  &__wrap {
+    display: flex;
+    align-items: center;
 
-.swordAnimation {
-  animation: animationName 120s;
-  // animation: animationName 5s;
+    &__hilt {
+      position: relative;
+      width: 299px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+
+      &--image {
+        width: 299px;
+        position: absolute;
+        z-index: -20;
+        left: 20px;
+      }
+    }
+
+    &__power {
+      height: 26px;
+      width: 900px;
+      background-color: #bcbcbc;
+      border-radius: 8px;
+
+      &--light {
+        width: 900px;
+        height: 26px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 10px -5px 15px #ff0000, 10px 5px 15px #ff0000,
+          inset 0px 5px 4px rgba(255, 0, 0, 0.25);
+      }
+
+      &--animation {
+        animation: animationName 120s;
+      }
+    }
+  }
 }
 
 @keyframes animationName {
