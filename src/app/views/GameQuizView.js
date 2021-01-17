@@ -12,13 +12,10 @@ export class GameQuizView {
   ) {
     this.settings = settings;
     this.templateClass;
-    console.log('Jestem z konstruktora GAMEQUIZVIEW');
   }
 
   // ******************************************************
-  // ******************************************************
   startGame() {
-    console.log('Funkcja czyszcząca mainContainer');
     this._clearMainContainer();
 
     this._renderWaitingTitleComponent();
@@ -36,6 +33,7 @@ export class GameQuizView {
     console.log('Gra zakończyła się!');
     console.log('Strona powinna przeładować się automatycznie!');
   }
+
   // ******************************************************
   _renderWaitingTitleComponent() {
     this.settings.renderComponentsFromComponentsArrayCallbackFunction([
@@ -49,20 +47,12 @@ export class GameQuizView {
 
   // ******************************************************
   _clearMainContainer() {
-    console.log('Czyszczę mainContainer');
     this.settings.clearMainContainerViewCallbackFunction();
   }
 
   // ******************************************************
-  // _setQuestionComponent() {
-  //   modifiedGameModeComponent();
-  // }
-
-  // console.log('Funkcja ustawiająca komponent z odpowiedziami');
-
   _renderLoadedGameViewArray(questionObjectFromGameMenager) {
     this._clearMainContainer();
-    console.log(questionObjectFromGameMenager);
 
     const modifiedGameModeComp = modifiedGameModeComponent(
       this.settings.gameModeName,
@@ -92,47 +82,29 @@ export class GameQuizView {
       rightAnswer: 'example_1',
     },
   ) {
-    console.log('Funkcja ustawiająca treść nowego pytania! ');
-    console.log(questionObjectFromGameMenager);
     this._renderLoadedGameViewArray(questionObjectFromGameMenager);
 
     this._setNewMainQuestionImage(questionObjectFromGameMenager.image);
-    // console.log(mainQuestionImage);
-    // mainQuestionImage.
   }
 
   _setNewMainQuestionImage(imageFromQuestionObjectFromGameMenager) {
-    console.log('*********************************************');
-    console.log('*********************************************');
     const mainQuestionImage = document.getElementById('mainQuestionImage');
-    console.log(mainQuestionImage);
-    // const imageWrapper = document.createElement('div');
-    // image = atob(image);
-    // console.log(image);
-    // imageWrapper.setAttribute('data-testid', 'imageWrapper');
-    // imageWrapper.classList.add('questionImage');
 
-    // mainQuestionImage.style.backgroundImage = `url(./static/assets/img/modes/${imageFromQuestionObjectFromGameMenager.mode}/${imageFromQuestionObjectFromGameMenager.rightAnswer})`;
     mainQuestionImage.style.backgroundImage = `url(./../../../../static/assets/img/modes/${imageFromQuestionObjectFromGameMenager.mode}/${imageFromQuestionObjectFromGameMenager.rightAnswer}.jpg)`;
-    console.log(mainQuestionImage);
-
-    // return imageWrapper;
   }
 
   // ******************************************************
   _onClickButton(answerAddedByUser, isAnswerddedByUserCorrect) {
     this._clearMainContainer();
-    // console.log(object);
     this._renderWaitingTitleComponent();
-    // this.setAnswerFromUI(answerAddedByUser, isAnswerddedByUserCorrect);
     this.templateClass.setAnswerFromUI(
       answerAddedByUser,
       isAnswerddedByUserCorrect,
     );
   }
-  // ******************************************************
 }
 
+// ******************************************************
 function modifiedGameModeComponent(
   gameModeName,
   questionsArray,
@@ -164,7 +136,9 @@ function modifiedGameModeComponent(
   return questionContainer;
 }
 
-/////////////************* */
+// ******************************************************
+// ******************************************************
+// ******************************************************
 // ! Przykład dla programistów --->>>
 // ! WIRTUALNA Game MASZYNA!
 // ! WIRTUALNY TEST!
@@ -181,18 +155,12 @@ class TemplateClass {
   }
 
   _templateMethods_1() {
-    console.log('TemplateClass._nextMethods');
     this.templateGeneratorClass = new TemplateGeneratorClass();
     this._setQuestionInUI();
   }
 
   _setQuestionInUI() {
-    console.log('TemplateClass._setQuestionInUI');
     this.templateGeneratorClass.getGenereatedQuestion((returnedObj) => {
-      console.log(returnedObj);
-      console.log(returnedObj);
-      console.log(returnedObj);
-      console.log(returnedObj);
       if (returnedObj)
         this.callbackFunction_setQuestionFromGameManager(returnedObj);
       else {
@@ -202,34 +170,36 @@ class TemplateClass {
   }
 
   setAnswerFromUI() {
-    console.log('TemplateClass._setQuestionInUI');
-    console.log('TemplateClass._setQuestionInUI');
-    console.log('TemplateClass._setQuestionInUI');
-    console.log('TemplateClass._setQuestionInUI');
-    console.log('TemplateClass._setQuestionInUI');
-    console.log('TemplateClass._setQuestionInUI');
     this._templateMethods();
   }
 
   _templateMethods() {
-    console.log('TemplateClass._tampleMethods');
     this._setQuestionInUI();
   }
 
   _templateEndOfGame() {
     console.log('KONIEC GRY!');
     this.callbackFunction_setEndOfGame();
-    window.location.reload();
+    let timeToWindowReload = 5000;
+    setInterval(() => {
+      console.log(
+        `Strona zostanie przeładowana za: ${timeToWindowReload / 1000}`,
+      );
+      timeToWindowReload -= 1000;
+    }, 1000);
+    setTimeout(() => window.location.reload(), timeToWindowReload + 1000);
   }
 }
+
+// ******************************************************
 
 class TemplateGeneratorClass {
   constructor() {
     this.itemNumber = 0;
-    this.tab;
+    this.internetServer;
   }
 
-  tab = [
+  internetServer = [
     {
       answers: ['Luke Skywalker', 'R2-D2', 'Chewbacca', 'Boba Fett'],
       image: { mode: 'people', rightAnswer: 1 },
@@ -267,7 +237,7 @@ class TemplateGeneratorClass {
         `złotego opłaty za transmisje!`,
       );
       console.log(`----------------------------------------`);
-      callbackFunctionFromTampleClass(this.tab[this.itemNumber++]);
+      callbackFunctionFromTampleClass(this.internetServer[this.itemNumber++]);
     }, downloadingTime);
   }
 }

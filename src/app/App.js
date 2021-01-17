@@ -26,10 +26,10 @@ export const App = ({ options }) => {
   // ! >>> TU NIE ZMIENIAĆ (NIC TU NIE DODAWAĆ) >>>
 
   app.innerHTML = '';
-  // const startWindow = render({
-  //   component: StartWindow(() => {}),
-  //   inside: app,
-  // });
+  const startWindow = render({
+    component: StartWindow(() => {}),
+    inside: app,
+  });
 
   const wrapper = render({ component: Wrapper(), inside: app });
 

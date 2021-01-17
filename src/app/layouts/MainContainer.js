@@ -34,8 +34,6 @@ function cleanView(parent) {
 }
 
 function renderComponentsFromComponentsArray(mainContainer, componentsArray) {
-  console.log('Renderowany komponent to:');
-  console.log(componentsArray);
   componentsArray.forEach((item) => {
     mainContainer.appendChild(item);
   });
@@ -50,11 +48,6 @@ function onClickFunctionForGameOptionsView(
   if (expectedViewModeName != 'gameView') {
     renderComponentsFromComponentsArray(mainContainer, componentsArray);
   } else {
-    // ! TU JESTEŚMY >>>>>>>>>>
-    // ! TU JESTEŚMY >>>>>>>>>>
-    // ! TU JESTEŚMY >>>>>>>>>>
-
-    console.log('Tu wyświetli się GameQuizView');
     const gameQuizView = new GameQuizView({
       gameModeName: gameModeName,
       gameModeTitlesList: gameModeTitlesList,
@@ -68,13 +61,6 @@ function onClickFunctionForGameOptionsView(
       },
     });
     gameQuizView.startGame();
-    // console.log(waitingTitleComponent);
-    // console.log('Renderowanie informacji o wczytywaniu pytania');
-    // renderComponentsFromComponentsArray(mainContainer, waitingTitleComponent);
-
-    // ! <<<<<< TU JESTEŚMY
-    // ! <<<<<< TU JESTEŚMY
-    // ! <<<<<< TU JESTEŚMY
   }
 }
 
