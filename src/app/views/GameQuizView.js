@@ -1,4 +1,5 @@
-import { GameMode } from '../components/GameMode';
+import { GameMode as gameModeTitleComponent } from '../components/GameMode';
+import { QuestionAnswers as questionAnswersButtonsBoxComponent } from '../components/QuestionAnswers';
 
 export class GameQuizView {
   constructor(
@@ -10,7 +11,7 @@ export class GameQuizView {
     },
   ) {
     this.settings = settings;
-    this.tamplateClass;
+    this.templateClass;
     console.log('Jestem z konstruktora GAMEQUIZVIEW');
   }
 
@@ -20,14 +21,12 @@ export class GameQuizView {
     console.log('Funkcja czyszcząca mainContainer');
     this._clearMainContainer();
 
-    console.log('Funkcja ustawiająca komponent z tytułem pytania');
-    this.settings.renderComponentsFromComponentsArrayCallbackFunction([
-      this._getWaitingTitleComponent(),
-    ]);
+    this._renderWaitingTitleComponent();
 
     // ! TUTAJ ODDAJEMY GŁOS Maszynie GameManager !
-    this.tamplateClass = new TemplateClass(
-      () => this._setQuestionFromGameManager(),
+    this.templateClass = new TemplateClass(
+      (questionObjectFromGameMenager) =>
+        this._setQuestionFromGameManager(questionObjectFromGameMenager),
       () => this._setEndOfGame,
     );
   }
@@ -38,12 +37,14 @@ export class GameQuizView {
     console.log('Strona powinna przeładować się automatycznie!');
   }
   // ******************************************************
-  _getWaitingTitleComponent() {
-    return modifiedGameModeComponent(
-      this.settings.gameModeName,
-      this.settings.gameModeTitlesList,
-      true,
-    );
+  _renderWaitingTitleComponent() {
+    this.settings.renderComponentsFromComponentsArrayCallbackFunction([
+      modifiedGameModeComponent(
+        this.settings.gameModeName,
+        this.settings.gameModeTitlesList,
+        true,
+      ),
+    ]);
   }
 
   // ******************************************************
@@ -59,19 +60,34 @@ export class GameQuizView {
 
   // console.log('Funkcja ustawiająca komponent z odpowiedziami');
 
-  _renderLoadedGameViewArray() {
+  _renderLoadedGameViewArray(questionObjectFromGameMenager) {
     this._clearMainContainer();
     // TODO: Zbierz komponenty
+    console.log('object');
+    console.log('object');
+    console.log('object');
+    console.log(questionObjectFromGameMenager);
+
+    const modifiedGameModeComp = modifiedGameModeComponent(
+      this.settings.gameModeName,
+      this.settings.gameModeTitlesList,
+    );
+    const questionAnswersButtonsBoxComp = questionAnswersButtonsBoxComponent(
+      questionObjectFromGameMenager.answers,
+      questionObjectFromGameMenager.rightAnswer,
+      (answerAddedByUser, isAnswerddedByUserCorrect) =>
+        this._onClickButton(answerAddedByUser, isAnswerddedByUserCorrect),
+    );
 
     const renderedLoadedGameViewArray = [
-      modifiedGameModeComponent(
-        this.settings.gameModeName,
-        this.settings.gameModeTitlesList,
-      ),
+      modifiedGameModeComp,
+      questionAnswersButtonsBoxComp,
+      // TODO: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      // TODO: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      // TODO: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      // TODO: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     ];
 
-    // TODO: Wstaw komponenty do tablicy
-    // TODO: wyrenderuj komponenty
     this.settings.renderComponentsFromComponentsArrayCallbackFunction(
       renderedLoadedGameViewArray,
     );
@@ -85,14 +101,25 @@ export class GameQuizView {
     },
   ) {
     console.log('Funkcja ustawiająca treść nowego pytania! ');
+    console.log(questionObjectFromGameMenager);
     this._renderLoadedGameViewArray(questionObjectFromGameMenager);
+
+    // TODO: TUTAJ wywołuję ustawienie -> OBRAZEK
+    // TODO: TUTAJ wywołuję ustawienie -> OBRAZEK
+    // TODO: TUTAJ wywołuję ustawienie -> OBRAZEK
     // TODO: TUTAJ wywołuję ustawienie -> OBRAZEK
   }
 
   // ******************************************************
-  _onClickButton() {
+  _onClickButton(answerAddedByUser, isAnswerddedByUserCorrect) {
     this._clearMainContainer();
-    this._getWaitingTitleComponent();
+    // console.log(object);
+    this._renderWaitingTitleComponent();
+    // this.setAnswerFromUI(answerAddedByUser, isAnswerddedByUserCorrect);
+    this.templateClass.setAnswerFromUI(
+      answerAddedByUser,
+      isAnswerddedByUserCorrect,
+    );
   }
   // ******************************************************
 }
@@ -103,7 +130,7 @@ function modifiedGameModeComponent(
   isWaitingForRendering = false,
 ) {
   let questionTitle = '';
-  const questionContainer = GameMode(questionTitle);
+  const questionContainer = gameModeTitleComponent(questionTitle);
   questionContainer.classList.add = 'quizQuestion';
 
   if (!isWaitingForRendering) {
@@ -129,7 +156,7 @@ function modifiedGameModeComponent(
 }
 
 /////////////************* */
-// ! Przykład Dla programista Ania --->>>
+// ! Przykład dla programistów --->>>
 // ! WIRTUALNA Game MASZYNA!
 // ! WIRTUALNY TEST!
 
@@ -141,10 +168,10 @@ class TemplateClass {
     this.callbackFunction_setQuestionFromGameManager = setQuestionFromGameManagerCallBackFunction;
     this.callbackFunction_setEndOfGame = setEndOfGameCallbackFunction;
     this.templateGeneratorClass;
-    this._tampleMethods_1();
+    this._templateMethods_1();
   }
 
-  _tampleMethods_1() {
+  _templateMethods_1() {
     console.log('TemplateClass._nextMethods');
     this.templateGeneratorClass = new TemplateGeneratorClass();
     this._setQuestionInUI();
@@ -153,23 +180,37 @@ class TemplateClass {
   _setQuestionInUI() {
     console.log('TemplateClass._setQuestionInUI');
     this.templateGeneratorClass.getGenereatedQuestion((returnedObj) => {
-      this.callbackFunction_setQuestionFromGameManager(returnedObj);
+      console.log(returnedObj);
+      console.log(returnedObj);
+      console.log(returnedObj);
+      console.log(returnedObj);
+      if (returnedObj)
+        this.callbackFunction_setQuestionFromGameManager(returnedObj);
+      else {
+        this._templateEndOfGame();
+      }
     });
   }
 
   setAnswerFromUI() {
     console.log('TemplateClass._setQuestionInUI');
-    this._tampleMethods_2();
+    console.log('TemplateClass._setQuestionInUI');
+    console.log('TemplateClass._setQuestionInUI');
+    console.log('TemplateClass._setQuestionInUI');
+    console.log('TemplateClass._setQuestionInUI');
+    console.log('TemplateClass._setQuestionInUI');
+    this._templateMethods();
   }
 
-  _tampleMethods() {
+  _templateMethods() {
     console.log('TemplateClass._tampleMethods');
     this._setQuestionInUI();
   }
 
-  _templeEndOfGame() {
+  _templateEndOfGame() {
     console.log('KONIEC GRY!');
     this.callbackFunction_setEndOfGame();
+    window.location.reload();
   }
 }
 
