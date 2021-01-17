@@ -1,6 +1,8 @@
 import { GameMode as gameModeTitleComponent } from '../components/GameMode';
 import { QuestionAnswers as questionAnswersButtonsBoxComponent } from '../components/QuestionAnswers';
 import { arrayIdNames } from '../settings';
+import { ModalWindow } from '../layouts/ModalWindow';
+import { ModalWindowContent } from '../layouts/ModalWindowContent';
 
 export class GameQuizView {
   constructor(
@@ -24,8 +26,8 @@ export class GameQuizView {
 
     // ! TUTAJ ODDAJEMY GŁOS Maszynie GameManager !
     this.gameManager = new TemplateClass(
-      (questionObjectFromGameMenager) =>
-        this._setQuestionFromGameManager(questionObjectFromGameMenager),
+      (questionObjectFromGameManager) =>
+        this._setQuestionFromGameManager(questionObjectFromGameManager),
 
       (player1answersArray, player2answersArray) =>
         this._setEndOfGame(player1answersArray, player2answersArray),
@@ -40,13 +42,65 @@ export class GameQuizView {
   }
 
   // ******************************************************
-  _setEndOfGame() {
+  _setEndOfGame(
+    player1answersArray = [
+      { id: 1, isCorrect: true },
+      { id: 2, isCorrect: true },
+    ],
+    player2answersArray = [
+      { id: 1, isCorrect: false },
+      { id: 2, isCorrect: true },
+    ],
+  ) {
+    const modalWindow = new ModalWindow(document.getElementById('swquiz-app'));
+    modalWindow.show(
+      new ModalWindowContent(
+        player1answersArray,
+        player2answersArray,
+        (playerName, playerResult, playerAnswersQuantity) =>
+          this._onSubmitCallbackFunction(
+            playerName,
+            playerResult,
+            playerAnswersQuantity,
+            modalWindow,
+            this.settings.modeName,
+          ),
+      ),
+    );
+
+    // modalWindowContent.close();
+  }
+
+  _onSubmitCallbackFunction(
+    playerName,
+    playerResult,
+    playerAnswersQuantity,
+    modalWindow,
+    modeName,
+  ) {
+    modalWindow.close();
+    this.gameManager.setRankingSaving(
+      playerName,
+      playerResult,
+      playerAnswersQuantity,
+      () => window.location.reload(),
+      // modalWindow,
+      // modeName,
+      'super Kot Lord JSON oraz super Kot waszmość Brzuszek',
+    );
+
     console.log('Gra zakończyła się!');
+    console.log('Gra zakończyła się!');
+    console.log('Strona powinna przeładować się automatycznie!');
     console.log('Strona powinna przeładować się automatycznie!');
   }
 
+  _setNewRecordDatabase() {}
+
   _setUpdatedTime(time) {
     console.log(`Time: ${time} ms`);
+    console.log('DODAJ tu TEXT TIMER');
+    // TODO: TEXT TIMER W TYM MIEJSCU
   }
 
   // ******************************************************
@@ -66,7 +120,7 @@ export class GameQuizView {
   }
 
   // ******************************************************
-  _renderLoadedGameViewArray(questionObjectFromGameMenager) {
+  _renderLoadedGameViewArray(questionObjectFromGameManager) {
     this._clearMainContainer();
 
     const modifiedGameModeComp = modifiedGameModeComponent(
@@ -74,8 +128,8 @@ export class GameQuizView {
       this.settings.gameModeTitlesList,
     );
     const questionAnswersButtonsBoxComp = questionAnswersButtonsBoxComponent(
-      questionObjectFromGameMenager.answers,
-      questionObjectFromGameMenager.rightAnswer,
+      questionObjectFromGameManager.answers,
+      questionObjectFromGameManager.rightAnswer,
       (answerAddedByUser, isAnswerddedByUserCorrect) =>
         this._onClickButton(answerAddedByUser, isAnswerddedByUserCorrect),
     );
@@ -91,21 +145,21 @@ export class GameQuizView {
   }
 
   _setQuestionFromGameManager(
-    questionObjectFromGameMenager = {
+    questionObjectFromGameManager = {
       answers: ['example_1', 'example_2', 'example_3', 'example_4'],
       image: { mode: 'people', rightAnswer: 1 },
       rightAnswer: 'example_1',
     },
   ) {
-    this._renderLoadedGameViewArray(questionObjectFromGameMenager);
+    this._renderLoadedGameViewArray(questionObjectFromGameManager);
 
-    this._setNewMainQuestionImage(questionObjectFromGameMenager.image);
+    this._setNewMainQuestionImage(questionObjectFromGameManager.image);
   }
 
-  _setNewMainQuestionImage(imageFromQuestionObjectFromGameMenager) {
+  _setNewMainQuestionImage(imageFromQuestionObjectFromGameManager) {
     const mainQuestionImage = document.getElementById('mainQuestionImage');
 
-    mainQuestionImage.src = `static/assets/img/modes/${imageFromQuestionObjectFromGameMenager.mode}/${imageFromQuestionObjectFromGameMenager.rightAnswer}.jpg`;
+    mainQuestionImage.src = `static/assets/img/modes/${imageFromQuestionObjectFromGameManager.mode}/${imageFromQuestionObjectFromGameManager.rightAnswer}.jpg`;
   }
 
   // ******************************************************
@@ -184,14 +238,15 @@ class TemplateClass {
       }
     });
   }
-
-  setPlayerAnswer() {
-    this._templateMethods();
+  setRankingSaving() {
+    console.log('Zapisano ranking');
   }
-
-  _templateMethods() {
+  setPlayerAnswer() {
+    this._saveData();
     this._setQuestionInUI();
   }
+
+  _saveData() {}
 
   _templateEndOfGame() {
     console.log('KONIEC GRY!');
@@ -203,7 +258,7 @@ class TemplateClass {
       );
       timeToWindowReload -= 1000;
     }, 1000);
-    setTimeout(() => window.location.reload(), timeToWindowReload + 1000);
+    // setTimeout(() => window.location.reload(), timeToWindowReload + 1000);
   }
 }
 
@@ -232,7 +287,7 @@ class TemplateGeneratorClass {
   }
 
   getGenereatedQuestion(callbackFunctionFromTampleClass) {
-    const downloadingTime = 1000;
+    const downloadingTime = 500;
     console.log(`----------------------------------------`);
     console.log(`UWAGA!`);
     console.log(`Trwa pobieranie pytania...`);
