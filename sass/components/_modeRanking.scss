@@ -74,3 +74,30 @@
     font-style: italic;
   }
 }
+
+@media screen and (min-width: 360px) and (max-width: 414px) and (min-height: 640px) and (max-height: 896px) {
+  .modeRanking {
+    padding: 10px 25px;
+
+    &__icon {
+      min-width: 2.4rem;
+      min-height: 2.4rem;
+      margin-right: 15px;
+    }
+
+    &__header {
+      font-size: 2.2rem;
+    }
+
+    &__rankingContainer {
+      font-size: 1.8rem;
+      margin-top: 10px;
+    }
+
+    // check the padding and font size with full ranking!!! Because now it is empty!
+    &__emptyLeaderboardText {
+      padding: 40px 30px;
+      font-size: 15px;
+    }
+  }
+}
