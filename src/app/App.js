@@ -11,7 +11,7 @@ import { peopleIdArray, starshipsIdArray, vehiclesIdArray } from './settings';
 import { GameMode } from './components/GameMode';
 import { render } from './rendering';
 import { QuestionAnswers } from './components/QuestionAnswers';
-import { MainTimer } from './components/MainTimer';
+import { MainTimer } from './MainTimer';
 import { TextTimer } from './components/TextTimer';
 
 export const App = ({ options }) => {
@@ -83,10 +83,17 @@ export const App = ({ options }) => {
   });
 
   const timer = new MainTimer(5);
-  timer.startCountdown((time) => {
-    updateTime(textTimer, time);
-  });
+  timer.startCountdown(
+    (time) => {
+      updateTime(textTimer, time);
+    },
+    (time) => endOfTime(textTimer, time),
+  );
 };
+
+function endOfTime(timerComp, time) {
+  timerComp.endOfTime(time);
+}
 
 function updateTime(timerComp, time) {
   timerComp.updateTextTime(time);
