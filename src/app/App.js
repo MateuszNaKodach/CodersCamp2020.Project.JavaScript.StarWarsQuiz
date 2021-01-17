@@ -1,3 +1,4 @@
+import { StartWindow } from './components/StartWindow';
 import { NavMenu } from './layouts/NavMenu';
 import { QuestionImage } from './layouts/QuestionImage';
 import { Logo } from './layouts/Logo';
@@ -15,114 +16,28 @@ import { render } from './rendering';
 import { QuestionAnswers } from './components/QuestionAnswers';
 import { ModeRules } from './components/ModeRules';
 import { Sword } from './components/Sword';
+import { ModeRanking } from './components/ModeRanking';
 
 export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
+
+  // ! dla programistów: nie pisać kodu poniżej
+  // ! dla Tomasz i Piotr: Nasz kod poniżej
+  // ! >>> TU NIE ZMIENIAĆ (NIC TU NIE DODAWAĆ) >>>
+
+  app.innerHTML = '';
+  const startWindow = render({
+    component: StartWindow(() => {}),
+    inside: app,
+  });
+
   const wrapper = render({ component: Wrapper(), inside: app });
-  const navMenu = renderNavMenu(wrapper);
-  const logo = render({
-    component: Logo(),
-    inside: wrapper,
-    withClasses: 'wrapper__logo',
-  });
-  const mainContainer = render({
-    component: MainContainer(),
-    inside: wrapper,
-    withClasses: 'wrapper__mainContainer',
-  });
-  const questionImage = render({
-    component: QuestionImage(
-      'c3RhdGljL2Fzc2V0cy9pbWcvbW9kZXMvcGVvcGxlLzQuanBn',
-    ),
-    inside: wrapper,
-    withClasses: 'wrapper__mainImg',
-  });
-  const gameMode = render({
-    component: GameMode(),
-    inside: mainContainer,
-    withClasses: 'mainContainer__gameMode',
-  });
-  const modeRules = render({
-    //component: ModeRules('You have one minute (1m) to answer as many questions as possible. During the game on each question you need to select who from Star Wars is showed on the left (Jar Jar Binks right now) from available options'),
-    component: ModeRules(),
-    inside: mainContainer,
-    withClasses: 'mainContainer__modeRules',
-  });
-  const hallOfFameButton = render({
-    component: Button({
-      id: 'hallOfFameButton',
-      btnText: 'HallOfFame',
-      classList: ['mainContainer__hallOfFameButton'],
-      onClickFn: undefined,
-      icon: 'fame',
-    }),
-    inside: mainContainer,
-  });
 
-  const playTheGameButton = render({
-    component: Button({
-      id: 'playTheGameButton',
-      btnText: 'play the game',
-      classList: ['mainContainer__playTheGameButton'],
-      onClickFn: startGame,
-    }),
-    inside: mainContainer,
-  });
-  playTheGameButton.setSpecial();
-  const questionAnswers = render({
-    component: QuestionAnswers(
-      ['Luke Skywalker', 'Jar Jar Binks', 'Padme Amidala', 'Darth Vader'],
-      'Darth Vader',
-      onAnswerChosen,
-    ),
-    //component: QuestionAnswers(answers, correctAnswer, onAnswerChosen),
-    inside: mainContainer,
-    withClasses: 'mainContainer__answersWrapper',
-  });
-
-  const sword = render({
-    component: Sword(),
-    inside: app,
-    withClasses: 'mainContainer__sword',
-  });
-
-  // Modal window
-  const modalWindow = ModalWindow(app);
-  // Modal window methods
-  // modalWindow.show(Here_some_content_as_HTMLElement);
-  // modalWindow.close  to close the window and remove the content
-
-  /* MODAL WINDOW CONTENT TO REMOVE LATER!
-  const testButton = render({
-    component: Button({
-      id: 'abcd',
-      btnText: 'TEST BUTTON',
-      classList: [''],
-      onClickFn: testFunction,
-    }),
-    inside: app,
-  });
-
-  function testFunction() {
-    const contemodalWindowContent = ModalWindowContent(
-      [
-        { id: 1, isCorrect: true },
-        { id: 2, isCorrect: true },
-      ],
-      [
-        { id: 1, isCorrect: false },
-        { id: 2, isCorrect: true },
-      ],
-      onSubmitFunction,
-    );
-
-    modalWindow.show(contemodalWindowContent);
-  }
-
-  function onSubmitFunction(playerName, playerResult, playerAnswersQuantity) {
-    modalWindow.close();
-  }
-  */
+  // ! <<< TU NIE ZMIENIAĆ (NIC TU NIE DODAWAĆ) <<<
+  // ! ---------------
+  // ! ---------------
+  // ! ---------------
+  // ! ---------------
 };
 
 function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
@@ -186,5 +101,7 @@ const vehiclesQuestionGenerator = new QuestionGenerator(
 );
 
 // how to get data from QuestionGenerator
-// console.log(peopleQuestionGenerator.generateQuestion().then(res => console.log(res)));
+// console.log(
+//   peopleQuestionGenerator.generateQuestion().then((res) => console.log(res)),
+// );
 // console.log(startshipsQuestionGenerator.generateQuestion());

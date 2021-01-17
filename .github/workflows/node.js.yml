@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    name: "Build Star Wars Quiz application"
+    name: 'Build Star Wars Quiz application'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -28,8 +28,8 @@ jobs:
           name: swquiz-dist
           path: ./dist
   deploy-on-github-pages:
-    name: "Deploy app to GitHub Pages from main branch source code"
-    if: github.ref == 'refs/heads/main'
+    name: 'Deploy app to GitHub Pages from develop branch source code'
+    if: github.ref == 'refs/heads/develop'
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -42,7 +42,7 @@ jobs:
         if: ${{ github.event_name != 'pull_request' && always() }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: "./dist"
+          publish_dir: './dist'
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
           force_orphan: true

@@ -21,14 +21,8 @@ export const Sword = () => {
 
   const powerTrackLight = document.createElement('div');
   powerTrackLight.classList.add('sword__wrap__power--light');
+  powerTrackLight.classList.add('sword__wrap__power--animation');
   powerTrack.appendChild(powerTrackLight);
-
-  const startCountingDown = () => {
-    powerTrackLight.classList.add('sword__wrap__power--animation');
-  };
-
-  const button = document.querySelector('.mainContainer__playTheGameButton');
-  button.addEventListener('click', startCountingDown);
 
   return component;
 };

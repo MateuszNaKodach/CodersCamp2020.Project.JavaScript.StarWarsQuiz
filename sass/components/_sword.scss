@@ -38,13 +38,13 @@
       }
 
       &--animation {
-        animation: animationName 120s;
+        animation: countDown 120s;
       }
     }
   }
 }
 
-@keyframes animationName {
+@keyframes countDown {
   100% {
     width: 0px;
   }
