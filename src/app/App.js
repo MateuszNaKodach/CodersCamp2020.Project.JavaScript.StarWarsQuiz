@@ -1,3 +1,4 @@
+import { StartWindow } from './components/StartWindow';
 import { NavMenu } from './layouts/NavMenu';
 import { QuestionImage } from './layouts/QuestionImage';
 import { Logo } from './layouts/Logo';
@@ -8,96 +9,35 @@ import { QuestionGenerator } from './QuestionGenrator';
 import { fetchData } from '../utils/fetchData';
 import { getRandomIdFromArray } from '../utils/getRandomIdFromArray';
 import { peopleIdArray, starshipsIdArray, vehiclesIdArray } from './settings';
+import { ModalWindow } from './layouts/ModalWindow';
+import { ModalWindowContent } from './layouts/ModalWindowContent';
 import { GameMode } from './components/GameMode';
 import { render } from './rendering';
 import { QuestionAnswers } from './components/QuestionAnswers';
-import { MainTimer } from './MainTimer';
-import { TextTimer } from './components/TextTimer';
+import { ModeRules } from './components/ModeRules';
+import { ModeRanking } from './components/ModeRanking';
 
 export const App = ({ options }) => {
   const app = document.getElementById('swquiz-app');
+
+  // ! dla programistów: nie pisać kodu poniżej
+  // ! dla Tomasz i Piotr: Nasz kod poniżej
+  // ! >>> TU NIE ZMIENIAĆ (NIC TU NIE DODAWAĆ) >>>
+
+  app.innerHTML = '';
+  const startWindow = render({
+    component: StartWindow(() => {}),
+    inside: app,
+  });
+
   const wrapper = render({ component: Wrapper(), inside: app });
-  const navMenu = renderNavMenu(wrapper);
-  const logo = render({
-    component: Logo(),
-    inside: wrapper,
-    withClasses: 'wrapper__logo',
-  });
-  const mainContainer = render({
-    component: MainContainer(),
-    inside: wrapper,
-    withClasses: 'wrapper__mainContainer',
-  });
-  const questionImage = render({
-    component: QuestionImage(
-      'c3RhdGljL2Fzc2V0cy9pbWcvbW9kZXMvcGVvcGxlLzQuanBn',
-    ),
-    inside: wrapper,
-    withClasses: 'wrapper__mainImg',
-  });
-  const gameMode = render({
-    component: GameMode(),
-    inside: mainContainer,
-    withClasses: 'mainContainer__gameMode',
-  });
-  const hallOfFameButton = render({
-    component: Button({
-      id: 'hallOfFameButton',
-      btnText: 'HallOfFame',
-      classList: ['mainContainer__hallOfFameButton'],
-      onClickFn: undefined,
-      icon: 'fame',
-    }),
-    inside: mainContainer,
-  });
 
-  const playTheGameButton = render({
-    component: Button({
-      id: 'playTheGameButton',
-      btnText: 'play the game',
-      classList: ['mainContainer__playTheGameButton'],
-      onClickFn: startGame,
-    }),
-    inside: mainContainer,
-  });
-  playTheGameButton.setSpecial();
-  const questionAnswers = render({
-    component: QuestionAnswers(
-      ['Luke Skywalker', 'Jar Jar Binks', 'Padme Amidala', 'Darth Vader'],
-      'Darth Vader',
-      onAnswerChosen,
-    ),
-    //component: QuestionAnswers(answers, correctAnswer, onAnswerChosen),
-    inside: mainContainer,
-    withClasses: 'mainContainer__answersWrapper',
-  });
-
-  // odpTrue.changeText('100% prawda');
-
-  // odpTrue.setSuccess();
-  // odpFalse.setDanger();
-
-  const textTimer = render({
-    component: TextTimer(timer),
-    inside: mainContainer,
-  });
-
-  const timer = new MainTimer(5);
-  timer.startCountdown(
-    (time) => {
-      updateTime(textTimer, time);
-    },
-    (time) => endOfTime(textTimer, time),
-  );
+  // ! <<< TU NIE ZMIENIAĆ (NIC TU NIE DODAWAĆ) <<<
+  // ! ---------------
+  // ! ---------------
+  // ! ---------------
+  // ! ---------------
 };
-
-function endOfTime(timerComp, time) {
-  timerComp.endOfTime(time);
-}
-
-function updateTime(timerComp, time) {
-  timerComp.updateTextTime(time);
-}
 
 function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
   if (parent && previousState) {
@@ -160,5 +100,7 @@ const vehiclesQuestionGenerator = new QuestionGenerator(
 );
 
 // how to get data from QuestionGenerator
-// console.log(peopleQuestionGenerator.generateQuestion().then(res => console.log(res)));
+// console.log(
+//   peopleQuestionGenerator.generateQuestion().then((res) => console.log(res)),
+// );
 // console.log(startshipsQuestionGenerator.generateQuestion());

@@ -10,9 +10,7 @@
 
   $padding_horizontal__wrapper: 40px;
   grid-template-columns: $padding_horizontal__wrapper 1fr $padding_horizontal__wrapper 2fr $padding_horizontal__wrapper;
-  grid-template-rows: 0px 200px 25px auto 20px;
-
-  // background-color: chartreuse;
+  grid-template-rows: 0px 170px 25px auto 20px;
 
   &__logo {
     grid-column: 2 / span 1;
@@ -20,7 +18,7 @@
   }
 
   &__nav {
-    margin: 50px auto;
+    margin: auto;
 
     grid-column: 4 / span 1;
     grid-row: 2 / span 1;
