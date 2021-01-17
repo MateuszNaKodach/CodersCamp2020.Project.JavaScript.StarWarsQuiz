@@ -42,6 +42,7 @@ export class GameQuizView {
   }
 
   // ******************************************************
+
   _setEndOfGame(
     player1answersArray = [
       { id: 1, isCorrect: true },
@@ -95,14 +96,16 @@ export class GameQuizView {
     console.log('Strona powinna przeładować się automatycznie!');
   }
 
-  _setNewRecordDatabase() {}
-
   _setUpdatedTime(time) {
     console.log(`Time: ${time} ms`);
     console.log('DODAJ tu TEXT TIMER');
     // TODO: TEXT TIMER W TYM MIEJSCU
   }
 
+  _setEndOfGame() {
+    console.log('Gra zakończyła się!');
+    console.log('Strona powinna przeładować się automatycznie!');
+  }
   // ******************************************************
   _renderWaitingTitleComponent() {
     this.settings.renderComponentsFromComponentsArrayCallbackFunction([
