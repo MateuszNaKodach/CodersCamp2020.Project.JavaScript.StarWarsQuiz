@@ -34,6 +34,7 @@ function cleanView(parent) {
 }
 
 function renderComponentsFromComponentsArray(mainContainer, componentsArray) {
+  console.log('Renderowany komponent to:');
   console.log(componentsArray);
   componentsArray.forEach((item) => {
     mainContainer.appendChild(item);
@@ -58,12 +59,14 @@ function onClickFunctionForGameOptionsView(
       gameModeName: gameModeName,
       gameModeTitlesList: gameModeTitlesList,
       clearViewCallbackFunction: () => {
-        console.log('CZYSZCZENIE !!!');
-        console.log(mainContainer);
         cleanView(mainContainer);
       },
     });
-    gameQuizView.startGame();
+    const waitingTitleComponent = gameQuizView.startGame();
+    console.log(waitingTitleComponent);
+    console.log('Renderowanie informacji o wczytywaniu pytania');
+
+    renderComponentsFromComponentsArray(mainContainer, waitingTitleComponent);
   }
   // ! <<<<<< TU JESTEŚMY
   // ! <<<<<< TU JESTEŚMY
