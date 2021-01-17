@@ -8,7 +8,7 @@ export class MainTimer {
       callbackUpdateTimeFunction(this.time);
       if (this.time <= 0) {
         clearInterval(timer);
-        callbackEndOfTimeFunction(this.time);
+        callbackEndOfTimeFunction();
       }
       this.time -= 1;
     }, 1000);

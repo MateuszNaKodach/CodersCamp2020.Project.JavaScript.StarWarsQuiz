@@ -15,9 +15,5 @@ export const TextTimer = (timeSource) => {
     timerContainer.textContent = `Time Left: ${minutes}m ${seconds}s`;
   };
 
-  timerContainer.endOfTime = (time) => {
-    alert('Pozostało do końca 0s. Time is up!');
-  };
-
   return timerContainer;
 };
