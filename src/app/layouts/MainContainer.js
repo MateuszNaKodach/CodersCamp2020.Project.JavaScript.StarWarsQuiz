@@ -24,7 +24,7 @@ export const MainContainer = (gameMode = undefined) => {
     );
   };
 
-  container.setGameModeFromMainContainer();
+  container.setGameModeFromMainContainer('people');
 
   return container;
 };
@@ -34,7 +34,6 @@ function cleanView(parent) {
 }
 
 function renderComponentsFromComponentsArray(mainContainer, componentsArray) {
-  console.log(componentsArray);
   componentsArray.forEach((item) => {
     mainContainer.appendChild(item);
   });
@@ -49,25 +48,20 @@ function onClickFunctionForGameOptionsView(
   if (expectedViewModeName != 'gameView') {
     renderComponentsFromComponentsArray(mainContainer, componentsArray);
   } else {
-    // ! TU JESTEŚMY >>>>>>>>>>
-    // ! TU JESTEŚMY >>>>>>>>>>
-    // ! TU JESTEŚMY >>>>>>>>>>
-
-    console.log('Tu wyświetli się GameQuizView');
     const gameQuizView = new GameQuizView({
       gameModeName: gameModeName,
       gameModeTitlesList: gameModeTitlesList,
-      clearViewCallbackFunction: () => {
-        console.log('CZYSZCZENIE !!!');
-        console.log(mainContainer);
+      clearMainContainerViewCallbackFunction: () => {
         cleanView(mainContainer);
+      },
+      renderComponentsFromComponentsArrayCallbackFunction: (
+        componentsArray,
+      ) => {
+        renderComponentsFromComponentsArray(mainContainer, componentsArray);
       },
     });
     gameQuizView.startGame();
   }
-  // ! <<<<<< TU JESTEŚMY
-  // ! <<<<<< TU JESTEŚMY
-  // ! <<<<<< TU JESTEŚMY
 }
 
 const gameModeTitlesList = {
