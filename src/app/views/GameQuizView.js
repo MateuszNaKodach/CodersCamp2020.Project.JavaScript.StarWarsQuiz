@@ -238,8 +238,9 @@ class TemplateClass {
       }
     });
   }
-  setRankingSaving() {
+  setRankingSaving(a1, a2, a3, callback) {
     console.log('Zapisano ranking');
+    callback();
   }
   setPlayerAnswer() {
     this._saveData();
