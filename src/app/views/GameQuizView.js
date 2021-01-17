@@ -1,5 +1,6 @@
 import { GameMode as gameModeTitleComponent } from '../components/GameMode';
 import { QuestionAnswers as questionAnswersButtonsBoxComponent } from '../components/QuestionAnswers';
+import { arrayIdNames } from '../settings';
 
 export class GameQuizView {
   constructor(
@@ -12,6 +13,7 @@ export class GameQuizView {
   ) {
     this.settings = settings;
     this.gameManager;
+    this.questionIdArray = arrayIdNames[`${this.settings.gameModeName}IdArray`];
   }
 
   // ******************************************************
@@ -24,9 +26,16 @@ export class GameQuizView {
     this.gameManager = new TemplateClass(
       (questionObjectFromGameMenager) =>
         this._setQuestionFromGameManager(questionObjectFromGameMenager),
-      () => this._setEndOfGame,
-      () => this._setUpdatedTime,
-      this.settings.gameModeName,
+
+      (player1answersArray, player2answersArray) =>
+        this._setEndOfGame(player1answersArray, player2answersArray),
+
+      (time) => this._setUpdatedTime(time),
+
+      {
+        gamModeName: this.settings.gameModeName,
+        questionIdArray: this.questionIdArray,
+      },
     );
   }
 
@@ -36,7 +45,9 @@ export class GameQuizView {
     console.log('Strona powinna przeładować się automatycznie!');
   }
 
-  _setUpdatedTime(time) {}
+  _setUpdatedTime(time) {
+    console.log(`Time: ${time} ms`);
+  }
 
   // ******************************************************
   _renderWaitingTitleComponent() {
@@ -102,7 +113,7 @@ export class GameQuizView {
     this._clearMainContainer();
     this._renderWaitingTitleComponent();
     // this.gameManager.savePlayerAnswer(
-    this.gameManager.setAnswerFromUI(
+    this.gameManager.setPlayerAnswer(
       answerAddedByUser,
       isAnswerddedByUserCorrect,
     );
@@ -174,7 +185,7 @@ class TemplateClass {
     });
   }
 
-  setAnswerFromUI() {
+  setPlayerAnswer() {
     this._templateMethods();
   }
 
