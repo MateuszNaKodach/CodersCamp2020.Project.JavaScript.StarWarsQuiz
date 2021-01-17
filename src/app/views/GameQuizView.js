@@ -11,7 +11,7 @@ export class GameQuizView {
     },
   ) {
     this.settings = settings;
-    this.templateClass;
+    this.gameManager;
   }
 
   // ******************************************************
@@ -21,7 +21,7 @@ export class GameQuizView {
     this._renderWaitingTitleComponent();
 
     // ! TUTAJ ODDAJEMY GŁOS Maszynie GameManager !
-    this.templateClass = new TemplateClass(
+    this.gameManager = new TemplateClass(
       (questionObjectFromGameMenager) =>
         this._setQuestionFromGameManager(questionObjectFromGameMenager),
       () => this._setEndOfGame,
@@ -97,7 +97,7 @@ export class GameQuizView {
   _onClickButton(answerAddedByUser, isAnswerddedByUserCorrect) {
     this._clearMainContainer();
     this._renderWaitingTitleComponent();
-    this.templateClass.setAnswerFromUI(
+    this.gameManager.setAnswerFromUI(
       answerAddedByUser,
       isAnswerddedByUserCorrect,
     );
