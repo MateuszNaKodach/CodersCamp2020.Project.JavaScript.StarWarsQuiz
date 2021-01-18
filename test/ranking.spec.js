@@ -21,6 +21,24 @@ describe("Ranking's logic", () => {
     },
   ];
 
+  const sortedResults = [
+    {
+      user: 'user3',
+      score: 15,
+      maxScore: 25, // 60%
+    },
+    {
+      user: 'user1',
+      score: 15,
+      maxScore: 30, // 50%
+    },
+    {
+      user: 'user2',
+      score: 18,
+      maxScore: 40, // 45%
+    },
+  ];
+
   const expectedResultsWhenOnlyOne = [
     {
       user: 'user',
@@ -115,11 +133,11 @@ describe("Ranking's logic", () => {
     expect(JSON.parse(localStorage.getItem('starships'))).toEqual(results);
   });
 
-  it('Ranking saved in local storage should be returned', () => {
+  it('Ranking saved in local storage should be returned in order', () => {
     const starshipsRanking = new Ranking('starships');
     localStorage.setItem('starships', JSON.stringify(results));
 
-    expect(starshipsRanking.getScores()).toEqual(results);
+    expect(starshipsRanking.getScores()).toEqual(sortedResults);
   });
 
   it('When no score is saved in local storage then return an empty array', () => {

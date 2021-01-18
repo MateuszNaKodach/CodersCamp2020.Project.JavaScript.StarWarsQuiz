@@ -1,12 +1,10 @@
 .wrapper {
-  // ! przemyśleć czy zostawić
   overflow: hidden;
   display: grid;
 
   height: 768px;
   width: 1280px;
   margin: 10px auto;
-  border: 2px chartreuse solid;
 
   $padding_horizontal__wrapper: 40px;
   grid-template-columns: $padding_horizontal__wrapper 1fr $padding_horizontal__wrapper 2fr $padding_horizontal__wrapper;
@@ -27,13 +25,93 @@
   &__mainImg {
     grid-column: 2 / span 1;
     grid-row: 4 / span 1;
-
-    background-color: rgba(0, 0, 255, 0.3);
   }
 
   &__mainContainer {
     grid-column: 4 / span 1;
     grid-row: 4 / span 1;
-    background-color: rgba(0, 0, 255, 0.3);
+  }
+}
+
+@media (min-width: 1280px) {
+  .wrapper {
+    margin: 0 auto;
+    height: 100vh;
+    width: 90vw;
+    grid-template-rows: 5vh 20vh 25px 65vh 10vh;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 414px) and (min-height: 640px) and (max-height: 896px) {
+  .wrapper {
+    overflow: scroll;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    border: 0;
+
+    $gap: 10px;
+    grid-template-columns: $gap 3fr 10fr 3fr $gap;
+    grid-template-rows: 5px 1fr 1fr 15px 9fr $gap 15fr $gap;
+
+    &__logo {
+      grid-column: 3 / span 1;
+      grid-row: 2 / span 1;
+    }
+
+    &__nav {
+      grid-column: 2 / span 3;
+      grid-row: 3 / span 1;
+    }
+
+    &__mainImg {
+      grid-column: 3 / span 1;
+      grid-row: 5 / span 1;
+    }
+
+    &__mainContainer {
+      grid-column: 2 / span 3;
+      grid-row: 7 / span 1;
+    }
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .wrapper {
+    overflow: scroll;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    border: 0;
+
+    $gap: 20px;
+    grid-template-columns: $gap 3fr 8fr 3fr $gap;
+    grid-template-rows: 0 1fr 1fr 15px 9fr 15px 15fr $gap;
+
+    &__logo {
+      grid-column: 3 / span 1;
+      grid-row: 2 / span 1;
+    }
+
+    &__nav {
+      grid-column: 2 / span 3;
+      grid-row: 3 / span 1;
+    }
+
+    &__mainImg {
+      grid-column: 3 / span 1;
+      grid-row: 5 / span 1;
+    }
+
+    &__mainContainer {
+      grid-column: 2 / span 3;
+      grid-row: 7 / span 1;
+    }
   }
 }

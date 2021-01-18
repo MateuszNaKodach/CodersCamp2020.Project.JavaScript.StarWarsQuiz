@@ -1,7 +1,9 @@
 import { GameMode as gameModeTitleComponent } from '../components/GameMode';
 import { QuestionAnswers as questionAnswersButtonsBoxComponent } from '../components/QuestionAnswers';
-import { Sword } from '../components/Sword';
-import { render } from '../rendering';
+import { arrayIdNames } from '../settings';
+import { ModalWindow } from '../layouts/ModalWindow';
+import { ModalWindowContent } from '../layouts/ModalWindowContent';
+import { Gameplay } from './../Gameplay';
 
 export class GameQuizView {
   constructor(
@@ -13,35 +15,85 @@ export class GameQuizView {
     },
   ) {
     this.settings = settings;
-    this.gameManager;
+    this.questionIdArray = arrayIdNames[`${this.settings.gameModeName}IdArray`];
   }
 
   // ******************************************************
   startGame() {
     this._clearMainContainer();
+
     this._renderWaitingTitleComponent();
 
-    // Sword
-    // const app = document.getElementById('swquiz-app');
-    // render({ component: Sword(), inside: app });
-
     // ! TUTAJ ODDAJEMY GŁOS Maszynie GameManager !
-    this.gameManager = new TemplateClass(
-      (questionObjectFromGameMenager) =>
-        this._setQuestionFromGameManager(questionObjectFromGameMenager),
-      () => this._setEndOfGame,
-      () => this._setUpdatedTime,
-      this.settings.gameModeName,
+    this.gameManager = new Gameplay(
+      (questionObjectFromGameManager) =>
+        this._setQuestionFromGameManager(questionObjectFromGameManager),
+
+      (player1answersArray, player2answersArray) =>
+        this._setEndOfGame(player1answersArray, player2answersArray),
+
+      (time) => this._setUpdatedTime(time),
+
+      {
+        gameModeName: this.settings.gameModeName,
+        questionIdArray: this.questionIdArray,
+      },
     );
+    this.gameManager.startGame();
   }
 
   // ******************************************************
-  _setEndOfGame() {
+  _setEndOfGame(player1answersArray = [], player2answersArray = []) {
+    const modalWindow = new ModalWindow(document.getElementById('swquiz-app'));
+    modalWindow.show(
+      new ModalWindowContent(
+        player1answersArray,
+        player2answersArray,
+        (playerName, playerResult, playerAnswersQuantity) =>
+          this._onSubmitCallbackFunction(
+            playerName,
+            playerResult,
+            playerAnswersQuantity,
+            modalWindow,
+            this.settings.modeName,
+          ),
+      ),
+    );
+
+    // modalWindowContent.close();
+  }
+
+  _onSubmitCallbackFunction(
+    playerName,
+    playerResult,
+    playerAnswersQuantity,
+    modalWindow,
+    modeName,
+  ) {
+    modalWindow.close();
+    this.gameManager.setRankingSaving(
+      playerName,
+      playerResult,
+      playerAnswersQuantity,
+      () => window.location.reload(),
+      // modalWindow,
+      // modeName,
+      'super Kot Lord JSON oraz super Kot waszmość Brzuszek',
+    );
+
     console.log('Gra zakończyła się!');
+    console.log('Gra zakończyła się!');
+    console.log('Strona powinna przeładować się automatycznie!');
     console.log('Strona powinna przeładować się automatycznie!');
   }
 
-  _setUpdatedTime(time) {}
+  _setNewRecordDatabase() {}
+
+  _setUpdatedTime(time) {
+    console.log(`Time: ${time} ms`);
+    console.log('DODAJ tu TEXT TIMER');
+    // TODO: TEXT TIMER W TYM MIEJSCU
+  }
 
   // ******************************************************
   _renderWaitingTitleComponent() {
@@ -60,7 +112,7 @@ export class GameQuizView {
   }
 
   // ******************************************************
-  _renderLoadedGameViewArray(questionObjectFromGameMenager) {
+  _renderLoadedGameViewArray(questionObjectFromGameManager) {
     this._clearMainContainer();
 
     const modifiedGameModeComp = modifiedGameModeComponent(
@@ -68,8 +120,8 @@ export class GameQuizView {
       this.settings.gameModeTitlesList,
     );
     const questionAnswersButtonsBoxComp = questionAnswersButtonsBoxComponent(
-      questionObjectFromGameMenager.answers,
-      questionObjectFromGameMenager.rightAnswer,
+      questionObjectFromGameManager.answers,
+      questionObjectFromGameManager.rightAnswer,
       (answerAddedByUser, isAnswerddedByUserCorrect) =>
         this._onClickButton(answerAddedByUser, isAnswerddedByUserCorrect),
     );
@@ -85,29 +137,28 @@ export class GameQuizView {
   }
 
   _setQuestionFromGameManager(
-    questionObjectFromGameMenager = {
+    questionObjectFromGameManager = {
       answers: ['example_1', 'example_2', 'example_3', 'example_4'],
       image: { mode: 'people', rightAnswer: 1 },
       rightAnswer: 'example_1',
     },
   ) {
-    this._renderLoadedGameViewArray(questionObjectFromGameMenager);
+    this._renderLoadedGameViewArray(questionObjectFromGameManager);
 
-    this._setNewMainQuestionImage(questionObjectFromGameMenager.image);
+    this._setNewMainQuestionImage(questionObjectFromGameManager.image);
   }
 
-  _setNewMainQuestionImage(imageFromQuestionObjectFromGameMenager) {
+  _setNewMainQuestionImage(imageFromQuestionObjectFromGameManager) {
     const mainQuestionImage = document.getElementById('mainQuestionImage');
 
-    mainQuestionImage.src = `static/assets/img/modes/${imageFromQuestionObjectFromGameMenager.mode}/${imageFromQuestionObjectFromGameMenager.rightAnswer}.jpg`;
+    mainQuestionImage.src = `static/assets/img/modes/${imageFromQuestionObjectFromGameManager.mode}/${imageFromQuestionObjectFromGameManager.rightAnswer}.jpg`;
   }
 
   // ******************************************************
   _onClickButton(answerAddedByUser, isAnswerddedByUserCorrect) {
     this._clearMainContainer();
     this._renderWaitingTitleComponent();
-    // this.gameManager.savePlayerAnswer(
-    this.gameManager.setAnswerFromUI(
+    this.gameManager.onPlayerAnswered(
       answerAddedByUser,
       isAnswerddedByUserCorrect,
     );
@@ -144,108 +195,4 @@ function modifiedGameModeComponent(
   }
 
   return questionContainer;
-}
-
-// ******************************************************
-// ******************************************************
-// ******************************************************
-// ! Przykład dla programistów --->>>
-// ! WIRTUALNA Game MASZYNA!
-// ! WIRTUALNY TEST!
-
-class TemplateClass {
-  constructor(
-    setQuestionFromGameManagerCallBackFunction,
-    setEndOfGameCallbackFunction,
-  ) {
-    this.callbackFunction_setQuestionFromGameManager = setQuestionFromGameManagerCallBackFunction;
-    this.callbackFunction_setEndOfGame = setEndOfGameCallbackFunction;
-    this.templateGeneratorClass;
-    this._templateMethods_1();
-  }
-
-  _templateMethods_1() {
-    this.templateGeneratorClass = new TemplateGeneratorClass();
-    this._setQuestionInUI();
-  }
-
-  _setQuestionInUI() {
-    this.templateGeneratorClass.getGenereatedQuestion((returnedObj) => {
-      if (returnedObj)
-        this.callbackFunction_setQuestionFromGameManager(returnedObj);
-      else {
-        this._templateEndOfGame();
-      }
-    });
-  }
-
-  setAnswerFromUI() {
-    this._templateMethods();
-  }
-
-  _templateMethods() {
-    this._setQuestionInUI();
-  }
-
-  _templateEndOfGame() {
-    console.log('KONIEC GRY!');
-    this.callbackFunction_setEndOfGame();
-    let timeToWindowReload = 5000;
-    setInterval(() => {
-      console.log(
-        `Strona zostanie przeładowana za: ${timeToWindowReload / 1000}`,
-      );
-      timeToWindowReload -= 1000;
-    }, 1000);
-    setTimeout(() => window.location.reload(), timeToWindowReload + 1000);
-  }
-}
-
-// ******************************************************
-
-class TemplateGeneratorClass {
-  constructor() {
-    this.itemNumber = 0;
-    this.internetServer = [
-      {
-        answers: ['Luke Skywalker', 'R2-D2', 'Chewbacca', 'Boba Fett'],
-        image: { mode: 'people', rightAnswer: 1 },
-        rightAnswer: 'Luke Skywalker',
-      },
-      {
-        answers: ['Brzuszek', 'R2-D2', 'Kot filemon', 'JSON'],
-        image: { mode: 'people', rightAnswer: 2 },
-        rightAnswer: 'R2-D2',
-      },
-      {
-        answers: ['Brzuszek', 'Kot filemon', 'JSON', 'C-3PO'],
-        image: { mode: 'people', rightAnswer: 3 },
-        rightAnswer: 'C-3PO',
-      },
-    ];
-  }
-
-  getGenereatedQuestion(callbackFunctionFromTampleClass) {
-    const downloadingTime = 1000;
-    console.log(`----------------------------------------`);
-    console.log(`UWAGA!`);
-    console.log(`Trwa pobieranie pytania...`);
-    console.log(
-      `Przybliżony czas oczekiwania na pytanie to ${downloadingTime} sec`,
-    );
-    console.log(`(Może zostać naliczona opłata za transmisje danych )`);
-    console.log(`----------------------------------------`);
-    setTimeout(() => {
-      console.log(`----------------------------------------`);
-      console.log(`UWAGA! Pobrano pytanie z internetu! `);
-      console.log(`Czas pobierania wynosi ${downloadingTime} sec`);
-      console.log(
-        `-->>>>> UWAGA! Naliczono %c${(Math.random() * 4).toFixed(2)} zł`,
-        'background: yellow;  font-weight: bold; ',
-        `złotego opłaty za transmisje!`,
-      );
-      console.log(`----------------------------------------`);
-      callbackFunctionFromTampleClass(this.internetServer[this.itemNumber++]);
-    }, downloadingTime);
-  }
 }
