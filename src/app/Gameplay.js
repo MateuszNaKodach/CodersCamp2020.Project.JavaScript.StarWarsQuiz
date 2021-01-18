@@ -2,6 +2,8 @@ import { MainTimer } from './MainTimer';
 import { Player } from './Player';
 import { fetchData } from '../utils/fetchData';
 import { getRandomIdFromArray } from '../utils/getRandomIdFromArray';
+import { QuestionGenerator } from './QuestionGenrator';
+import { ComputerMind } from './ComputerMind';
 import { Ranking } from './Ranking';
 
 export class Gameplay {
@@ -9,7 +11,7 @@ export class Gameplay {
     this.setQuestion = setQuestion;
     this.setEndOfGame = setEndOfGame;
     this.setUpdatedTime = setUpdatedTime;
-    [this.modeName, this.modeIdArray] = Object.entries(modeObj)[0];
+    [this.modeName, this.modeIdArray] = Object.values(modeObj);
     this.userAnswers = [];
     this.computerAnswers = [];
     this.questionGenerator = new QuestionGenerator(
@@ -28,7 +30,7 @@ export class Gameplay {
     this._startTimer();
   }
 
-  async _generateQuestions(questionsNumber = 60) {
+  async _generateQuestions(questionsNumber = 5) {
     const questionsToAsk = [];
     for (let i = 0; i < questionsNumber; i++) {
       const questionGenerated = await this.questionGenerator.generateQuestion();
@@ -60,18 +62,18 @@ export class Gameplay {
     this._generateMoreQuestions(questionIndex);
     const question = this.questionsToAsk[questionIndex];
     setTimeout(
-      this.computerPlayer.askQuestion(question, _onComputerMindAsked),
+      this.computerPlayer.askQuestion(question, this._onComputerMindAsked),
       1500,
     );
   }
 
   _onComputerMindAsked(question) {
-    return computerMind.tryToAnswer(question, onComputerAnswered);
+    computerMind.tryToAnswer(question, onComputerAnswered);
   }
 
   onComputerAnswered(answer, isAnswerCorrect) {
     computerAnswers.push([answer, isAnswerCorrect]);
-    this._askNextQuestion(this.computerPlayer);
+    this._askQuestionToComputer();
   }
 
   _startTimer() {
@@ -85,7 +87,7 @@ export class Gameplay {
 
   onPlayerAnswered(answer, isAnswerCorrect) {
     userAnswers.push([answer, isAnswerCorrect]);
-    this._askNextQuestion(this.userPlayer);
+    this._askQuestionToUser();
   }
 
   setRankingSaving(user, score, maxScore, finishGame) {

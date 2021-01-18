@@ -15,7 +15,6 @@ export class GameQuizView {
     },
   ) {
     this.settings = settings;
-    this.gameManager;
     this.questionIdArray = arrayIdNames[`${this.settings.gameModeName}IdArray`];
   }
 
@@ -36,10 +35,11 @@ export class GameQuizView {
       (time) => this._setUpdatedTime(time),
 
       {
-        gamModeName: this.settings.gameModeName,
+        gameModeName: this.settings.gameModeName,
         questionIdArray: this.questionIdArray,
       },
     );
+    this.gameManager.startGame();
   }
 
   // ******************************************************
@@ -168,7 +168,7 @@ export class GameQuizView {
     this._clearMainContainer();
     this._renderWaitingTitleComponent();
     // this.gameManager.savePlayerAnswer(
-    this.gameManager.setPlayerAnswer(
+    this.gameManager.onPlayerAnswered(
       answerAddedByUser,
       isAnswerddedByUserCorrect,
     );
