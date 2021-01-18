@@ -127,3 +127,31 @@
     transform: translateY(-10px);
   }
 }
+
+@media screen and (min-width: 360px) and (max-width: 414px) and (min-height: 640px) and (max-height: 896px) {
+  .startWindow {
+    font-size: 16px;
+
+    &__episodeTitle {
+      font-size: 1.5em;
+    }
+
+    &__deathStarContainer {
+      right: 20px;
+      text-align: center;
+      top: 20px;
+      width: 150px;
+    }
+    &__deathStar {
+      height: 150px;
+    }
+
+    &__startGameInformation {
+      font-size: 100%;
+      width: 100%;
+      padding: 5px 0px;
+      letter-spacing: 5px;
+      line-height: 130%;
+    }
+  }
+}
