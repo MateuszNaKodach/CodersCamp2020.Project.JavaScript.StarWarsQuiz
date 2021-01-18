@@ -1,5 +1,5 @@
 import { Player } from '../src/app/Player';
-import { ComputerMind, randomAnswerNr } from '../src/app/ComputerMind';
+import { ComputerMind } from '../src/app/ComputerMind';
 
 describe('Computer Mind', () => {
   const computerPlayer = new Player();
@@ -14,6 +14,7 @@ describe('Computer Mind', () => {
     };
     const randomizedNumberId = 2;
     const answerAtRandomizedNumberId = 'Chewbacca';
+    const isAnswerCorrect = false;
     const computerMind = new ComputerMind(
       computerPlayer,
       () => randomizedNumberId,
@@ -24,9 +25,12 @@ describe('Computer Mind', () => {
     );
 
     expect(spyComputerPlayerAnswer).toBeCalledWith(
-      answerAtRandomizedNumberId,
+      [answerAtRandomizedNumberId, isAnswerCorrect],
       onQuestionAnswered,
     );
-    expect(onQuestionAnswered).toBeCalledWith(answerAtRandomizedNumberId);
+    expect(onQuestionAnswered).toBeCalledWith([
+      answerAtRandomizedNumberId,
+      isAnswerCorrect,
+    ]);
   });
 });

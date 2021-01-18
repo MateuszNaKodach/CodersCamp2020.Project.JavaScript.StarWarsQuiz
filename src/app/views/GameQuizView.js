@@ -15,7 +15,6 @@ export class GameQuizView {
     },
   ) {
     this.settings = settings;
-    this.gameManager;
     this.questionIdArray = arrayIdNames[`${this.settings.gameModeName}IdArray`];
   }
 
@@ -36,23 +35,15 @@ export class GameQuizView {
       (time) => this._setUpdatedTime(time),
 
       {
-        gamModeName: this.settings.gameModeName,
+        gameModeName: this.settings.gameModeName,
         questionIdArray: this.questionIdArray,
       },
     );
+    this.gameManager.startGame();
   }
 
   // ******************************************************
-  _setEndOfGame(
-    player1answersArray = [
-      { id: 1, isCorrect: true },
-      { id: 2, isCorrect: true },
-    ],
-    player2answersArray = [
-      { id: 1, isCorrect: false },
-      { id: 2, isCorrect: true },
-    ],
-  ) {
+  _setEndOfGame(player1answersArray = [], player2answersArray = []) {
     const modalWindow = new ModalWindow(document.getElementById('swquiz-app'));
     modalWindow.show(
       new ModalWindowContent(
@@ -167,8 +158,7 @@ export class GameQuizView {
   _onClickButton(answerAddedByUser, isAnswerddedByUserCorrect) {
     this._clearMainContainer();
     this._renderWaitingTitleComponent();
-    // this.gameManager.savePlayerAnswer(
-    this.gameManager.setPlayerAnswer(
+    this.gameManager.onPlayerAnswered(
       answerAddedByUser,
       isAnswerddedByUserCorrect,
     );
