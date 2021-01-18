@@ -3,10 +3,7 @@ export const StartWindow = (callBackFunction) => {
   renderedComponent.classList.add('startWindow');
 
   const deathStarImageComponent = document.createElement('img');
-  deathStarImageComponent.setAttribute(
-    'src',
-    '../../static/assets/ui/DeathStar.png',
-  );
+  deathStarImageComponent.setAttribute('src', 'static/assets/ui/DeathStar.png');
   deathStarImageComponent.classList.add('startWindow__deathStar');
 
   const startGameInformation = document.createElement('span');
