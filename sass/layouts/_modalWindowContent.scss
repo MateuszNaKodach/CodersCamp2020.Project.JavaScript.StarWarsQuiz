@@ -13,49 +13,53 @@
     text-transform: uppercase;
     font-weight: 600;
     font-size: 3rem;
-    margin-bottom: 10px;
+    margin: 10px 0;
   }
 
   &__finalResults {
     font-size: 1.8rem;
-    text-align: left;
-    margin-bottom: 30px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 50px;
   }
 
   &__yodaImage {
     display: block;
-    max-height: 200px;
-    max-width: 400px;
+    max-height: 300px;
+    max-width: 500px;
     object-fit: contain;
-    align-self: flex-start;
+    align-self: center;
   }
 
   &__rowContainer {
     display: flex;
+    flex-direction: column;
     width: 100%;
-    height: 50%;
-    max-height: 50px;
+    height: 100%;
     margin-bottom: 2%;
   }
 
   &__input {
-    width: 40%;
+    width: 80%;
     border: 3px solid #bebebe;
     border-radius: 5px;
-    padding: 0 10px;
+    padding: 5px 10px;
     font-size: 1.8rem;
     font-weight: bold;
-    margin-right: 20px;
+    align-self: center;
+    text-align: center;
   }
 
   &__inputTip {
-    width: 50%;
+    width: 80%;
     font-size: 1.8rem;
     align-self: center;
+    text-align: center;
   }
 
   &__submitButton {
     margin: auto;
-    transform: scale(0.8);
+    padding: 15px 15px;
+    transform: scale(0.9);
   }
 }
