@@ -15,9 +15,9 @@ export class ComputerMind {
     );
   }
 
-  _randomAnswerNr = (questionAnswersTab) => {
+  _randomAnswerNr(questionAnswersTab) {
     const min = 0;
     const max = questionAnswersTab.length;
     return Math.floor(Math.random() * (max - min)) + min;
-  };
+  }
 }
