@@ -32,6 +32,14 @@
   }
 }
 
+@media (min-width: 1280px) {
+  .mainContainer {
+    &__centralBox {
+      flex-grow: unset;
+    }
+  }
+}
+
 @media (min-width: 360px) and (max-width: 414px) and (min-height: 640px) and (max-height: 896px) {
   .mainContainer {
     &__titleBox,
@@ -81,7 +89,7 @@
     &__playTheGameButton,
     &__hallOfFameButton,
     &__rulesButton {
-      height: 10rem;
+      height: 8rem;
       font-size: 3.2rem;
       padding: 15px 0;
     }
