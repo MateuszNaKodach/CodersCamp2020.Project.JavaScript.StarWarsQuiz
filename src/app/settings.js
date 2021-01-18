@@ -126,3 +126,9 @@ export const vehiclesIdArray = [
   38,
   42,
 ];
+
+export const arrayIdNames = {
+  peopleIdArray,
+  starshipsIdArray,
+  vehiclesIdArray,
+};
