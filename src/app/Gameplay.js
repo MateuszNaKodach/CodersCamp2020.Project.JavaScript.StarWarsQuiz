@@ -19,74 +19,83 @@ export class Gameplay {
       () => getRandomIdFromArray(this.modeIdArray),
       fetchData,
     );
+    this.questionsToAsk = [];
     this.userPlayer = new Player();
     this.computerPlayer = new Player();
     this.computerMind = new ComputerMind(this.computerPlayer);
   }
   async startGame() {
-    this.questionsToAsk = await this._generateQuestions();
+    await this._generateQuestions();
     this._askQuestionToUser();
     this._askQuestionToComputer();
     this._startTimer();
   }
 
   async _generateQuestions(questionsNumber = 5) {
-    const questionsToAsk = [];
     for (let i = 0; i < questionsNumber; i++) {
       const questionGenerated = await this.questionGenerator.generateQuestion();
-      questionsToAsk.push(questionGenerated);
+      this.questionsToAsk.push(questionGenerated);
     }
-    return questionsToAsk;
   }
 
-  _askQuestionToUser() {
+  async _askQuestionToUser() {
     const answersArray = this.userAnswers;
     const questionIndex = answersArray.length;
-    this._generateMoreQuestions(questionIndex);
+    if (this.questionsToAsk.length === 0) {
+      await this._generateQuestions();
+    } else if (this.questionsToAsk.length - questionIndex < 5) {
+      this._generateQuestions();
+    }
+    console.log('pytania usera: ', this.questionsToAsk.slice(questionIndex));
     this.userPlayer.askQuestion(
       this.questionsToAsk[questionIndex],
       this.setQuestion,
     );
   }
 
-  async _generateMoreQuestions(questionIndex) {
-    if (this.questionsToAsk.length - questionIndex < 10) {
-      const moreQuestions = await this._generateQuestions(10);
-      this.questionsToAsk.push([...moreQuestions]);
-    }
-  }
-
-  _askQuestionToComputer() {
+  async _askQuestionToComputer() {
     const answersArray = this.computerAnswers;
     const questionIndex = answersArray.length;
-    this._generateMoreQuestions(questionIndex);
+    if (this.questionsToAsk.length === 0) {
+      await this._generateQuestions();
+    } else if (this.questionsToAsk.length - questionIndex < 5) {
+      this._generateQuestions();
+    }
+    console.log('pytania comp: ', this.questionsToAsk.slice(questionIndex));
     const question = this.questionsToAsk[questionIndex];
     setTimeout(
-      this.computerPlayer.askQuestion(question, this._onComputerMindAsked),
+      () =>
+        this.computerPlayer.askQuestion(question, (question) =>
+          this._onComputerMindAsked(question),
+        ),
       1500,
     );
   }
 
   _onComputerMindAsked(question) {
-    computerMind.tryToAnswer(question, onComputerAnswered);
+    this.computerMind.tryToAnswer(question, (params) =>
+      this._onComputerAnswered(params),
+    );
   }
 
-  onComputerAnswered(answer, isAnswerCorrect) {
-    computerAnswers.push([answer, isAnswerCorrect]);
+  _onComputerAnswered(answer, isAnswerCorrect) {
+    this.computerAnswers.push([answer, isAnswerCorrect]);
     this._askQuestionToComputer();
   }
 
   _startTimer() {
-    const timer = new MainTimer(30);
+    const timer = new MainTimer(10);
     timer.startCountdown(this.setUpdatedTime, this.setEndOfTime);
   }
 
   setEndOfTime() {
-    this.setEndOfGame(this.userAnswers, this.computerAnswers);
+    () =>
+      console.log('user: ', this.userAnswers, 'comp: ', this.computerAnswers);
+    () => this.setEndOfGame(this.userAnswers, this.computerAnswers);
   }
 
   onPlayerAnswered(answer, isAnswerCorrect) {
-    userAnswers.push([answer, isAnswerCorrect]);
+    this.userAnswers.push([answer, isAnswerCorrect]);
     this._askQuestionToUser();
   }
 

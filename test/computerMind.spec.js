@@ -1,5 +1,5 @@
 import { Player } from '../src/app/Player';
-import { ComputerMind, randomAnswerNr } from '../src/app/ComputerMind';
+import { ComputerMind } from '../src/app/ComputerMind';
 
 describe('Computer Mind', () => {
   const computerPlayer = new Player();

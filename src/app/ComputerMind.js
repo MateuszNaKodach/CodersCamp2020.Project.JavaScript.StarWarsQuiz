@@ -1,7 +1,8 @@
 export class ComputerMind {
   constructor(computerPlayer, randomAnswerIdGenerator) {
     this.computerPlayer = computerPlayer;
-    this.randomAnswerIdGenerator = randomAnswerIdGenerator ?? randomAnswerNr;
+    this.randomAnswerIdGenerator =
+      randomAnswerIdGenerator ?? this._randomAnswerNr;
   }
 
   tryToAnswer(question, onQuestionAnswered) {
@@ -13,10 +14,10 @@ export class ComputerMind {
       onQuestionAnswered,
     );
   }
-}
 
-export const randomAnswerNr = (questionAnswersTab) => {
-  const min = 0;
-  const max = questionAnswersTab.length;
-  return Math.floor(Math.random() * (max - min)) + min;
-};
+  _randomAnswerNr = (questionAnswersTab) => {
+    const min = 0;
+    const max = questionAnswersTab.length;
+    return Math.floor(Math.random() * (max - min)) + min;
+  };
+}
