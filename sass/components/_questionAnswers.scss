@@ -5,3 +5,16 @@
   grid-gap: 40px;
   grid-template-columns: 1fr 1fr;
 }
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .questionAnswers {
+    margin: 25px 0;
+    grid-gap: 20px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .button {
+    height: 100px;
+    font-size: 3.2rem;
+  }
+}
