@@ -75,6 +75,12 @@
   .navMenu {
     height: 100%;
 
+    &__btn {
+      padding: 0 10px;
+      font-size: 22px;
+      line-height: 1;
+    }
+
     &__list {
       padding: 15px;
     }

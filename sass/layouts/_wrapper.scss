@@ -83,7 +83,7 @@
 
     $gap: 20px;
     grid-template-columns: $gap 3fr 8fr 3fr $gap;
-    grid-template-rows: 5px 1fr 1fr 25px 9fr $gap 15fr $gap;
+    grid-template-rows: 0 1fr 1fr 15px 9fr 15px 15fr $gap;
 
     &__logo {
       grid-column: 3 / span 1;
