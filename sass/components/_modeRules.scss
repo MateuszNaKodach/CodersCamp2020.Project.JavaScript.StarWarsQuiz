@@ -37,3 +37,9 @@
     padding-top: 15px;
   }
 }
+
+@media (min-width: 1280px) {
+  .modeRules {
+    align-self: flex-start;
+  }
+}
