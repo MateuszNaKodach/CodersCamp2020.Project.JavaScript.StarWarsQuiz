@@ -39,7 +39,7 @@ export const ModalWindowContent = (
     inside: content,
     withClasses: 'content__yodaImage',
   });
-  yodaImage.src = '../../../static/assets/ui/MasterYodaLeft.png';
+  yodaImage.src = 'static/assets/ui/MasterYodaLeft.png';
 
   const form = render({
     component: document.createElement('form'),
