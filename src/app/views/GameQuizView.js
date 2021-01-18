@@ -1,9 +1,10 @@
 import { GameMode as gameModeTitleComponent } from '../components/GameMode';
-import { QuestionAnswers as questionAnswersButtonsBoxComponent } from '../components/QuestionAnswers';
+import { QuestionAnswers } from '../components/QuestionAnswers';
 import { arrayIdNames } from '../settings';
 import { ModalWindow } from '../layouts/ModalWindow';
 import { ModalWindowContent } from '../layouts/ModalWindowContent';
 import { Gameplay } from './../Gameplay';
+import { Sword } from '../components/Sword';
 
 export class GameQuizView {
   constructor(
@@ -119,7 +120,7 @@ export class GameQuizView {
       this.settings.gameModeName,
       this.settings.gameModeTitlesList,
     );
-    const questionAnswersButtonsBoxComp = questionAnswersButtonsBoxComponent(
+    const questionAnswersButtonsBoxComp = QuestionAnswers(
       questionObjectFromGameManager.answers,
       questionObjectFromGameManager.rightAnswer,
       (answerAddedByUser, isAnswerddedByUserCorrect) =>
@@ -129,6 +130,7 @@ export class GameQuizView {
     const renderedLoadedGameViewArray = [
       modifiedGameModeComp,
       questionAnswersButtonsBoxComp,
+      Sword(),
     ];
 
     this.settings.renderComponentsFromComponentsArrayCallbackFunction(
