@@ -23,6 +23,7 @@ export class Gameplay {
     this.userPlayer = new Player();
     this.computerPlayer = new Player();
     this.computerMind = new ComputerMind(this.computerPlayer);
+    this.ranking = new Ranking(this.modeName);
   }
   async startGame() {
     await this._generateQuestions();
@@ -96,8 +97,9 @@ export class Gameplay {
   }
 
   setRankingSaving(user, score, maxScore, finishGame) {
-    const ranking = new Ranking(this.modeName);
-    ranking.saveScore(user, score, maxScore);
+    if (maxScore > 0) {
+      this.ranking.saveScore(user, score, maxScore);
+    }
     finishGame();
   }
 }
