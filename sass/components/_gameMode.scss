@@ -28,3 +28,9 @@
     margin-top: 0;
   }
 }
+
+@media (min-width: 1280px) and (max-width: 1400px) {
+  .gameMode {
+    font-size: 3.8rem;
+  }
+}
