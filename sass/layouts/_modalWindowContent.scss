@@ -63,3 +63,14 @@
     transform: scale(0.9);
   }
 }
+
+@media (min-width: 1280px) {
+  .content {
+    &__input {
+      font-size: 2.5rem;
+    }
+    &__submitButton {
+      margin-top: 30px;
+    }
+  }
+}
