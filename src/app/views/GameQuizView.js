@@ -49,7 +49,7 @@ export class GameQuizView {
   // ******************************************************
   _setEndOfGame(player1answersArray = [], player2answersArray = []) {
     const modalWindow = new ModalWindow(document.getElementById('swquiz-app'));
-    /*modalWindow.show(
+    modalWindow.show(
       new ModalWindowContent(
         player1answersArray,
         player2answersArray,
@@ -62,7 +62,7 @@ export class GameQuizView {
             this.settings.modeName,
           ),
       ),
-    );*/
+    );
 
     // modalWindowContent.close();
   }
