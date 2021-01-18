@@ -27,7 +27,7 @@ export const ModalWindowContent = (
     withClasses: 'content__finalResults',
   });
   //we can also use variable for game time length
-  finalResults.textContent = `The force is strong in you young Padawan! During 2 minutes you have answered ${playerResult} / ${playerAnswersQuantity} questions and Computer quessed ${computerResult} / ${computerAnswersQuantity}.`;
+  finalResults.textContent = `The force is strong in you young Padawan! During 30 seconds you have answered ${playerResult} / ${playerAnswersQuantity} questions and Computer quessed ${computerResult} / ${computerAnswersQuantity}.`;
   finalResults.setAttribute('data-testid', 'final-result-text');
 
   function correctAnswersCounter(answers) {
