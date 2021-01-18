@@ -55,7 +55,7 @@
 
     $gap: 10px;
     grid-template-columns: $gap 3fr 10fr 3fr $gap;
-    grid-template-rows: 5px 1fr 1fr 15px 9fr $gap 15fr $gap;
+    grid-template-rows: 5px 1fr 15px 9fr 10px 15fr $gap;
 
     &__logo {
       grid-column: 3 / span 1;
@@ -64,17 +64,17 @@
 
     &__nav {
       grid-column: 2 / span 3;
-      grid-row: 3 / span 1;
+      grid-row: 2 / span 1;
     }
 
     &__mainImg {
       grid-column: 3 / span 1;
-      grid-row: 5 / span 1;
+      grid-row: 4 / span 1;
     }
 
     &__mainContainer {
       grid-column: 2 / span 3;
-      grid-row: 7 / span 1;
+      grid-row: 6 / span 1;
     }
   }
 }
