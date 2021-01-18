@@ -46,7 +46,6 @@ export class Gameplay {
     } else if (this.questionsToAsk.length - questionIndex < 5) {
       this._generateQuestions();
     }
-    console.log('pytania usera: ', this.questionsToAsk.slice(questionIndex));
     this.userPlayer.askQuestion(
       this.questionsToAsk[questionIndex],
       this.setQuestion,
@@ -61,14 +60,13 @@ export class Gameplay {
     } else if (this.questionsToAsk.length - questionIndex < 5) {
       this._generateQuestions();
     }
-    console.log('pytania comp: ', this.questionsToAsk.slice(questionIndex));
     const question = this.questionsToAsk[questionIndex];
     setTimeout(
       () =>
         this.computerPlayer.askQuestion(question, (question) =>
           this._onComputerMindAsked(question),
         ),
-      1500,
+      1000,
     );
   }
 
@@ -78,8 +76,8 @@ export class Gameplay {
     );
   }
 
-  _onComputerAnswered(answer, isAnswerCorrect) {
-    this.computerAnswers.push([answer, isAnswerCorrect]);
+  _onComputerAnswered([answer, isCorrect]) {
+    this.computerAnswers.push({ answer, isCorrect });
     this._askQuestionToComputer();
   }
 
@@ -92,8 +90,8 @@ export class Gameplay {
     this.setEndOfGame(this.userAnswers, this.computerAnswers);
   }
 
-  onPlayerAnswered(answer, isAnswerCorrect) {
-    this.userAnswers.push([answer, isAnswerCorrect]);
+  onPlayerAnswered(answer, isCorrect) {
+    this.userAnswers.push({ answer, isCorrect });
     this._askQuestionToUser();
   }
 
