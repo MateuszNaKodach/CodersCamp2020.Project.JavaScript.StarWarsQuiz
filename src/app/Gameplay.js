@@ -1,4 +1,4 @@
-import { MainTimer } from './components/MainTimer';
+import { MainTimer } from './MainTimer';
 import { Player } from './Player';
 import { fetchData } from '../utils/fetchData';
 import { getRandomIdFromArray } from '../utils/getRandomIdFromArray';
