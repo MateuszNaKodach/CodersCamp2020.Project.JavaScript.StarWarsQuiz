@@ -13,49 +13,204 @@
     text-transform: uppercase;
     font-weight: 600;
     font-size: 3rem;
-    margin-bottom: 10px;
+    margin: 10px 0;
   }
 
   &__finalResults {
     font-size: 1.8rem;
-    text-align: left;
-    margin-bottom: 30px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 50px;
   }
 
   &__yodaImage {
     display: block;
-    max-height: 200px;
-    max-width: 400px;
+    max-height: 300px;
+    max-width: 500px;
     object-fit: contain;
-    align-self: flex-start;
+    align-self: center;
   }
 
   &__rowContainer {
     display: flex;
+    flex-direction: column;
     width: 100%;
-    height: 50%;
-    max-height: 50px;
+    height: 100%;
     margin-bottom: 2%;
   }
 
   &__input {
-    width: 40%;
+    width: 80%;
     border: 3px solid #bebebe;
     border-radius: 5px;
-    padding: 0 10px;
+    padding: 5px 10px;
     font-size: 1.8rem;
     font-weight: bold;
-    margin-right: 20px;
+    align-self: center;
+    text-align: center;
   }
 
   &__inputTip {
-    width: 50%;
+    width: 80%;
     font-size: 1.8rem;
     align-self: center;
+    text-align: center;
   }
 
   &__submitButton {
     margin: auto;
-    transform: scale(0.8);
+    padding: 15px 15px;
+    transform: scale(0.9);
+  }
+}
+
+@media screen and (min-width: 360px) and (max-width: 414px) and (min-height: 640px) and (max-height: 896px) {
+  .content {
+    justify-content: flex-start;
+
+    &__gameOver {
+      font-size: 2.7rem;
+      margin: 10px 0;
+    }
+
+    &__finalResults {
+      font-size: 1.6rem;
+      text-align: center;
+    }
+
+    &__yodaImage {
+      max-height: 150px;
+      max-width: 300px;
+      align-self: center;
+    }
+
+    &__rowContainer {
+      flex-direction: column;
+      height: 100%;
+      max-height: 100%;
+    }
+
+    &__input {
+      width: 100%;
+      height: 50px;
+      border: 2.5px solid #bebebe;
+      padding: 0 10px;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      margin-right: 0;
+    }
+
+    &__inputTip {
+      width: 100%;
+      font-size: 1.6rem;
+      text-align: center;
+    }
+
+    &__submitButton {
+      margin: 15px 0;
+      font-size: 1.5rem;
+      padding: 10px 10px;
+      transform: scale(1);
+    }
+  }
+}
+
+@media (min-width: 360px) and (max-width: 414px) and (min-height: 640px) and (max-height: 896px) {
+  .content {
+    justify-content: flex-start;
+
+    &__gameOver {
+      font-size: 2.7rem;
+      margin: 10px 0;
+    }
+
+    &__finalResults {
+      font-size: 1.6rem;
+      text-align: center;
+    }
+
+    &__yodaImage {
+      max-height: 150px;
+      max-width: 300px;
+      align-self: center;
+    }
+
+    &__rowContainer {
+      flex-direction: column;
+      height: 100%;
+      max-height: 100%;
+    }
+
+    &__input {
+      width: 100%;
+      height: 50px;
+      border: 2.5px solid #bebebe;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      margin-right: 0;
+    }
+
+    &__inputTip {
+      width: 100%;
+      font-size: 1.6rem;
+      text-align: center;
+    }
+
+    &__submitButton {
+      margin: 15px 0;
+      font-size: 1.5rem;
+      padding: 10px 10px;
+      transform: scale(1);
+    }
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .content {
+    font-weight: 700;
+
+    &__gameOver {
+      font-weight: 700;
+      font-size: 3.5rem;
+      margin: 15px 0;
+    }
+
+    &__finalResults {
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    &__yodaImage {
+      max-height: 250px;
+      max-width: 500px;
+      align-self: center;
+    }
+
+    &__rowContainer {
+      flex-direction: column;
+      height: 100%;
+      max-height: 100%;
+    }
+
+    &__input {
+      width: 100%;
+      min-height: 50px;
+      border: 4px solid #bebebe;
+      font-size: 2rem;
+      margin-right: 0;
+    }
+
+    &__inputTip {
+      width: 100%;
+      font-size: 2rem;
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    &__submitButton {
+      font-size: 2.5rem;
+      padding: 10px 10px;
+      transform: scale(1);
+    }
   }
 }
