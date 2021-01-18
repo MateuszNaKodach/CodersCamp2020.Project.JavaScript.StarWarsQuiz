@@ -15,6 +15,7 @@ import { GameMode } from './components/GameMode';
 import { render } from './rendering';
 import { QuestionAnswers } from './components/QuestionAnswers';
 import { ModeRules } from './components/ModeRules';
+import { Sword } from './components/Sword';
 import { ModeRanking } from './components/ModeRanking';
 
 export const App = ({ options }) => {
