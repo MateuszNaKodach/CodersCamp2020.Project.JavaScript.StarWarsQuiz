@@ -45,6 +45,9 @@ export class Ranking {
   }
 
   getScores() {
-    return JSON.parse(localStorage.getItem(this.mode)) ?? [];
+    const results = JSON.parse(localStorage.getItem(this.mode));
+    return (results ?? []).sort(
+      (a, b) => b.score / b.maxScore - a.score / a.maxScore,
+    );
   }
 }
