@@ -6,10 +6,12 @@ export class ComputerMind {
 
   tryToAnswer(question, onQuestionAnswered) {
     const computerAnswerId = this.randomAnswerIdGenerator(question.answers);
-    //TODO: Do zrobienia pozostało jeszcze opóźnienie odpowiedzi komputera o ileś milisekund, ale to można dorobić pózniej
-    //W zadaniu z rozgrywką całego quizu będzie wtedy problem
     const computerAnswer = question.answers[computerAnswerId];
-    this.computerPlayer.answer(computerAnswer, onQuestionAnswered);
+    const isAnswerCorrect = computerAnswer === question.rightAnswer;
+    this.computerPlayer.answer(
+      [computerAnswer, isAnswerCorrect],
+      onQuestionAnswered,
+    );
   }
 }
 
