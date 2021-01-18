@@ -43,16 +43,7 @@ export class GameQuizView {
   }
 
   // ******************************************************
-  _setEndOfGame(
-    player1answersArray = [
-      { id: 1, isCorrect: true },
-      { id: 2, isCorrect: true },
-    ],
-    player2answersArray = [
-      { id: 1, isCorrect: false },
-      { id: 2, isCorrect: true },
-    ],
-  ) {
+  _setEndOfGame(player1answersArray = [], player2answersArray = []) {
     const modalWindow = new ModalWindow(document.getElementById('swquiz-app'));
     modalWindow.show(
       new ModalWindowContent(
@@ -167,7 +158,6 @@ export class GameQuizView {
   _onClickButton(answerAddedByUser, isAnswerddedByUserCorrect) {
     this._clearMainContainer();
     this._renderWaitingTitleComponent();
-    // this.gameManager.savePlayerAnswer(
     this.gameManager.onPlayerAnswered(
       answerAddedByUser,
       isAnswerddedByUserCorrect,

@@ -84,14 +84,12 @@ export class Gameplay {
   }
 
   _startTimer() {
-    const timer = new MainTimer(10);
-    timer.startCountdown(this.setUpdatedTime, this.setEndOfTime);
+    const timer = new MainTimer(30);
+    timer.startCountdown(this.setUpdatedTime, () => this.setEndOfTime());
   }
 
   setEndOfTime() {
-    () =>
-      console.log('user: ', this.userAnswers, 'comp: ', this.computerAnswers);
-    () => this.setEndOfGame(this.userAnswers, this.computerAnswers);
+    this.setEndOfGame(this.userAnswers, this.computerAnswers);
   }
 
   onPlayerAnswered(answer, isAnswerCorrect) {
