@@ -3,7 +3,18 @@
   background-size: auto 100%;
   background-position: top;
   width: 400px;
-  // height: 600px;
   border-radius: $component-radius;
   box-shadow: $component-shadow;
+}
+
+@media (min-width: 360px) and (max-width: 414px) and (min-height: 640px) and (max-height: 896px) {
+  .questionImage {
+    width: 100%;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .questionImage {
+    width: 100%;
+  }
 }

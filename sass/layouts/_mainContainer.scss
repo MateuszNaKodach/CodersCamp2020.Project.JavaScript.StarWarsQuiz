@@ -31,3 +31,59 @@
     margin-left: 8px;
   }
 }
+
+@media (min-width: 360px) and (max-width: 414px) and (min-height: 640px) and (max-height: 896px) {
+  .mainContainer {
+    &__titleBox,
+    &__centralBox,
+    &__buttonBox {
+      margin: 5px 0;
+    }
+
+    &__buttonBox {
+      flex-direction: column;
+    }
+    &__hallOfFameButton,
+    &__rulesButton {
+      order: 2;
+      margin-right: 0;
+    }
+    &__playTheGameButton {
+      order: 1;
+      margin-left: 0;
+    }
+
+    &__playTheGameButton,
+    &__hallOfFameButton,
+    &__rulesButton {
+      height: 15rem;
+      font-size: 2.2rem;
+      padding: 15px 0;
+      margin: 6px 0;
+    }
+  }
+
+  .button__icon {
+    min-width: 2.4rem;
+    min-height: 2.4rem;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .mainContainer {
+    &__titleBox,
+    &__centralBox,
+    &__buttonBox {
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+
+    &__playTheGameButton,
+    &__hallOfFameButton,
+    &__rulesButton {
+      height: 10rem;
+      font-size: 3.2rem;
+      padding: 15px 0;
+    }
+  }
+}
