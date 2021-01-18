@@ -5,6 +5,7 @@ import { ModalWindow } from '../layouts/ModalWindow';
 import { ModalWindowContent } from '../layouts/ModalWindowContent';
 import { Gameplay } from './../Gameplay';
 import { Sword } from '../components/Sword';
+import { TextTimer } from '../components/TextTimer';
 
 export class GameQuizView {
   constructor(
@@ -17,6 +18,8 @@ export class GameQuizView {
   ) {
     this.settings = settings;
     this.questionIdArray = arrayIdNames[`${this.settings.gameModeName}IdArray`];
+    this.textTimer = TextTimer();
+    this.swordTimer = Sword(30);
   }
 
   // ******************************************************
@@ -93,6 +96,8 @@ export class GameQuizView {
   _setUpdatedTime(time) {
     console.log(`Time: ${time} ms`);
     console.log('DODAJ tu TEXT TIMER');
+    this.textTimer.updateTextTime(time);
+    this.swordTimer.updateTextTime(time);
     // TODO: TEXT TIMER W TYM MIEJSCU
   }
 
@@ -130,7 +135,8 @@ export class GameQuizView {
     const renderedLoadedGameViewArray = [
       modifiedGameModeComp,
       questionAnswersButtonsBoxComp,
-      Sword(),
+      this.swordTimer,
+      this.textTimer,
     ];
 
     this.settings.renderComponentsFromComponentsArrayCallbackFunction(

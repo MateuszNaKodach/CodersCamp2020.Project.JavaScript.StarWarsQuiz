@@ -1,4 +1,4 @@
-export const Sword = () => {
+export const Sword = (maxTime) => {
   const component = document.createElement('div');
   component.classList.add('sword');
 
@@ -23,6 +23,10 @@ export const Sword = () => {
   powerTrackLight.classList.add('sword__wrap__power--light');
   powerTrackLight.classList.add('sword__wrap__power--animation');
   powerTrack.appendChild(powerTrackLight);
+
+  component.updateTextTime = (time) => {
+    powerTrackLight.style.width = (time / maxTime) * 100 + '%';
+  };
 
   return component;
 };
