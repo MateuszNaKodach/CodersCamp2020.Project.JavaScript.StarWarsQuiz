@@ -115,11 +115,13 @@ describe("Ranking's logic", () => {
     expect(JSON.parse(localStorage.getItem('starships'))).toEqual(results);
   });
 
-  it('Ranking saved in local storage should be returned', () => {
+  it('Ranking saved in local storage should be returned in order', () => {
     const starshipsRanking = new Ranking('starships');
     localStorage.setItem('starships', JSON.stringify(results));
 
-    expect(starshipsRanking.getScores()).toEqual(results);
+    expect(starshipsRanking.getScores()).toEqual(
+      results.sort((a, b) => a.score / a.maxScore - b.score / b.maxScore),
+    );
   });
 
   it('When no score is saved in local storage then return an empty array', () => {
