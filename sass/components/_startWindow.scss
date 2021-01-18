@@ -128,7 +128,7 @@
   }
 }
 
-@media screen and (min-width: 360px) and (max-width: 414px) and (min-height: 640px) and (max-height: 896px) {
+@media (min-width: 360px) and (max-width: 414px) and (min-height: 640px) and (max-height: 896px) {
   .startWindow {
     font-size: 16px;
 
@@ -152,6 +152,19 @@
       padding: 5px 0px;
       letter-spacing: 5px;
       line-height: 130%;
+    }
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .startWindow {
+    &__deathStarContainer {
+      top: 20px;
+      right: 20px;
+      width: 220px;
+    }
+    &__deathStar {
+      height: 220px;
     }
   }
 }
