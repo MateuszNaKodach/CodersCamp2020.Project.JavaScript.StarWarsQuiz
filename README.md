@@ -1,22 +1,22 @@
-# Star Wars Quiz App 
+# Star Wars Quiz App
 
-
-## Overview 
+## Overview
 
 **Star Wars Quiz App is a game that allows test your knowledge of the Star Wars saga. Are you already a Jedi or maybe Padawan so far?**
-
 
 ## Our Crew
 
 The project was created during the **CodersCamp** course by a team led by **[Mateusz Nowak](https://github.com/nowakprojects)**
-* [Anna Lamperska](https://github.com/lamparina)
-* [Dominika Zwolenik](https://github.com/DomiZet)
-* [Tomasz Dworniczak](https://github.com/tomdworniczak)
-* [Paweł Szambelan](https://github.com/Szambelan)
-* [Piotr Rynio](https://github.com/PiotrWR)
 
+- [Anna Lamperska](https://github.com/lamparina)
+- [Dominika Zwolenik](https://github.com/DomiZet)
+- [Tomasz Dworniczak](https://github.com/tomdworniczak)
+- [Paweł Szambelan](https://github.com/Szambelan)
+- [Piotr Rynio](https://github.com/PiotrWR)
 
-## Features 
+![Project Presentation](.github/images/StarWarsCodersCampPresentation.png)
+
+## Features
 
 1. Selecting the quiz mode: People, Vehicles, Spaceships
 2. Rules description for the quiz
@@ -28,25 +28,26 @@ The project was created during the **CodersCamp** course by a team led by **[Mat
 
 **Our application is fully responsive and covered by Unit Tests!**
 
-## Running the project 
+## Running the project
 
 Running this project locally
 
 ###### Live version:
+
 [Star Wars Quiz App](https://nowakprojects.github.io/CodersCamp2020.Project.JavaScript.StarWarsQuiz/)
 
 ###### From the repo:
+
 1. Clone this project locally
 2. Run `npm install` in your bash/command line
 3. Run `npm run start:dev` in your bash/command line
 4. Host a game and invite some friends!
 
-
 ## Dependencies
 
 The following technologies were used :
-* HTML
-* CSS
-* JavaScript
-* [Jest](https://jestjs.io/) and [Testing Library](https://testing-library.com/docs/)
 
+- HTML
+- CSS
+- JavaScript
+- [Jest](https://jestjs.io/) and [Testing Library](https://testing-library.com/docs/)
