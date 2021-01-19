@@ -1,0 +1,24 @@
+body {
+  width: 100%;
+  // color: $color-font--primary;
+  // font-family: $font-family--primary;
+  font-size: 10px;
+  margin: 0;
+  background-image: url('../static/assets/ui/QuizBackground.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+  padding-top: 1rem;
+  min-height: 100vh;
+}
+
+.wrap {
+  display: block;
+  position: relative;
+  top: 0;
+  right: 0;
+  width: 100%;
+  margin: auto;
+  background-color: red;
+}

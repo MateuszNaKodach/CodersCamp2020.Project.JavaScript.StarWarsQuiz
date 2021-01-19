@@ -1,0 +1,94 @@
+.navMenu {
+  // ! --->>> do usunięcie
+  // margin: 100px auto;
+  // ! ---<<< do usunięcie
+  height: 100px;
+  width: 750px;
+  width: 100%;
+  background: $color-bgc;
+  border-radius: $component-radius;
+  box-shadow: $component-shadow;
+
+  &__list {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &__li {
+    height: 100%;
+    text-align: center;
+  }
+  &__btn {
+    display: inline-block;
+    height: 100%;
+    padding: 0 40px;
+    background-color: transparent;
+    font-size: 25px;
+    font-weight: bold;
+    text-transform: capitalize;
+    line-height: 1.6;
+    border: none;
+  }
+
+  &__btn--active::after {
+    content: '';
+    display: block;
+    height: 5px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: #e04f4f;
+    box-shadow: 0px 0px 25px 2px rgba(230, 0, 1, 0.8);
+  }
+
+  &__btn:focus {
+    outline: none;
+  }
+}
+
+@media (min-width: 1280px) {
+  .navMenu {
+    height: 50%;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 414px) and (min-height: 640px) and (max-height: 896px) {
+  .navMenu {
+    height: 100%;
+
+    &__list {
+      padding: 8px;
+    }
+
+    &__btn {
+      padding: 0 10px;
+      font-size: 15px;
+      line-height: 1;
+    }
+
+    &__btn--active::after {
+      height: 3px;
+    }
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .navMenu {
+    height: 100%;
+
+    &__btn {
+      padding: 0 10px;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    &__list {
+      padding: 15px;
+    }
+  }
+}

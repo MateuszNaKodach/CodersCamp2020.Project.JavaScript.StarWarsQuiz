@@ -25,6 +25,8 @@
   },
   "homepage": "https://github.com/CodersCamp2020/CodersCamp2020.Project.JavaScript.StarWarsQuiz#readme",
   "dependencies": {
+    "parcel": "^1.12.4",
+    "@types/jest": "^26.0.19",
     "regenerator-runtime": "^0.13.7",
     "uuid": "^8.3.0"
   },
@@ -36,12 +38,21 @@
     "@testing-library/user-event": "^12.2.2",
     "babel-jest": "^26.5.0",
     "cssnano": "^4.1.10",
+    "husky": "^4.3.6",
     "jest": "^26.4.2",
     "jest-fetch-mock": "^3.0.3",
     "msw": "^0.21.3",
+    "parcel-bundler": "^1.12.4",
     "parcel-plugin-static-files-copy": "^2.5.0",
-    "prettier": "^2.1.2",
-    "rimraf": "^3.0.2"
+    "prettier": "2.2.1",
+    "pretty-quick": "^3.1.0",
+    "rimraf": "^3.0.2",
+    "sass": "^1.30.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   },
   "jest": {
     "moduleFileExtensions": [

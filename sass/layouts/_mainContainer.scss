@@ -1,0 +1,103 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  &__titleBox,
+  &__centralBox,
+  &__buttonBox {
+    margin: 15px 0;
+  }
+
+  &__titleBox {
+  }
+  &__centralBox {
+    flex-grow: 1;
+  }
+  &__buttonBox {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__hallOfFameButton,
+  &__rulesButton {
+    order: 1;
+    flex-basis: 50%;
+    margin-right: 8px;
+  }
+  &__playTheGameButton {
+    order: 2;
+    flex-basis: 50%;
+    margin-left: 8px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .mainContainer {
+    &__centralBox {
+      flex-grow: unset;
+    }
+  }
+}
+
+@media (min-width: 360px) and (max-width: 414px) and (min-height: 640px) and (max-height: 896px) {
+  .mainContainer {
+    justify-content: flex-start;
+
+    &__titleBox,
+    &__centralBox,
+    &__buttonBox {
+      margin: 5px 0;
+    }
+
+    &__titleBox {
+      margin-top: 0;
+    }
+
+    &__buttonBox {
+      flex-direction: column;
+    }
+    &__hallOfFameButton,
+    &__rulesButton {
+      order: 2;
+      margin-right: 0;
+    }
+    &__playTheGameButton {
+      order: 1;
+      margin-left: 0;
+    }
+
+    &__playTheGameButton,
+    &__hallOfFameButton,
+    &__rulesButton {
+      height: 15rem;
+      font-size: 2.2rem;
+      padding: 15px 0;
+      margin: 6px 0;
+    }
+  }
+
+  .button__icon {
+    min-width: 2.4rem;
+    min-height: 2.4rem;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .mainContainer {
+    &__titleBox,
+    &__centralBox,
+    &__buttonBox {
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+
+    &__playTheGameButton,
+    &__hallOfFameButton,
+    &__rulesButton {
+      height: 8rem;
+      font-size: 3.2rem;
+      padding: 15px 0;
+    }
+  }
+}

@@ -1,0 +1,128 @@
+.modeRanking {
+  display: block;
+  height: auto;
+  width: auto;
+  padding: 20px 45px;
+  border-radius: 16px;
+  border: none;
+  background-color: $color-bgc;
+  text-align: center;
+  font-family: $font-family--primary;
+  font-style: normal;
+  font-weight: 500;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  //margin-top: 40px;
+
+  &__icon {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    background-image: url('../static/assets/ui/IconFame.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-width: 2.6rem;
+    min-height: 2.6rem;
+    margin-right: 20px;
+  }
+
+  &__header {
+    display: inline-block;
+    font-size: 2.6rem;
+    position: relative;
+    vertical-align: middle;
+  }
+
+  &__rankingContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    font-size: 2.2rem;
+    margin-top: 20px;
+  }
+
+  &__rankingRow {
+    display: flex;
+    flex-flow: nowrap row;
+    justify-content: space-around;
+  }
+
+  &__headerItem--place,
+  &__rankingPlace {
+    flex-basis: 20%;
+    text-align: left;
+  }
+  &__headerItem--player,
+  &__rankingPlayer {
+    flex-basis: 60%;
+    text-align: left;
+  }
+  &__headerItem--answered,
+  &__rankingAnswered {
+    flex-basis: 20%;
+    text-align: left;
+  }
+
+  &__headerItem,
+  &__emptyLeaderboardText {
+    font-weight: 700;
+  }
+
+  &__emptyLeaderboardText {
+    padding: 40px 30px;
+    font-size: 15px;
+    font-style: italic;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 414px) and (min-height: 640px) and (max-height: 896px) {
+  .modeRanking {
+    padding: 10px 25px;
+
+    &__icon {
+      min-width: 2.4rem;
+      min-height: 2.4rem;
+      margin-right: 15px;
+    }
+
+    &__header {
+      font-size: 2.2rem;
+    }
+
+    &__rankingContainer {
+      font-size: 1.8rem;
+      margin-top: 10px;
+    }
+
+    // check the padding and font size with full ranking!!! Because now it is empty!
+    &__emptyLeaderboardText {
+      padding: 40px 30px;
+      font-size: 15px;
+    }
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .modeRanking {
+    font-weight: 600;
+
+    &__icon {
+      min-width: 3rem;
+      min-height: 3rem;
+    }
+
+    &__header {
+      font-size: 3rem;
+    }
+
+    &__rankingContainer {
+      font-size: 2.4rem;
+      margin-top: 20px;
+    }
+
+    // check the padding and font size with full ranking!!! Because now it is empty!
+    &__emptyLeaderboardText {
+      font-size: 22px;
+    }
+  }
+}

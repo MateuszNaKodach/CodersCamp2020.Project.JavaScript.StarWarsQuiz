@@ -1,0 +1,26 @@
+// * NIE ZMIENIAĆ KOLEJNOŚCI!
+
+@import 'reset'; // reset standardowy
+@import 'vars'; // ustawienie zmiennych
+@import 'main'; // opisanie głównych elementów
+@import 'mixins'; // miksins - główne
+
+// * COMPONENTY
+@import 'components/gameMode';
+@import 'components/button';
+@import 'components/questionAnswers';
+@import 'components/modeRules';
+@import 'components/sword';
+@import 'components/startWindow';
+@import 'components/modeRanking';
+@import 'components/timer';
+
+// * LAYOUTS
+@import 'layouts/example';
+@import 'layouts/wrapper';
+@import 'layouts/navMenu';
+@import 'layouts/questionImage';
+@import 'layouts/logo';
+@import 'layouts/mainContainer';
+@import 'layouts/modalWindow';
+@import 'layouts/modalWindowContent';

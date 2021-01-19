@@ -1,0 +1,18 @@
+.timer {
+  width: 600px;
+  height: 100px;
+  text-align: center;
+  font-family: $font-family--primary;
+  font-weight: 800;
+  font-size: 4rem;
+  color: $color-font--timer;
+  margin: 0 auto;
+}
+
+@media (min-width: 360px) and (max-width: 414px) and (min-height: 640px) and (max-height: 896px) {
+  .timer {
+    width: 100%;
+    height: auto;
+    font-size: 2.7rem;
+  }
+}
