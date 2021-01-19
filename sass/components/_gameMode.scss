@@ -1,0 +1,36 @@
+.gameMode {
+  height: 10rem;
+  border-radius: 1.6rem;
+  background-color: #fff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 4px 4px 40px rgba(255, 0, 0, 0.9),
+    inset 4px 5px 4px rgba(0, 0, 0, 0.5);
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 4.2rem;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 360px) and (max-width: 414px) and (min-height: 640px) and (max-height: 896px) {
+  .gameMode {
+    height: 4rem;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .gameMode {
+    height: 6rem;
+    font-size: 3.6rem;
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1400px) {
+  .gameMode {
+    font-size: 3.8rem;
+  }
+}
