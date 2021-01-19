@@ -3,7 +3,7 @@
 
 ## Overview 
 
-**Star Wars Quiz App is a game that allows test your knowledge of the Star Wars saga. Are you already a Jedi or maybe Padawan so far?
+**Star Wars Quiz App is a game that allows test your knowledge of the Star Wars saga. Are you already a Jedi or maybe Padawan so far?**
 
 
 ## Our Crew
@@ -20,12 +20,13 @@ The project was created during the **CodersCamp** course by a team led by **[Mat
 
 1. Selecting the quiz mode: People, Vehicles, Spaceships
 2. Rules description for the quiz
-3. Countdown after the start of the game (two minutes)
+3. Countdown after the start of the game (30 seconds)
 4. The player tries to answer as many questions as possible. In addition, the player can also competes with the computer.
 5. During the quiz, the Lightsaber shows how much time is left.
 6. Random generation of questions within the selected mode.
 7. When the time is completed, the player's score is stored in the ranking for given browser (LocalStorage) and the top 3 scores is shown.
 
+**Our application is fully responsive and covered by Unit Tests!**
 
 ## Running the project 
 
@@ -47,5 +48,5 @@ The following technologies were used :
 * HTML
 * CSS
 * JavaScript
-* Testing Library
+* [Jest](https://jestjs.io/) and [Testing Library](https://testing-library.com/docs/)
 
