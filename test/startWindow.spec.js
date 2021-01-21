@@ -27,8 +27,5 @@ describe('StartWindow:', () => {
     userEvent.click(testedElem);
 
     expect(document.body).not.toContainElement(testStartWindowComponent);
-    // expect(document.body).not.toContain(testStartWindowComponent); // ! Nie nadaje się do elementów HTML!
-    // expect(testedElem).not.toBeVisible(); // !test case bez sensu, skoro 'click' usuwa całowicie element z drzewa DOM
-    // expect(document.body).toBeEmpty(); // !metoda toBeEmpty() jest oznaczona deprecated i nie powinna być używana
   });
 });

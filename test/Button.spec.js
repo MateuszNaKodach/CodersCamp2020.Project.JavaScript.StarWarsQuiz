@@ -1,8 +1,6 @@
 import { Button } from '../src/app/components/Button';
 import '@testing-library/jest-dom';
-// import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
-// import variables from '../sass/_vars.scss';
 
 describe('Function that creates and renders button', () => {
   it('Should create and return button object with passed parameters.', () => {

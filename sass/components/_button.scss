@@ -1,5 +1,3 @@
-//Style buttonów zmieniłem na razie pod to co wskazuje projekt, pewnie będzie trzeba zrobić refactor w przyszłości - Tomek
-
 .button {
   display: block;
   height: auto;
@@ -17,7 +15,6 @@
   transition: ease-in-out 0.5s;
 
   &:hover {
-    // background-color: $color-bg--special;
     cursor: pointer;
     transition: ease-in-out 0.5s;
   }

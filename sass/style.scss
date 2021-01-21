@@ -1,11 +1,8 @@
-// * NIE ZMIENIAĆ KOLEJNOŚCI!
+@import 'reset';
+@import 'vars';
+@import 'main';
 
-@import 'reset'; // reset standardowy
-@import 'vars'; // ustawienie zmiennych
-@import 'main'; // opisanie głównych elementów
-@import 'mixins'; // miksins - główne
-
-// * COMPONENTY
+// * COMPONENTS
 @import 'components/gameMode';
 @import 'components/button';
 @import 'components/questionAnswers';

@@ -27,7 +27,6 @@ export const StartWindow = (callBackFunction) => {
   episodeSubtitle.textContent = 'Episode IV';
   const episodeTitle = document.createElement('p');
   episodeTitle.classList.add('startWindow__episodeTitle');
-  // ? episodeTitle.textContent = 'A New Hope';
   episodeTitle.textContent = 'Coders Camp cereals';
   const firstParagraph = document.createElement('p');
   firstParagraph.classList.add(
@@ -48,7 +47,6 @@ export const StartWindow = (callBackFunction) => {
   );
   thirdParagraph.textContent = thirdParagraphText;
 
-  // !  RENDERY
   renderedComponent.appendChild(fadeComponent);
   renderedComponent.appendChild(trailerComponent);
   renderedComponent.appendChild(deathStarContainer);
