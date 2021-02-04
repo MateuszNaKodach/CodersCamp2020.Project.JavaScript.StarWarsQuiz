@@ -20,18 +20,14 @@ export const NavMenu = (
     },
   ],
 ) => {
-
-  // * set nav
   const navMenuDomObj = document.createElement('nav');
   navMenuDomObj.classList.add('navMenu');
   navMenuDomObj.id = 'navMenu';
 
-  // * set menu list
   const navMenuDomObj__list = document.createElement('ul');
   navMenuDomObj__list.classList.add('navMenu__list');
   navMenuDomObj.appendChild(navMenuDomObj__list);
 
-  // * set list items
   menuItems.map((item, index) => {
     const navMenuDomObj__item = document.createElement('li');
     navMenuDomObj__item.classList.add('navMenu__li');
@@ -53,6 +49,5 @@ export const NavMenu = (
       });
   });
 
-  // * set first item active
   return navMenuDomObj;
 };

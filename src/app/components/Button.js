@@ -16,7 +16,6 @@ export const Button = (
   if (btnObj.classList[0]) btnDomObj.classList.add(...btnObj.classList);
   btnDomObj.onclick = btnObj.onClickFn;
 
-  // * set buttons icon
   const spanElem = document.createElement('span');
   if (btnObj.icon != '' && btnObj.icon != undefined) {
     spanElem.classList.add('button__icon');

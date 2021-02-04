@@ -11,7 +11,6 @@
   font-style: normal;
   font-weight: 500;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  //margin-top: 40px;
 
   &__icon {
     display: inline-block;
@@ -94,7 +93,6 @@
       margin-top: 10px;
     }
 
-    // check the padding and font size with full ranking!!! Because now it is empty!
     &__emptyLeaderboardText {
       padding: 40px 30px;
       font-size: 15px;
@@ -120,7 +118,6 @@
       margin-top: 20px;
     }
 
-    // check the padding and font size with full ranking!!! Because now it is empty!
     &__emptyLeaderboardText {
       font-size: 22px;
     }

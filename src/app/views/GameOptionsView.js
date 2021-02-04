@@ -20,8 +20,6 @@ export const gameOptionsView = (
   );
 };
 
-//// ****************************************************************
-//// ****************************************************************
 function setGameModeView(
   settings = { gameModeName: undefined, gameModeTitlesList: undefined },
   parent,
@@ -37,11 +35,8 @@ function setGameModeView(
     'rulesView',
     onClickCallBackFunction,
   );
-  // renderView(parent, cleanViewCallbackFunction, gameMode, 'rulesView');
-  // return [];
 }
 
-//// ****************************************************************
 function renderViewArray(
   settings = { gameModeName: undefined, gameModeTitlesList: undefined },
   parent,
@@ -51,15 +46,12 @@ function renderViewArray(
   onClickCallBackFunction,
 ) {
   cleanViewCallbackFunction(parent);
-  //// ****************************************************************
-  // * TITLE BOX
+
   const gameModeTitle = GameMode(
     getModeText(gameModeName, settings.gameModeTitlesList),
   );
   gameModeTitle.classList.add('mainContainer__titleBox');
 
-  //// ****************************************************************
-  // * CENTRAL BOX
   const modeRulesBox = ModeRules(
     getModeText(gameModeName, settings.gameModeRulesList),
   );
@@ -68,8 +60,6 @@ function renderViewArray(
   const modeRankingBox = ModeRanking(getScoresTabFromDataBase(gameModeName));
   modeRankingBox.classList.add('mainContainer__centralBox');
 
-  //// ****************************************************************
-  // * BTNS BOX
   const buttonBox = document.createElement('div');
   buttonBox.classList.add('mainContainer__buttonBox');
 
@@ -129,9 +119,6 @@ function renderViewArray(
 
   const elementsArray = [];
 
-  //// ****************************************************************
-  // * SWITCHER - VIEW MODE
-
   switch (viewModeName) {
     case 'rulesView':
       elementsArray.push(gameModeTitle);
@@ -157,14 +144,9 @@ function renderViewArray(
       break;
   }
 
-  // parent.appendChild(buttonBox);
-  console.log(elementsArray);
   return elementsArray;
 }
 
-//// ****************************************************************
-
-// TODO:
 function getScoresTabFromDataBase(gameModeName) {
   console.log(gameModeName);
   const scorseTabFromDataBase = new Ranking(gameModeName);

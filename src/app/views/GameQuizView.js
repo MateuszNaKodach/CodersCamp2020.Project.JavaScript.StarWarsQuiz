@@ -22,13 +22,11 @@ export class GameQuizView {
     this.swordTimer = Sword(30);
   }
 
-  // ******************************************************
   startGame() {
     this._clearMainContainer();
 
     this._renderWaitingTitleComponent();
 
-    // ! TUTAJ ODDAJEMY GŁOS Maszynie GameManager !
     this.gameManager = new Gameplay(
       (questionObjectFromGameManager) =>
         this._setQuestionFromGameManager(questionObjectFromGameManager),
@@ -46,7 +44,6 @@ export class GameQuizView {
     this.gameManager.startGame();
   }
 
-  // ******************************************************
   _setEndOfGame(player1answersArray = [], player2answersArray = []) {
     const modalWindow = new ModalWindow(document.getElementById('swquiz-app'));
     modalWindow.show(
@@ -63,8 +60,6 @@ export class GameQuizView {
           ),
       ),
     );
-
-    // modalWindowContent.close();
   }
 
   _onSubmitCallbackFunction(
@@ -80,15 +75,7 @@ export class GameQuizView {
       playerResult,
       playerAnswersQuantity,
       () => window.location.reload(),
-      // modalWindow,
-      // modeName,
-      'super Kot Lord JSON oraz super Kot waszmość Brzuszek',
     );
-
-    console.log('Gra zakończyła się!');
-    console.log('Gra zakończyła się!');
-    console.log('Strona powinna przeładować się automatycznie!');
-    console.log('Strona powinna przeładować się automatycznie!');
   }
 
   _setNewRecordDatabase() {}
@@ -98,10 +85,8 @@ export class GameQuizView {
     console.log('DODAJ tu TEXT TIMER');
     this.textTimer.updateTextTime(time);
     this.swordTimer.updateTextTime(time);
-    // TODO: TEXT TIMER W TYM MIEJSCU
   }
 
-  // ******************************************************
   _renderWaitingTitleComponent() {
     this.settings.renderComponentsFromComponentsArrayCallbackFunction([
       modifiedGameModeComponent(
@@ -112,12 +97,10 @@ export class GameQuizView {
     ]);
   }
 
-  // ******************************************************
   _clearMainContainer() {
     this.settings.clearMainContainerViewCallbackFunction();
   }
 
-  // ******************************************************
   _renderLoadedGameViewArray(questionObjectFromGameManager) {
     this._clearMainContainer();
 
@@ -162,7 +145,6 @@ export class GameQuizView {
     mainQuestionImage.src = `static/assets/img/modes/${imageFromQuestionObjectFromGameManager.mode}/${imageFromQuestionObjectFromGameManager.rightAnswer}.jpg`;
   }
 
-  // ******************************************************
   _onClickButton(answerAddedByUser, isAnswerddedByUserCorrect) {
     this._clearMainContainer();
     this._renderWaitingTitleComponent();
@@ -173,7 +155,6 @@ export class GameQuizView {
   }
 }
 
-// ******************************************************
 function modifiedGameModeComponent(
   gameModeName,
   questionsArray,
@@ -181,7 +162,6 @@ function modifiedGameModeComponent(
 ) {
   let questionTitle = '';
   const questionContainer = gameModeTitleComponent(questionTitle);
-  // ? questionContainer.classList.add('quizQuestion');
 
   if (!isWaitingForRendering) {
     switch (gameModeName) {

@@ -1,29 +1,14 @@
 import { StartWindow } from './components/StartWindow';
 import { NavMenu } from './layouts/NavMenu';
-import { QuestionImage } from './layouts/QuestionImage';
-import { Logo } from './layouts/Logo';
-import { MainContainer } from './layouts/MainContainer';
 import { Wrapper } from './layouts/Wrapper';
-import { Button } from './components/Button';
 import { QuestionGenerator } from './QuestionGenrator';
 import { fetchData } from '../utils/fetchData';
 import { getRandomIdFromArray } from '../utils/getRandomIdFromArray';
 import { peopleIdArray, starshipsIdArray, vehiclesIdArray } from './settings';
-import { ModalWindow } from './layouts/ModalWindow';
-import { ModalWindowContent } from './layouts/ModalWindowContent';
-import { GameMode } from './components/GameMode';
 import { render } from './rendering';
-import { QuestionAnswers } from './components/QuestionAnswers';
-import { ModeRules } from './components/ModeRules';
-import { Sword } from './components/Sword';
-import { ModeRanking } from './components/ModeRanking';
 
-export const App = ({ options }) => {
+export const App = () => {
   const app = document.getElementById('swquiz-app');
-
-  // ! dla programistów: nie pisać kodu poniżej
-  // ! dla Tomasz i Piotr: Nasz kod poniżej
-  // ! >>> TU NIE ZMIENIAĆ (NIC TU NIE DODAWAĆ) >>>
 
   app.innerHTML = '';
   const startWindow = render({
@@ -32,12 +17,6 @@ export const App = ({ options }) => {
   });
 
   const wrapper = render({ component: Wrapper(), inside: app });
-
-  // ! <<< TU NIE ZMIENIAĆ (NIC TU NIE DODAWAĆ) <<<
-  // ! ---------------
-  // ! ---------------
-  // ! ---------------
-  // ! ---------------
 };
 
 function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
@@ -75,9 +54,6 @@ function renderNavMenu(parent, activeItemNr = 0, previousState = undefined) {
   return render({ component, inside: parent, withClasses: 'wrapper__nav' });
 }
 
-const startGame = () => console.log('witaj w grze');
-const onAnswerChosen = (...params) => console.log(params);
-
 const fetchModeData = (mode, id) =>
   fetchData(mode, id, () =>
     fetch(`https://swapi.dev/api/${mode}/${id}/`).then((response) =>
@@ -99,9 +75,3 @@ const vehiclesQuestionGenerator = new QuestionGenerator(
   () => getRandomIdFromArray(vehiclesIdArray),
   fetchModeData,
 );
-
-// how to get data from QuestionGenerator
-// console.log(
-//   peopleQuestionGenerator.generateQuestion().then((res) => console.log(res)),
-// );
-// console.log(startshipsQuestionGenerator.generateQuestion());

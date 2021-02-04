@@ -14,10 +14,6 @@ export const Wrapper = () => {
   return wrapper;
 };
 
-// *****************************************************
-// *****************************************************
-// *****************************************************
-
 function setStartView(parent) {
   const logo = render({
     component: Logo(),
@@ -40,8 +36,6 @@ function setStartView(parent) {
 
   renderNavMenu(parent, mainContainer);
 }
-
-// *****************************************************
 
 function renderNavMenu(
   parent,
@@ -106,8 +100,6 @@ function renderNavMenu(
   console.log('Jestem funkcją renderNavMenu');
 }
 
-// *****************************************************
-
 function onClickNavMenuButton(
   parent,
   gameModeItemNr = 0,
@@ -115,45 +107,7 @@ function onClickNavMenuButton(
   gameModeName,
   mainContainer,
 ) {
-  // mainContainer.remove();
-  // parent.removeChild(previousState);
-
-  // TODO: TU WYWPOŁAJ funkcję ktora jest w maincontainer i renderuje nowy komponent albo coś
-
-  // console.log(mainContainer);
-  // console.log(gameModeName);
   mainContainer.setGameModeFromMainContainer(gameModeName);
 
-  // console.log('Pochodzę z onClicka');
-  // console.log(parent);
-  // console.log(gameModeItemNr);
-  // console.log(navMenuPreviousState);
   renderNavMenu(parent, mainContainer, gameModeItemNr, navMenuPreviousState);
 }
-
-// *****************************************************
-// *****************************************************
-// *****************************************************
-
-// TODO: Kliknięcie w nav menu wywołuje funkcję (cleanAndFill() lub cleanAndFillMainContainer() - nazwa do wyboru):
-// TODO: -- niszczy dzieci mainContainer
-// TODO: -- niszczy wywpłuje wypelnienie mainContainer
-// TODO: -- oparty na "switch"?
-
-// TODO: Wypełnij main mainContainer:
-
-// TODO:  funkcja wywołująca ustawine początkowe
-// TODO:  -- Mode Title
-// TODO:  -- Container (Rules lub ranking)
-// TODO:  -- Dwa przyciski
-// TODO:  funkcja podmieniająca  btn na ranking
-// TODO:  -- small container
-// TODO:  -- btns
-
-// TODO: Kliknięcie przycisku PLAY wywoła metodę cleanAndFill();
-// TODO:
-// TODO:
-// TODO:
-// TODO:
-// TODO:
-// TODO:
